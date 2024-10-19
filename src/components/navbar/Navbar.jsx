@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,33 +10,25 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import useMediaQuery from "@mui/material/useMediaQuery"; // Import useMediaQuery hook
+import useMediaQuery from "@mui/material/useMediaQuery";
 import "./Navbar.css";
 import navbar_logo from "../../assets/navbar_logo.svg";
 
-const pages = ["About Us", "How to help"];
-const settings = ["About Us", "How to help"];
+const pages = [
+  { name: "About Us", path: "/aboutus" },
+  { name: "How to help", path: "/how-to-help" }
+];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  // Add media query to detect screen width less than or equal to 1100px
   const isSmallScreen = useMediaQuery("(max-width:1100px)");
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -63,18 +56,21 @@ function Navbar() {
             height: "68px",
           }}
         >
-          <img
-            src={navbar_logo}
-            alt="NGO Logo"
-            style={{
-              display: "flex",
-              height: "40px",
-            }}
-          />
+          <Link to="/">
+            <img
+              src={navbar_logo}
+              alt="NGO Logo"
+              style={{
+                display: "flex",
+                height: "40px",
+              }}
+            />
+          </Link>
           <Typography
             variant="h6"
             noWrap
-            component="a"
+            component={Link}
+            to="/"
             sx={{
               ml: 2,
               display: { xs: "none", md: "flex" },
@@ -92,7 +88,8 @@ function Navbar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -152,11 +149,13 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem
-                  key={page}
+                  key={page.name}
                   onClick={handleCloseNavMenu}
                   sx={{ py: 0, height: "10px" }}
                 >
                   <Typography
+                    component={Link}
+                    to={page.path}
                     sx={{
                       textAlign: "center",
                       fontFamily: "Sora",
@@ -164,9 +163,10 @@ function Navbar() {
                       fontSize: "16px",
                       color: "rgba(226, 226, 226, 1)",
                       textTransform: "capitalize",
+                      textDecoration: "none",
                     }}
                   >
-                    {page}
+                    {page.name}
                   </Typography>
                 </MenuItem>
               ))}
@@ -180,9 +180,10 @@ function Navbar() {
               >
                 <Button
                   fullWidth
+                  component={Link}
+                  to="/donate"
                   sx={{
                     backgroundColor: "white",
-                    display: "block",
                     display: "flex",
                     justifyContent: "center",
                     gap: 1,
@@ -193,6 +194,7 @@ function Navbar() {
                     marginRight: 0,
                     alignItems: "center",
                     height: "100%",
+                    textDecoration: "none",
                   }}
                   className="donation-button"
                 >
@@ -232,7 +234,9 @@ function Navbar() {
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
+                component={Link}
+                to={page.path}
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
@@ -242,9 +246,10 @@ function Navbar() {
                   fontSize: "16px",
                   color: "rgba(226, 226, 226, 1)",
                   textTransform: "capitalize",
+                  textDecoration: "none",
                 }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -257,9 +262,10 @@ function Navbar() {
             }}
           >
             <Button
+              component={Link}
+              to="/donate"
               sx={{
                 backgroundColor: "white",
-                display: "block",
                 display: "flex",
                 justifyContent: "center",
                 gap: 1,
@@ -269,6 +275,7 @@ function Navbar() {
                 marginRight: 0,
                 alignItems: "center",
                 height: "100%",
+                textDecoration: "none",
               }}
               className="donation-button"
             >

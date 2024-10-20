@@ -16,7 +16,7 @@ import navbar_logo from "../../assets/navbar_logo.svg";
 
 const pages = [
   { name: "About Us", path: "/aboutus" },
-  { name: "How to help", path: "/how-to-help" }
+  { name: "How to help", path: "/how-to-help" },
 ];
 
 function Navbar() {
@@ -41,6 +41,7 @@ function Navbar() {
         paddingX: { xs: 2, md: 0 },
         zIndex: 1,
         height: "68px",
+        zIndex: 3,
       }}
     >
       <Container
@@ -138,7 +139,6 @@ function Navbar() {
                   borderBottom: "1px solid rgba(226, 226, 226, 1)",
                   backdropFilter: "blur(27.399999618530273px)",
                   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                  borderRadius: "8px",
                   borderRadius: 0,
                   marginTop: 2.7,
                   p: 1,

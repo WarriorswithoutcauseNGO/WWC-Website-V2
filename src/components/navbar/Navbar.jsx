@@ -16,7 +16,7 @@ import navbar_logo from "../../assets/navbar_logo.svg";
 
 const pages = [
   { name: "About Us", path: "/aboutus" },
-  { name: "How to help", path: "/how-to-help" },
+  { name: "How to help", path: "/howtohelp" },
 ];
 
 function Navbar() {

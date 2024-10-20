@@ -18,14 +18,14 @@ export default function HomePageAboutUs() {
     <Box
       sx={{
         background: "rgba(255, 162, 215, 1)",
-        borderRadius: "0px 0px 0px 351px",
+        borderRadius: { md: "0px 0px 0px 351px", xs: "0 0 0 202px" },
         position: "relative",
         padding: "40px 0",
         overflow: "hidden",
         textAlign: "center",
         height: "90vh",
         pt: { md: 15, xs: 20 },
-        pb: 20,
+        pb: { md: 20, xs: 15 },
       }}
     >
       <Box
@@ -114,6 +114,7 @@ export default function HomePageAboutUs() {
         sx={{
           position: "absolute",
           top: "30px",
+          left: "-150px",
           zIndex: 0,
           display: { xs: "flex", md: "none" },
         }}
@@ -136,8 +137,8 @@ export default function HomePageAboutUs() {
       <Box
         sx={{
           position: "absolute",
-          top: "530px",
-          right: "0px",
+          top: "555px",
+          right: "-230px",
           zIndex: 0,
           display: { xs: "flex", md: "none" },
         }}

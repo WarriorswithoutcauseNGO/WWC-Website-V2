@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
+import CardsDesktop from "./cardsDesktop";
+import CardsPhone from "./cardsPhone";
 
 export default function actions() {
   return (
@@ -33,6 +35,22 @@ export default function actions() {
           brighter future.
         </span>
       </Typography>
+      <Box
+        sx={{
+          display: { xs: "none", md: "flex" },
+        }}
+      >
+        <CardsDesktop />
+      </Box>
+
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+          marginTop: "15px",
+        }}
+      >
+        <CardsPhone />
+      </Box>
     </Box>
   );
 }

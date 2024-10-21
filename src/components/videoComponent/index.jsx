@@ -1,12 +1,12 @@
 import React from "react";
 import "./VideoBackground.css";
-import bgVideo from "../../assets/bg-video.mp4";
+// import bgVideo from "../../assets/bg-video.mp4";
 
 function VideoBackground() {
   return (
     <div className="video-container">
       <video autoPlay loop muted className="bg-video">
-        <source src={bgVideo} type="video/mp4" />
+        {/* <source src={bgVideo} type="video/mp4" /> */}
         Your browser does not support the video tag.
       </video>
 

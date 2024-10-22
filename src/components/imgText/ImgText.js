@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import AboutUsBg from "../../assets/AboutUsBg.svg";
+import AboutUsBg from "../../assets/AboutUsBg.webp";
 import HowToHelpBg from "../../assets/HowToHelp.svg";
 import '../../fonts.css'
 

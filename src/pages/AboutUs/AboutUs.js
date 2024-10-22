@@ -3,8 +3,8 @@ import React from "react";
 import Navbar from "../../components/navbar/Navbar";
 import ImgText from "../../components/imgText/ImgText";
 import Cards from "../../components/aboutUsCards/Cards";
-import AboutUsCardOne from "../../assets/AboutUsCard1.svg";
-import AboutUsCardTwo from "../../assets/AboutUsCard2.svg";
+import AboutUsCardOne from "../../assets/AboutUsCard1.png";
+import AboutUsCardTwo from "../../assets/AboutUsCard2.png";
 import MeetTheTeam from "../../components/meettheteam/MeetTheTeam";
 
 const AboutUs = () => {

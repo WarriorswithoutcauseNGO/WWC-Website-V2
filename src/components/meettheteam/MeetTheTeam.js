@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Anusha from "../../assets/Anusha.svg";
-import Bhavini from "../../assets/Bhavini.svg";
-import Khushi from "../../assets/Khushi.svg";
+import Anusha from "../../assets/Anusha.png";
+import Bhavini from "../../assets/Bhavini.png";
+import Khushi from "../../assets/Khushi.png";
 import Vanshika from "../../assets/Vanshika.svg";
 import Ishita from "../../assets/Ishita.svg";
-import Manisha from "../../assets/Manisha.svg";
+import Manisha from "../../assets/Manisha.png";
 import VanshikaJindal from "../../assets/VanshikaJindal.svg";
 import Dakshesh from "../../assets/Dakshesh.svg";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import '../../fonts.css'
-import HTHimg from '../../assets/hthcard2.svg'
+import HTHimg from '../../assets/hthcard2.webp'
 import pay from '../../assets/pay.svg'
 
 const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) => {

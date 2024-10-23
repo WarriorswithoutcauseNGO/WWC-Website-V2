@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import bf_img_1 from "../../assets/bf_img_1.svg";
-import bf_img_2 from "../../assets/bf_img_2.svg";
-import bf_img_3 from "../../assets/bf_img_3.svg";
-import bf_img_4 from "../../assets/bf_img_4.svg";
-import bf_img_5 from "../../assets/bf_img_5.svg";
+import bf_img_1 from "../../assets/bf_img_1.png";
+import bf_img_2 from "../../assets/bf_img_2.png";
+import bf_img_3 from "../../assets/bf_img_3.png";
+import bf_img_4 from "../../assets/bf_img_4.png";
+import bf_img_5 from "../../assets/bf_img_5.png";
 import bg from "../../assets/bf_card_bg.svg";
 import right from "../../assets/right.svg";
 import left from "../../assets/left.svg";

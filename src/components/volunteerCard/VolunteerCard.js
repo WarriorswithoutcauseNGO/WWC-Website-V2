@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import "../../fonts.css";
-import VolunteerImg from "../../assets/volunteer.svg";
+import VolunteerImg from "../../assets/Volunteer.png";
 
 import heart from "../../assets/heartCard.svg";
 import flowerCard from "../../assets/flowerCard.svg";

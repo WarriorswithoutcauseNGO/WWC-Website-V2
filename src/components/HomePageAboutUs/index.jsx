@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import about_img_1 from "../../assets/about_img_1.svg";
-import about_img_2 from "../../assets/about_img_2.svg";
-import about_img_3 from "../../assets/about_img_3.svg";
-import about_img_1_phn from "../../assets/about_img_1+phn.svg";
-import about_img_3_phn from "../../assets/about_img_3_phn.svg";
+import about_img_1 from "../../assets/About_img_1.png";
+import about_img_2 from "../../assets/About_img_2.png";
+import about_img_3 from "../../assets/About_img_3.png";
+import about_img_1_phn from "../../assets/About_img_phn_1.png";
+import about_img_3_phn from "../../assets/About_img_3_ph.png";
 
 export default function HomePageAboutUs() {
   const navigate = useNavigate();
@@ -114,7 +114,7 @@ export default function HomePageAboutUs() {
         sx={{
           position: "absolute",
           top: "30px",
-          left: "-150px",
+          // left: "-150px",
           zIndex: 0,
           display: { xs: "flex", md: "none" },
         }}

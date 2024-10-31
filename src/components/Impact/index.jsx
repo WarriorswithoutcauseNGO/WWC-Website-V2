@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import india_map from "../../assets/india_map.png";
 import india_map_phn from "../../assets/india_map_phn.png";
 import hyderabad from "../../assets/hyderabad.png";
 import hyderabad_phn from "../../assets/hyderabad_phn.png";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+
+const AnimatedNumber = ({ target }) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+
+  useEffect(() => {
+    const animation = animate(count, target, { duration: 1 });
+    return animation.stop;
+  }, [target, count]);
+
+  return <motion.span>{rounded}</motion.span>;
+};
 
 export default function Impact() {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
@@ -46,7 +59,6 @@ export default function Impact() {
               height: isMobile ? "100%" : "498px",
             }}
           />
-
           <Typography
             sx={{
               fontFamily: "Sora",
@@ -59,26 +71,17 @@ export default function Impact() {
             }}
           >
             With an army of over{" "}
-            <span
-              style={{
-                fontWeight: "700",
-              }}
-            >
-              350 warriors operating in multiple hubs,
+            <span style={{ fontWeight: "700" }}>
+              <AnimatedNumber target={350} /> warriors operating in multiple
+              hubs,
             </span>{" "}
             we are breaking down barriers and leaving a legacy of compassion and
-            impact
+            impact.
           </Typography>
         </Box>
 
         <Box>
-          <Box
-            sx={{
-              display: "flex",
-              gap: 1,
-              mb: 1,
-            }}
-          >
+          <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
             <Box
               sx={{
                 textAlign: "center",
@@ -97,7 +100,7 @@ export default function Impact() {
                   height: { md: "60px", xs: "40px" },
                 }}
               >
-                700K +
+                <AnimatedNumber target={700} />K +
               </Typography>
               <Typography
                 sx={{
@@ -128,7 +131,7 @@ export default function Impact() {
                   height: { md: "60px", xs: "40px" },
                 }}
               >
-                3000 +
+                <AnimatedNumber target={3000} />+
               </Typography>
               <Typography
                 sx={{
@@ -142,11 +145,7 @@ export default function Impact() {
               </Typography>
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
+          <Box sx={{ display: "flex" }}>
             <Box
               sx={{
                 display: "flex",
@@ -175,7 +174,7 @@ export default function Impact() {
                     height: { md: "60px", xs: "40px" },
                   }}
                 >
-                  200K +
+                  <AnimatedNumber target={200} />K +
                 </Typography>
                 <Typography
                   sx={{
@@ -208,7 +207,7 @@ export default function Impact() {
                     height: { md: "60px", xs: "40px" },
                   }}
                 >
-                  300 +
+                  <AnimatedNumber target={300} />+
                 </Typography>
                 <Typography
                   sx={{
@@ -218,7 +217,7 @@ export default function Impact() {
                     color: "#FF3AB3",
                   }}
                 >
-                  Collaboration done
+                  Collaborations done
                 </Typography>
               </Box>
             </Box>
@@ -247,7 +246,7 @@ export default function Impact() {
                 height: { md: "60px", xs: "40px" },
               }}
             >
-              10,00,000 +
+              <AnimatedNumber target={1000000} />+
             </Typography>
             <Typography
               sx={{

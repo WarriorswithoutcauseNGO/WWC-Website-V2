@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./VideoBackground.css";
-// import bgVideo from "../../assets/bg-video.mp4";
+import bgVideo from "../../assets/bg-video.mp4";
 
 function VideoBackground() {
+  useEffect(() => {
+    const video = document.querySelector(".bg-video");
+    video.addEventListener("canplay", () => console.log("Video can play"));
+    video.addEventListener("error", () => console.log("Error loading video"));
+  }, []);
+
   return (
     <div className="video-container">
       <video autoPlay loop muted className="bg-video">
-        {/* <source src={bgVideo} type="video/mp4" /> */}
+        <source src={bgVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

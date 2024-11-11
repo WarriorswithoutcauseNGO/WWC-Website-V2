@@ -138,7 +138,7 @@ export default function HomePageAboutUs() {
         sx={{
           position: "absolute",
           top: "555px",
-          right: "-230px",
+          right: "0px",
           zIndex: 0,
           display: { xs: "flex", md: "none" },
         }}

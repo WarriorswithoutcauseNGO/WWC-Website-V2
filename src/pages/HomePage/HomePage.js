@@ -3,6 +3,7 @@ import VideoComponent from '../../components/videoComponent/index'
 import HomePageAboutUs from '../../components/HomePageAboutUs'
 import Actions from '../../components/actions'
 import Impact from '../../components/Impact'
+import OurDrives from '../../components/OurDrives'
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <HomePageAboutUs />
       <Actions />
       <Impact />
+      <OurDrives />
     </div>
   )
 }

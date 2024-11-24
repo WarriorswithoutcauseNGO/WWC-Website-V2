@@ -92,6 +92,10 @@ export default function HomePageAboutUs() {
             textTransform: "uppercase",
             display: { xs: "none", md: "block" },
             margin: "0 auto",
+            "&:hover": {
+              backgroundColor: "white",
+              color: "black",
+            },
           }}
           onClick={handleLearnMoreClick}
         >

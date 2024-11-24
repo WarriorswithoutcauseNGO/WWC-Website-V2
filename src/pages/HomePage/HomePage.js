@@ -7,6 +7,7 @@ import OurDrives from '../../components/OurDrives'
 import Contribution from '../../components/contributionsHomepage/Contribution'
 import MileStone from '../../components/milestoneEvents/MileStone'
 import StoryOfChange from '../../components/storyOfChange/StoryOfChange'
+import BecomeWarrior from '../../components/BecomeWarrior'
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
       <Actions />
       <Impact />
       <OurDrives />
+      <BecomeWarrior />
       <MileStone />
       <StoryOfChange />
       <Contribution />

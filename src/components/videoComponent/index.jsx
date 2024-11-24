@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./VideoBackground.css";
 import bgVideo from "../../assets/bg-video.mp4";
-
 function VideoBackground() {
-  useEffect(() => {
-    const video = document.querySelector(".bg-video");
-    video.addEventListener("canplay", () => console.log("Video can play"));
-    video.addEventListener("error", () => console.log("Error loading video"));
-  }, []);
-
   return (
     <div className="video-container">
-      <video autoPlay loop muted className="bg-video">
+      <video autoPlay="" loop muted className="bg-video">
         <source src={bgVideo} type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
-
       <div className="overlay-text">
         <div className="overlay-text_div">
           We Don’t Need a Cause to Make a Change
@@ -26,7 +17,6 @@ function VideoBackground() {
         </p>
         <button className="grow-btn">Help Us Grow</button>
       </div>
-
       <div className="scroll_lottie">
         <iframe
           className="slottie"
@@ -37,5 +27,4 @@ function VideoBackground() {
     </div>
   );
 }
-
 export default VideoBackground;

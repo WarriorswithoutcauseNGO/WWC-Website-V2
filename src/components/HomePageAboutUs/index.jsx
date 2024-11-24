@@ -92,6 +92,10 @@ export default function HomePageAboutUs() {
             textTransform: "uppercase",
             display: { xs: "none", md: "block" },
             margin: "0 auto",
+            "&:hover": {
+              backgroundColor: "white",
+              color: "black",
+            },
           }}
           onClick={handleLearnMoreClick}
         >
@@ -138,7 +142,7 @@ export default function HomePageAboutUs() {
         sx={{
           position: "absolute",
           top: "555px",
-          right: "-230px",
+          right: "0px",
           zIndex: 0,
           display: { xs: "flex", md: "none" },
         }}

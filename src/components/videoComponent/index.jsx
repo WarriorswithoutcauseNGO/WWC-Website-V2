@@ -1,16 +1,14 @@
 import React from "react";
 import "./VideoBackground.css";
-// import bgVideo from "../../assets/bg-video.mp4";
-
+import bgVideo from "../../assets/bg-video.mp4";
 function VideoBackground() {
   return (
     <div className="video-container">
       <video autoPlay loop muted className="bg-video">
-        {/* <source src={bgVideo} type="video/mp4" /> */}
-        Your browser does not support the video tag.
+        <source src={bgVideo} type="video/mp4" />
       </video>
-
       <div className="overlay-text">
+        <div className="overlay-text_div-wwc">WARRIORSWITHOUTCAUSE</div>
         <div className="overlay-text_div">
           We Don’t Need a Cause to Make a Change
         </div>
@@ -20,7 +18,6 @@ function VideoBackground() {
         </p>
         <button className="grow-btn">Help Us Grow</button>
       </div>
-
       <div className="scroll_lottie">
         <iframe
           className="slottie"
@@ -31,5 +28,4 @@ function VideoBackground() {
     </div>
   );
 }
-
 export default VideoBackground;

@@ -45,6 +45,7 @@ function Navbar() {
       }}
     >
       <Container
+        disableGutters
         maxWidth="xl"
         sx={{ paddingLeft: 0, paddingRight: 0, height: "68px" }}
       >
@@ -55,6 +56,7 @@ function Navbar() {
             paddingRight: 0,
             alignItems: "center",
             height: "68px",
+            ml: { md: 2, xs: 0 },
           }}
         >
           <Link to="/">
@@ -144,6 +146,7 @@ function Navbar() {
                   p: 1,
                   width: "100%",
                   pt: 2,
+                  maxWidth: "100%",
                 },
               }}
             >

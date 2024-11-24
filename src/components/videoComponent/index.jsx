@@ -4,10 +4,11 @@ import bgVideo from "../../assets/bg-video.mp4";
 function VideoBackground() {
   return (
     <div className="video-container">
-      <video autoPlay="" loop muted className="bg-video">
+      <video autoPlay loop muted className="bg-video">
         <source src={bgVideo} type="video/mp4" />
       </video>
       <div className="overlay-text">
+        <div className="overlay-text_div-wwc">WARRIORSWITHOUTCAUSE</div>
         <div className="overlay-text_div">
           We Don’t Need a Cause to Make a Change
         </div>

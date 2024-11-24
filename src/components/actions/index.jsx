@@ -7,7 +7,7 @@ export default function actions() {
   return (
     <Box
       sx={{
-        mt: 3,
+        mt: 6,
         mb: 3,
       }}
     >
@@ -38,6 +38,7 @@ export default function actions() {
       <Box
         sx={{
           display: { xs: "none", md: "flex" },
+          mt: 4,
         }}
       >
         <CardsDesktop />

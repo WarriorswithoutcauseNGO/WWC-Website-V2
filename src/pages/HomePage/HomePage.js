@@ -6,6 +6,7 @@ import Impact from '../../components/Impact'
 import Contribution from '../../components/contributionsHomepage/Contribution'
 import MileStone from '../../components/milestoneEvents/MileStone'
 import StoryOfChange from '../../components/storyOfChange/StoryOfChange'
+import BrowseCollections from '../../components/BrowseCollections/BrowseCollections'
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <HomePageAboutUs />
       <Actions />
       <Impact />
+      <BrowseCollections/>
       <MileStone/>
       <StoryOfChange/>
       <Contribution/>

@@ -18,7 +18,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/howtohelp" element={<HowToHelp />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
       <CopyrightSection />
     </Box>
   );

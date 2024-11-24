@@ -17,6 +17,8 @@ const HomePage = () => {
       <HomePageAboutUs />
       <Actions />
       <Impact />
+      <BrowseCollections/>
+      <BecomeWarrior/>
       <MileStone/>
       <StoryOfChange/>
       <Contribution/>

@@ -8,6 +8,7 @@ import Contribution from '../../components/contributionsHomepage/Contribution'
 import MileStone from '../../components/milestoneEvents/MileStone'
 import StoryOfChange from '../../components/storyOfChange/StoryOfChange'
 import BecomeWarrior from '../../components/BecomeWarrior'
+import BrowseCollections from '../../components/BrowseCollections/BrowseCollections'
 
 const HomePage = () => {
   return (
@@ -16,11 +17,11 @@ const HomePage = () => {
       <HomePageAboutUs />
       <Actions />
       <Impact />
-      <OurDrives />
-      <BecomeWarrior />
-      <MileStone />
-      <StoryOfChange />
-      <Contribution />
+      <BrowseCollections/>
+      <BecomeWarrior/>
+      <MileStone/>
+      <StoryOfChange/>
+      <Contribution/>
     </div>
   )
 }

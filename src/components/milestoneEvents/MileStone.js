@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Typography, IconButton, useMediaQuery, useTheme } from '@mui/material';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { Box, Typography, IconButton, useMediaQuery, useTheme, Button } from '@mui/material';
+import left from "../../assets/left.svg";
+import right from '../../assets/right.svg'
 
 const milestoneData = [
   {
@@ -199,20 +200,30 @@ const MileStone = () => {
               <IconButton 
                 onClick={handlePrev}
                 sx={{ 
-                  bgcolor: 'white',
-                  '&:hover': { bgcolor: 'rgba(255,255,255,0.8)' }
+                  border:"1px solid #FFFFFF",
+                  cursor:"pointer",
+                  padding:"5px 20px",
+                  borderRadius:"27px",
+                  display:"flex",
+                  justifyContent:'center',
+                  alignItems:"center"  
                 }}
               >
-                <ChevronLeft />
+                <img src={left} alt="Previous" />
               </IconButton>
               <IconButton 
                 onClick={handleNext}
                 sx={{ 
-                  bgcolor: 'white',
-                  '&:hover': { bgcolor: 'rgba(255,255,255,0.8)' }
+                  border:"1px solid #FFFFFF",
+                  cursor:"pointer",
+                  padding:"5px 20px",
+                  borderRadius:"27px",
+                  display:"flex",
+                  justifyContent:'center',
+                  alignItems:"center"  
                 }}
               >
-                <ChevronRight />
+                <img src={right} alt="Previous" />
               </IconButton>
             </Box>
           </Box>

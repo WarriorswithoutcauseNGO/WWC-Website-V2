@@ -90,20 +90,41 @@ const ContactSection = () => (
 );
 
 const LocationSection = () => (
-  <Box sx={{ maxWidth: '350px',height:"100%"}}>
+  <Box 
+    sx={{ 
+      width: { xs: '100%', md: '350px' }, // 100% for small screens, 350px for desktops
+      maxWidth: '100%',
+      height: '100%' 
+    }}
+  >
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
       <LocationOnIcon sx={{ mr: 1 }} />
       <Typography>Sarita Vihar, New Delhi</Typography>
     </Box>
-    <Box sx={{ width: '100%', height: '150px', backgroundColor: '#ccc', borderRadius: '10px' }}>
-    <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14024.908360486553!2d77.27964367449631!3d28.529528183769504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce16da7d5a777%3A0xfd0579811db3afe3!2sSarita%20Vihar%2C%20New%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1635768936896!5m2!1sen!2sus"
-          width="350px"
-          height="200"
-          style={{ border: 0, borderRadius: '10px' }}
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
+    <Box
+      sx={{
+        width: '100%',
+        position: 'relative',
+        paddingBottom: '56.25%', // Aspect ratio (16:9)
+        backgroundColor: '#ccc',
+        borderRadius: '10px',
+        overflow: 'hidden',
+      }}
+    >
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14024.908360486553!2d77.27964367449631!3d28.529528183769504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce16da7d5a777%3A0xfd0579811db3afe3!2sSarita%20Vihar%2C%20New%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1635768936896!5m2!1sen!2sus"
+        width="100%"
+        height="100%"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          border: 0,
+          borderRadius: '10px',
+        }}
+        allowFullScreen=""
+        loading="lazy"
+      ></iframe>
     </Box>
   </Box>
 );

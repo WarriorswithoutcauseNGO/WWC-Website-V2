@@ -42,6 +42,9 @@ function Navbar() {
         zIndex: 1,
         height: "68px",
         zIndex: 3,
+        '& .css-18ivjmb-MuiPaper-root-MuiPopover-paper-MuiMenu-paper':{
+          left:"0px"
+        }
       }}
     >
       <Container
@@ -122,110 +125,111 @@ function Navbar() {
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              PaperProps={{
-                sx: {
-                  background: "rgba(255, 255, 255, 0.09)",
-                  borderBottom: "1px solid rgba(226, 226, 226, 1)",
-                  backdropFilter: "blur(27.399999618530273px)",
-                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                  borderRadius: 0,
-                  marginTop: 2.7,
-                  p: 1,
-                  width: "100%",
-                  pt: 2,
-                  maxWidth: "100%",
-                },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem
-                  key={page.name}
-                  onClick={handleCloseNavMenu}
-                  sx={{ py: 0, height: "10px" }}
-                >
-                  <Typography
-                    component={Link}
-                    to={page.path}
-                    sx={{
-                      textAlign: "center",
-                      fontFamily: "Sora",
-                      fontWeight: 500,
-                      fontSize: "16px",
-                      color: "rgba(226, 226, 226, 1)",
-                      textTransform: "capitalize",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {page.name}
-                  </Typography>
-                </MenuItem>
-              ))}
-              <Box
-                sx={{
-                  flexGrow: 0,
-                  height: "100%",
-                  display: { xs: "flex", md: "none" },
-                  m: 2,
-                }}
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            PaperProps={{
+              sx: {
+                background: "rgba(255, 255, 255, 0.09)",
+                borderBottom: "1px solid rgba(226, 226, 226, 1)",
+                backdropFilter: "blur(27.399999618530273px)",
+                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                borderRadius: 0,
+                marginTop: 2.7,
+                p: 1,
+                pt: 2,
+                maxWidth: "100%", // Ensure the menu spans the screen width
+                width: "100%", // Full width for small screens
+                left: "0px !important", // Remove any left spacing
+              },
+            }}
+          >
+            {pages.map((page) => (
+              <MenuItem
+                key={page.name}
+                onClick={handleCloseNavMenu}
+                sx={{ py: 0, height: "10px" }}
               >
-                <Button
-                  fullWidth
+                <Typography
                   component={Link}
-                  to="/donate"
+                  to={page.path}
                   sx={{
-                    backgroundColor: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 1,
-                    px: 5,
-                    py: 2,
-                    borderRadius: 0,
-                    position: "relative",
-                    marginRight: 0,
-                    alignItems: "center",
-                    height: "100%",
+                    textAlign: "center",
+                    fontFamily: "Sora",
+                    fontWeight: 500,
+                    fontSize: "16px",
+                    color: "rgba(226, 226, 226, 1)",
+                    textTransform: "capitalize",
                     textDecoration: "none",
                   }}
-                  className="donation-button"
                 >
-                  <svg
-                    className="heart-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="32"
-                    height="32"
-                    stroke="black"
-                    fill="none"
-                    strokeWidth="2"
-                  >
-                    <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
-                  </svg>
-                  <Typography
-                    sx={{
-                      fontFamily: "Sora",
-                      fontWeight: 700,
-                      fontSize: "16px",
-                      color: "rgba(0, 0, 0, 1)",
-                    }}
-                  >
-                    Make a donation
-                  </Typography>
-                </Button>
-              </Box>
-            </Menu>
+                  {page.name}
+                </Typography>
+              </MenuItem>
+            ))}
+            <Box
+              sx={{
+                flexGrow: 0,
+                height: "100%",
+                display: { xs: "flex", md: "none" },
+                m: 2,
+              }}
+            >
+              <Button
+                fullWidth
+                component={Link}
+                to="/donate"
+                sx={{
+                  backgroundColor: "white",
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 1,
+                  px: 5,
+                  py: 2,
+                  borderRadius: 0,
+                  position: "relative",
+                  marginRight: 0,
+                  alignItems: "center",
+                  height: "100%",
+                  textDecoration: "none",
+                }}
+                className="donation-button"
+              >
+                <svg
+                  className="heart-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="32"
+                  height="32"
+                  stroke="black"
+                  fill="none"
+                  strokeWidth="2"
+                >
+                  <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
+                </svg>
+                <Typography
+                  sx={{
+                    fontFamily: "Sora",
+                    fontWeight: 700,
+                    fontSize: "16px",
+                    color: "rgba(0, 0, 0, 1)",
+                  }}
+                >
+                  Make a donation
+                </Typography>
+              </Button>
+            </Box>
+          </Menu>
           </Box>
 
           <Box

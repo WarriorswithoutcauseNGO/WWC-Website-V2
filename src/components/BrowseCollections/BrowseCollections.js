@@ -5,7 +5,8 @@ import crochetTops from '../../assets/crochetTops.png'
 import merchPhone from '../../assets/merchPhone.png'
 import crochetFlowersPhone from '../../assets/crochetFlowerPhone.png'
 import crochetTopsPhone from '../../assets/crochetTopsPhone.png'
-import video from '../../assets/testImage.png'
+import video from '../../assets/sochVideo.mp4'
+import sochLogo from '../../assets/sochLogo.png'
 import { Box, Button, Typography, Container, Grid, useTheme, useMediaQuery } from '@mui/material';
 
 const BrowseCollections = () => {
@@ -30,23 +31,41 @@ const BrowseCollections = () => {
         >
           {/* Left side - Image */}
           <Grid item xs={12} lg={6} sx={{ display: 'flex' }}>
-            <Box 
+          <Box 
               sx={{
                 display: 'flex',
                 justifyContent: { xs: 'center', lg: 'flex-start' },
                 width: '100%',
-                height: '100%'
+                height: { xs: '200px', sm: '400px', md: '600px', lg: '880px' },
+                position: 'relative' 
               }}
             >
+              <video 
+                src={video}
+                controls
+                muted
+                autoPlay
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  maxWidth: isXsScreen ? '310px' : '100%',
+                  borderRadius: "30px",
+                  objectFit: 'cover', // This maintains aspect ratio
+                  objectPosition: 'center' // Centers the video
+                }}
+              />
               <Box
                 component="img"
-                src={video}
-                alt="Featured content"
+                src={sochLogo}
+                alt="Soch Logo"
                 sx={{
-                  width: '100%',
-                  maxWidth: { xs: '310px', md: '661px' },
-                  height: 'auto',
-                //   objectFit: 'cover'
+                  position: 'absolute',
+                  bottom: 10,
+                  left: 10,
+                  width: { xs: '50px', md: '80px' }, 
+                  opacity: 0.6, 
+                  zIndex: 10 
                 }}
               />
             </Box>
@@ -118,47 +137,85 @@ const BrowseCollections = () => {
                   </Typography>
                 </Button>
               </Box>
-
               {/* Bottom images */}
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: {
-                    xs: '1fr',
-                    sm: 'repeat(3, 1fr)',
-                  },
-                  gap: { xs: 2, md: 2 },
-                  width: '100%'
-                }}
-              >
-                <Box
-                  component="img"
-                  src={isXsScreen ? merchPhone : merch}
-                  alt="Merch"
-                  sx={{
-                    width: '100%',
-                    height: 'auto'
-                  }}
-                />
-                <Box
-                  component="img"
-                  src={isXsScreen ? crochetFlowersPhone : crochetFlowers}
-                  alt="Crochet Flowers"
-                  sx={{
-                    width: '100%',
-                    height: 'auto'
-                  }}
-                />
-                <Box
-                  component="img"
-                  src={isXsScreen ? crochetTopsPhone : crochetTops}
-                  alt="Crochet Tops"
-                  sx={{
-                    width: '100%',
-                    height: 'auto'
-                  }}
-                />
-              </Box>
+              {/* Bottom images */}
+<Box
+  sx={{
+    display: 'grid',
+    gridTemplateColumns: {
+      xs: '1fr',
+      sm: 'repeat(3, 1fr)',
+    },
+    gap: { xs: 2, md: 2 },
+    width: '100%'
+  }}
+>
+  {[
+    {
+      src: isXsScreen ? merchPhone : merch,
+      phoneSrc: merchPhone,
+      text: "MERCH",
+      alt: "Merch"
+    },
+    {
+      src: isXsScreen ? crochetFlowersPhone : crochetFlowers,
+      phoneSrc: crochetFlowersPhone,
+      text: "CROCHET\nFLOWERS",
+      alt: "Crochet Flowers"
+    },
+    {
+      src: isXsScreen ? crochetTopsPhone : crochetTops,
+      phoneSrc: crochetTopsPhone,
+      text: "CROCHET\nTOPS",
+      alt: "Crochet Tops"
+    }
+  ].map((item) => (
+    <Box
+      sx={{
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: '16px',
+        '&:hover': {
+          '& img': {
+            transform: 'scale(1.1)',
+          }
+        },
+        cursor: 'pointer'
+      }}
+    >
+      <Box
+        component="img"
+        src={item.src}
+        alt={item.alt}
+        sx={{
+          width: '100%',
+          height: 'auto',
+          transition: 'transform 0.3s ease',
+          borderRadius: '16px'
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          p: 1,
+          color: 'white',
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: { xs: '27px', md: '32px' },
+          fontWeight: 400,
+          textAlign: 'left',
+          textUnderlinePosition: 'from-font',
+          textDecorationSkipInk: 'none',
+          textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+          display: { xs: 'none', sm: 'block' } // Hide in mobile view
+        }}
+      >
+        {item.text}
+      </Box>
+    </Box>
+  ))}
+</Box>
             </Box>
           </Grid>
         </Grid>

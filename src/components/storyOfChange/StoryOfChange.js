@@ -113,7 +113,7 @@ const StoryOfChange = () => {
                 lineHeight: 1.7,
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                maxHeight: { xs: '150px', md: '200px' },
+                maxHeight: { xs: '375px', md: '200px' },
               }}
             >
               {parseHighlightedText(current.text)}

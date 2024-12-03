@@ -86,14 +86,12 @@ const MileStone = () => {
       scrollInterval = setInterval(() => {
         if (scrollRef.current) {
           scrollRef.current.scrollLeft += 1;
-
-          // Reset scroll position when reaching end
-          const scrollWidth = scrollRef.current.scrollWidth / 2; // Divide by 2 because we duplicated the items
+          const scrollWidth = scrollRef.current.scrollWidth / 2; 
           if (scrollRef.current.scrollLeft >= scrollWidth) {
             scrollRef.current.scrollLeft = 0;
           }
         }
-      }, 30);
+      }, 5);
     }
 
     return () => clearInterval(scrollInterval);

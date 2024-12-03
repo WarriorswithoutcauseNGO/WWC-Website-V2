@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Box, 
   Typography, 
@@ -11,14 +11,67 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-// Styled component for the highlighted text
+// Updated Styled component for the highlighted text with gradient background
 const HighlightedSpan = styled('span')(({ theme }) => ({
-  color: theme.palette.warning.light,
+  background: 'linear-gradient(90.33deg, #FFD600 73.29%, #FFF6C7 98.13%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  display: 'inline',
+  fontWeight: 600,
 }));
+
+const testimonials = [
+  {
+    text: "Our experience with WWC was exceptional. The amount of warmth & love they made us feel at our first meet was overwhelming. Even the students with whom we had our workshop, welcomed us joyfully due to the {encouragement provided by the warriors}. We still remember, our first meet ended with warriors sharing sweets & savoury with us in the joy of the collaboration. A truly commendable job done!",
+    author: "Avni Shandilya",
+    position: "Co-Founder, Project साहस"
+  },
+  {
+    text: "We have greatly valued our collaboration and are proud of the {positive impact we've made together} on so many lives. Overall, we at Aashray Foundation look forward to continuing our work with you and making even greater strides together.",
+    author: "Aashray Foundation ",
+    position: ""
+  },
+  {
+    text: "I've had the privilege of being part of WWC for 3.5 years, witnessing its growth from a small internship program to a {force for change}. I've seen firsthand the impact of our efforts, from fundraisers to community aid, and sustainable fashion initiatives. My experience has been transformative, and I highly recommend joining this amazing team to make a difference.",
+    author: "Radhika Tirthani",
+    position: "Social Media & Content Dept."
+  },
+  {
+    text: "{The team here is more than just coworkers—they're like family}, and together, we're working toward something meaningful. Every day, I'm surrounded by passionate individuals who inspire me to push boundaries and think beyond limits. It's been a rewarding and transformative experience, one that has profoundly influenced my perspective on life and leadership.",
+    author: "Avni Vohra",
+    position: "Research & Outreach Head"
+  }
+];
 
 const StoryOfChange = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  const handleNext = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrevious = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Function to parse and highlight text
+  const parseHighlightedText = (text) => {
+    const parts = text.split(/(\{.*?\})/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('{') && part.endsWith('}')) {
+        return (
+          <HighlightedSpan key={index}>
+            {part.slice(1, -1)}
+          </HighlightedSpan>
+        );
+      }
+      return part;
+    });
+  };
+
+  const current = testimonials[currentTestimonial];
 
   return (
     <Box sx={{ 
@@ -32,9 +85,9 @@ const StoryOfChange = () => {
           {/* Title */}
           <Typography 
             sx={{ 
-            textAlign:"center",
-            fontSize: isMobile ? "32px" : "48px",
-            lineHeight:isMobile ? "40.32px" : "60.84px",
+              textAlign:"center",
+              fontSize: isMobile ? "32px" : "48px",
+              lineHeight:isMobile ? "40.32px" : "60.84px",
               fontWeight: 700,
               mb: isMobile ? "30px" : '52px',
               fontFamily: 'Sora, sans-serif',
@@ -44,7 +97,13 @@ const StoryOfChange = () => {
           </Typography>
 
           {/* Content */}
-          <Box sx={{ mb: 4 }}>
+          <Box sx={{ 
+            mb: 4, 
+            minHeight: { xs: '200px', md: '250px' }, 
+            display: 'flex', 
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
             <Typography 
               variant="body1" 
               sx={{ 
@@ -52,12 +111,12 @@ const StoryOfChange = () => {
                 color: '#ABABAB',
                 fontSize: { xs: '0.875rem', md: '1.125rem' },
                 lineHeight: 1.7,
-                mb: 4
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxHeight: { xs: '375px', md: '200px' },
               }}
             >
-              Our experience with WWC was exceptional. The amount of warmth & love they made us feel at our first meet was overwhelming. Even the students with whom we had our workshop, welcomed us joyfully due to the{' '}
-              <HighlightedSpan>encouragement provided
-              by the warriors.</HighlightedSpan>{' '} We still remember, our first meet ended with warriors sharing sweets & savoury with us in the joy of the collaboration. A truly commendable job done! 
+              {parseHighlightedText(current.text)}
             </Typography>
           </Box>
 
@@ -79,7 +138,7 @@ const StoryOfChange = () => {
                   color: 'white'
                 }}
               >
-                Avni Shandilya
+                {current.author}
               </Typography>
               <Typography 
                 variant="body2" 
@@ -88,13 +147,14 @@ const StoryOfChange = () => {
                   fontSize: '0.875rem'
                 }}
               >
-                Co-Founder, Project साहस
+                {current.position}
               </Typography>
             </Box>
 
             {/* Navigation arrows */}
             <Box sx={{ display: 'flex', gap: 1 }}>
               <IconButton 
+                onClick={handlePrevious}
                 aria-label="Previous story"
                 sx={{ 
                   color: 'white',
@@ -108,6 +168,7 @@ const StoryOfChange = () => {
                 <ArrowBackIcon sx={{ fontSize: 20 }} />
               </IconButton>
               <IconButton 
+                onClick={handleNext}
                 aria-label="Next story"
                 sx={{ 
                   color: 'white',

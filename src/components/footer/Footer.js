@@ -133,11 +133,11 @@ const SocialsSection = () => (
   <Box>
     <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold' }}>Socials</Typography>
     <Box sx={{ display: 'flex', gap: '10px' }}>
-      <IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><InstagramIcon /></IconButton>
-      <IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><YouTubeIcon /></IconButton>
-      <IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><LinkedInIcon /></IconButton>
-      <IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><TwitterIcon /></IconButton>
-      <IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><FacebookIcon /></IconButton>
+      <a href="https://www.instagram.com/warriorswithoutcausengo?igsh=MWFndHJraGh5dDBkeA==" target='_blank' rel='noreferrer'><IconButton  sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><InstagramIcon /></IconButton></a>
+      <a href="https://youtube.com/@warriorswithoutcausengo?feature=shared" target='_blank' rel='noreferrer' ><IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><YouTubeIcon /></IconButton></a>
+      <a href="https://www.linkedin.com/company/warriorswithoutcausengo/" target='_blank' rel='noreferrer' ><IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><LinkedInIcon /></IconButton></a>
+      <a href="https://x.com/wwcngo" target='_blank' rel='noreferrer' ><IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><TwitterIcon /></IconButton></a>
+      <a href="https://m.facebook.com/100088849480693/" target='_blank' rel='noreferrer' ><IconButton sx={{backgroundColor:'#FFFFFF', borderRadius:"50%"}} color="#000000" size="small"><FacebookIcon /></IconButton></a>
     </Box>
   </Box>
 );
@@ -154,8 +154,8 @@ const ReadJoinSection = () => (
     <Box>
       <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold' }}>Join</Typography>
       <Box sx={{display:'flex',flexDirection:"column",gap:'3px'}}> 
-        <Link to={'/meettheteam'} color="inherit" display="block" style={{fontFamily:'Sora, sans-serif', color:"#FFD5ED",textDecoration:'none'}}>Team</Link>
-        <Link href="#" color="inherit" display="block" style={{fontFamily:'Sora, sans-serif', color:"#FFD5ED",textDecoration:'none'}}>Volunteer</Link>
+        <Link to={'/aboutus'} color="inherit" display="block" style={{fontFamily:'Sora, sans-serif', color:"#FFD5ED",textDecoration:'none'}}>Team</Link>
+        <Link to={"/howtohelp"} color="inherit" display="block" style={{fontFamily:'Sora, sans-serif', color:"#FFD5ED",textDecoration:'none'}}>Volunteer</Link>
       </Box>
     </Box>
   </Box>

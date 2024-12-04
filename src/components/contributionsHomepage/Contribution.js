@@ -8,6 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -42,8 +43,9 @@ const theme = createTheme({
 const Contribution = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
   const [customAmount, setCustomAmount] = useState("");
+  const navigate = useNavigate();
 
   const options = [
     { id: "sanitary", label: "100 sanitary pads", amount: 100 },
@@ -54,27 +56,20 @@ const Contribution = () => {
     { id: "other", label: "Other", amount: 0 },
   ];
 
-  const handleOptionToggle = (optionId) => {
-    setSelectedOptions((prev) => {
-      if (prev.includes(optionId)) {
-        return prev.filter(id => id !== optionId);
-      } else {
-        return [...prev, optionId];
-      }
-    });
+  const handleOptionSelect = (optionId) => {
+    setSelectedOption(optionId);
+    if (optionId !== "other") setCustomAmount("");
   };
 
   const handleContribute = () => {
-    const selectedItems = options.filter(opt => selectedOptions.includes(opt.id));
-    const totalAmount = selectedItems.reduce((sum, item) => {
-      if (item.id === "other") {
-        return sum + (parseInt(customAmount) || 0);
-      }
-      return sum + item.amount;
-    }, 0);
+    const selectedItem = options.find((opt) => opt.id === selectedOption);
+    const amount = selectedOption === "other" ? parseInt(customAmount) || 0 : selectedItem.amount;
 
-    console.log("Selected items:", selectedItems.map(item => item.label));
-    console.log("Total amount: ₹", totalAmount);
+    localStorage.setItem("label", selectedItem.label);
+    localStorage.setItem("amount", amount);
+
+
+    navigate("/donate");
   };
 
   return (
@@ -87,14 +82,10 @@ const Contribution = () => {
           alignItems: "center",
           justifyContent: "center",
           p: isMobile ? 2 : 4,
-          flexDirection: isMobile ? 'column' : 'row'
+          flexDirection: isMobile ? "column" : "row",
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Box sx={{ width: "100%" }}>
           <Typography
             variant="h1"
             sx={{
@@ -116,15 +107,14 @@ const Contribution = () => {
             border: "1px solid #FFDEF2",
             backdropFilter: "15.5px",
             padding: "10px 11px 10px 11px",
-            borderRadius: "15px"
+            borderRadius: "15px",
           }}
         >
-        <Box sx={{display:'flex',flexDirection:"column",width:"100%",minWidth: isMobile ? "100%":'459px'}}>
-
+          <Box sx={{ display: "flex", flexDirection: "column", width: "100%", minWidth: isMobile ? "100%" : "459px" }}>
             <FormControl component="fieldset">
               <Box
                 sx={{
-                  width:"100%",
+                  width: "100%",
                   display: "grid",
                   gridTemplateColumns: isMobile || isTablet ? "1fr 1fr" : "1fr 1fr",
                   gap: 2,
@@ -133,40 +123,27 @@ const Contribution = () => {
                 {options.map((option) => (
                   <Box
                     key={option.id}
-                    onClick={() => handleOptionToggle(option.id)}
+                    onClick={() => handleOptionSelect(option.id)}
                     sx={{
-                      backgroundColor: selectedOptions.includes(option.id) 
-                        ? "#FFB7E5" 
-                        : "#FFE9F6",
+                      backgroundColor: selectedOption === option.id ? "#FFB7E5" : "#FFE9F6",
                       border: "1px solid #FFDEF2",
                       borderRadius: "10px",
                       transition: "all 0.2s ease",
                       cursor: "pointer",
-                      transform: selectedOptions.includes(option.id) 
-                        ? "scale(0.98)" 
-                        : "scale(1)",
+                      transform: selectedOption === option.id ? "scale(0.98)" : "scale(1)",
                       "&:hover": {
-                        backgroundColor: selectedOptions.includes(option.id) 
-                          ? "#FFB7E5" 
-                          : "#FFDEF2",
+                        backgroundColor: selectedOption === option.id ? "#FFB7E5" : "#FFDEF2",
                       },
                       padding: "16px",
                       position: "relative",
-                      
                     }}
                   >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "100%",
-                      }}
-                    >
+                    <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
                       <Typography
                         variant="body1"
                         sx={{
                           color: "#7A7A7A",
-                          fontWeight: selectedOptions.includes(option.id) ? "600" : "400",
+                          fontWeight: selectedOption === option.id ? "600" : "400",
                           fontSize: "16px",
                           lineHeight: "20.16px",
                           fontFamily: "Sora, sans-serif",
@@ -174,26 +151,24 @@ const Contribution = () => {
                       >
                         {option.label}
                       </Typography>
-                      <Box sx={{ justifyContent: "center", mt: 1 }}>
-                        {option.amount > 0 && (
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              textAlign: "center",
-                              justifyContent: "center",
-                              color: "#4D4D4D",
-                              fontWeight: "700",
-                              fontSize: "16px",
-                              lineHeight: "20.16px",
-                              fontFamily: "Sora, sans-serif",
-                            }}
-                          >
-                            ₹{option.amount}
-                          </Typography>
-                        )}
-                      </Box>
+                      {option.amount > 0 && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "center",
+                            color: "#4D4D4D",
+                            fontWeight: "700",
+                            fontSize: "16px",
+                            lineHeight: "20.16px",
+                            fontFamily: "Sora, sans-serif",
+                            mt: 1,
+                          }}
+                        >
+                          ₹{option.amount}
+                        </Typography>
+                      )}
                     </Box>
-                    {selectedOptions.includes(option.id) && (
+                    {selectedOption === option.id && (
                       <Box
                         sx={{
                           position: "absolute",
@@ -211,7 +186,7 @@ const Contribution = () => {
               </Box>
             </FormControl>
 
-            {selectedOptions.includes("other") && (
+            {selectedOption === "other" && (
               <Box sx={{ mt: 3 }}>
                 <TextField
                   fullWidth
@@ -231,29 +206,22 @@ const Contribution = () => {
             <Button
               variant="contained"
               onClick={handleContribute}
-              disabled={selectedOptions.length === 0 || (selectedOptions.includes("other") && !customAmount)}
+              disabled={!selectedOption || (selectedOption === "other" && !customAmount)}
               sx={{
-                // width: '100%',
-                fontWeight: "700",
-                fontSize: "20px",
-                lineHeight: "25.16px",
-                fontFamily: "Sora, sans-serif",
                 mt: 4,
                 py: 2,
                 backgroundColor: "#DE0089",
-                "&:hover": {
-                  backgroundColor: "#D81B60",
-                },
-                "&.Mui-disabled": {
-                  backgroundColor: "#E91E63",
-                  opacity: 0.5,
-                },
+                "&:hover": { backgroundColor: "#D81B60" },
+                "&.Mui-disabled": { backgroundColor: "#E91E63", opacity: 0.5 },
                 color: "#FFEAF6",
+                fontFamily: 'Sora',
+                fontSize: '20px',
+                fontWeight: 700
               }}
             >
               Contribute to a brighter future
             </Button>
-        </Box>
+          </Box>
         </Box>
       </Box>
     </ThemeProvider>

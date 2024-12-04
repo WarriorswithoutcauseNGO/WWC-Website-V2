@@ -44,7 +44,7 @@ export default function HomePageAboutUs() {
             fontWeight: 700,
             color: "rgba(55, 55, 55, 1)",
             pb: 2,
-            maxWidth: "90%",
+            maxWidth: "95%",
             textAlign: "center",
             margin: "0 auto",
           }}

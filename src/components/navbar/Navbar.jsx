@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import "./Navbar.css";
 import navbar_logo from "../../assets/navbar_logo.svg";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const pages = [
   { name: "About Us", path: "/aboutus" },
@@ -22,6 +23,8 @@ const pages = [
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const isSmallScreen = useMediaQuery("(max-width:1100px)");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -31,20 +34,36 @@ function Navbar() {
     setAnchorElNav(null);
   };
 
+  const scrollToSection = () => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: "contribution-section" } });
+    } else {
+      scrollTo("contribution-section");
+    }
+  };
+
+  const scrollTo = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  // Check if the current route is /donate
+  const isDonatePage = location.pathname === "/donate";
+
   return (
     <AppBar
       position="fixed"
       sx={{
         background: "rgba(255, 255, 255, 0.09)",
-        borderBottom: "1px solid rgba(226, 226, 226, 1)",
+        borderBottom: isDonatePage
+          ? "1px solid rgba(77, 77, 77, 1)"
+          : "1px solid rgba(226, 226, 226, 1)",
         backdropFilter: "blur(27.399999618530273px)",
         paddingX: { xs: 2, md: 0 },
-        zIndex: 1,
+        zIndex: 5,
         height: "68px",
-        zIndex: 3,
-        '& .css-18ivjmb-MuiPaper-root-MuiPopover-paper-MuiMenu-paper':{
-          left:"0px"
-        }
       }}
     >
       <Container
@@ -82,10 +101,12 @@ function Navbar() {
               display: { xs: "none", md: "flex" },
               fontFamily: "Sora",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".2rem",
               textDecoration: "none",
               fontSize: "20px",
-              color: "rgba(226, 226, 226, 1)",
+              color: isDonatePage
+                ? "rgba(0, 0, 0, 1)"
+                : "rgba(226, 226, 226, 1)",
             }}
           >
             {isSmallScreen ? "WWC NGO" : "WARRIORSWITHOUTCAUSE NGO"}
@@ -104,7 +125,9 @@ function Navbar() {
               fontWeight: 700,
               fontSize: "24px",
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: isDonatePage
+                ? "rgba(0, 0, 0, 1)"
+                : "rgba(226, 226, 226, 1)",
               textDecoration: "none",
               ml: 1,
             }}
@@ -120,116 +143,117 @@ function Navbar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-              sx={{ p: 0 }}
+              sx={{ p: 0, color: isDonatePage ? "black" : "inherit" }}
             >
               <MenuIcon />
             </IconButton>
             <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            PaperProps={{
-              sx: {
-                background: "rgba(255, 255, 255, 0.09)",
-                borderBottom: "1px solid rgba(226, 226, 226, 1)",
-                backdropFilter: "blur(27.399999618530273px)",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                borderRadius: 0,
-                marginTop: 2.7,
-                p: 1,
-                pt: 2,
-                maxWidth: "100%", // Ensure the menu spans the screen width
-                width: "100%", // Full width for small screens
-                left: "0px !important", // Remove any left spacing
-              },
-            }}
-          >
-            {pages.map((page) => (
-              <MenuItem
-                key={page.name}
-                onClick={handleCloseNavMenu}
-                sx={{ py: 0, height: "10px" }}
-              >
-                <Typography
-                  component={Link}
-                  to={page.path}
-                  sx={{
-                    textAlign: "center",
-                    fontFamily: "Sora",
-                    fontWeight: 500,
-                    fontSize: "16px",
-                    color: "rgba(226, 226, 226, 1)",
-                    textTransform: "capitalize",
-                    textDecoration: "none",
-                  }}
-                >
-                  {page.name}
-                </Typography>
-              </MenuItem>
-            ))}
-            <Box
-              sx={{
-                flexGrow: 0,
-                height: "100%",
-                display: { xs: "flex", md: "none" },
-                m: 2,
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              PaperProps={{
+                sx: {
+                  background: "rgba(255, 255, 255, 0.09)",
+                  borderBottom: "1px solid rgba(226, 226, 226, 1)",
+                  backdropFilter: "blur(27.399999618530273px)",
+                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                  borderRadius: 0,
+                  marginTop: 2.7,
+                  pt: 2,
+                  maxWidth: "100%",
+                  width: "100%",
+                  left: "0px !important",
+                },
               }}
             >
-              <Button
-                fullWidth
-                component={Link}
-                to="/donate"
+              {pages.map((page) => (
+                <MenuItem
+                  key={page.name}
+                  onClick={handleCloseNavMenu}
+                  sx={{ py: 0, height: "10px" }}
+                >
+                  <Typography
+                    component={Link}
+                    to={page.path}
+                    sx={{
+                      textAlign: "center",
+                      fontFamily: "Sora",
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      color: isDonatePage
+                        ? "rgba(0, 0, 0, 1)"
+                        : "rgba(226, 226, 226, 1)",
+                      textTransform: "capitalize",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {page.name}
+                  </Typography>
+                </MenuItem>
+              ))}
+              <Box
                 sx={{
-                  backgroundColor: "white",
-                  display: "flex",
-                  justifyContent: "center",
-                  gap: 1,
-                  px: 5,
-                  py: 2,
-                  borderRadius: 0,
-                  position: "relative",
-                  marginRight: 0,
-                  alignItems: "center",
+                  flexGrow: 0,
                   height: "100%",
-                  textDecoration: "none",
+                  display: { xs: "flex", md: "none" },
+                  m: 2,
                 }}
-                className="donation-button"
               >
-                <svg
-                  className="heart-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="32"
-                  height="32"
-                  stroke="black"
-                  fill="none"
-                  strokeWidth="2"
-                >
-                  <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
-                </svg>
-                <Typography
+                <Button
+                  fullWidth
+                  component={Link}
+                  to="/donate"
                   sx={{
-                    fontFamily: "Sora",
-                    fontWeight: 700,
-                    fontSize: "16px",
-                    color: "rgba(0, 0, 0, 1)",
+                    backgroundColor: "white",
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 1,
+                    px: 5,
+                    py: 2,
+                    borderRadius: 0,
+                    position: "relative",
+                    marginRight: 0,
+                    alignItems: "center",
+                    height: "100%",
+                    textDecoration: "none",
                   }}
+                  className="donation-button"
                 >
-                  Make a donation
-                </Typography>
-              </Button>
-            </Box>
-          </Menu>
+                  <svg
+                    className="heart-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="32"
+                    height="32"
+                    stroke="black"
+                    fill="none"
+                    strokeWidth="2"
+                  >
+                    <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
+                  </svg>
+                  <Typography
+                    sx={{
+                      fontFamily: "Sora",
+                      fontWeight: 700,
+                      fontSize: "16px",
+                      color: "rgba(0, 0, 0, 1)",
+                    }}
+                  >
+                    Make a donation
+                  </Typography>
+                </Button>
+              </Box>
+            </Menu>
           </Box>
 
           <Box
@@ -251,7 +275,9 @@ function Navbar() {
                   fontFamily: "Sora",
                   fontWeight: 500,
                   fontSize: "16px",
-                  color: "rgba(226, 226, 226, 1)",
+                  color: isDonatePage
+                    ? "rgba(0, 0, 0, 1)"
+                    : "rgba(226, 226, 226, 1)",
                   textTransform: "capitalize",
                   textDecoration: "none",
                 }}
@@ -266,10 +292,11 @@ function Navbar() {
               flexGrow: 0,
               height: "100%",
               display: { xs: "none", md: "flex" },
+              alignItems: "center",
             }}
           >
             <Button
-              component={Link}
+              onClick={scrollToSection}
               to="/donate"
               sx={{
                 backgroundColor: "white",
@@ -278,11 +305,15 @@ function Navbar() {
                 gap: 1,
                 px: 5,
                 borderRadius: 0,
-                position: "relative",
-                marginRight: 0,
                 alignItems: "center",
                 height: "100%",
                 textDecoration: "none",
+                borderBottom: isDonatePage
+                  ? "1px solid rgba(77, 77, 77, 1)"
+                  : "none",
+                borderLeft: isDonatePage
+                  ? "1px solid rgba(77, 77, 77, 1)"
+                  : "none",
               }}
               className="donation-button"
             >

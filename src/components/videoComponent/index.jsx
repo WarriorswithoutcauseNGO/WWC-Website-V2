@@ -1,7 +1,27 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./VideoBackground.css";
 import bgVideo from "../../assets/bg-video.mp4";
+
 function VideoBackground() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = () => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: "contribution-section" } });
+    } else {
+      scrollTo("contribution-section");
+    }
+  };
+
+  const scrollTo = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="video-container">
       <video autoPlay loop muted className="bg-video">
@@ -16,7 +36,9 @@ function VideoBackground() {
           Experience the journey of our volunteers as they empower communities
           through education, health initiatives, and economic opportunities.
         </p>
-        <button className="grow-btn">Help Us Grow</button>
+        <button className="grow-btn" onClick={scrollToSection}>
+          Help Us Grow
+        </button>
       </div>
       <div className="scroll_lottie">
         <iframe
@@ -28,4 +50,5 @@ function VideoBackground() {
     </div>
   );
 }
+
 export default VideoBackground;

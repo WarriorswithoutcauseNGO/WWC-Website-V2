@@ -10,7 +10,7 @@ export default function BecomeWarrior() {
         background: "#232323",
         display: "flex",
         gap: 2,
-        p: { md: 8, xs: 3 },
+        padding: { md: "64px 10px 64px 64px", xs: 3 },
         flexDirection: { md: "row", xs: "column" },
       }}
     >
@@ -40,7 +40,7 @@ export default function BecomeWarrior() {
             fontWeight: 400,
             lineHeight: { md: "27.24px", xs: "21.79px" },
             color: "#B5B5B5",
-            maxWidth: { md: "80%", xs: "100%" },
+            maxWidth: { md: "88%", xs: "100%" },
           }}
         >
           Joining Warriorswithoutcause NGO offers personal and professional

@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CardsDesktop from "./cardsDesktop";
 import CardsPhone from "./cardsPhone";
 
-export default function actions() {
+export default function Actions() {
   return (
     <Box
       sx={{
@@ -35,19 +35,23 @@ export default function actions() {
           brighter future.
         </span>
       </Typography>
+
+      {/* Desktop View */}
       <Box
         sx={{
           display: { xs: "none", md: "flex" },
           mt: 4,
+          justifyContent: "center",
         }}
       >
         <CardsDesktop />
       </Box>
 
+      {/* Phone View */}
       <Box
         sx={{
           display: { xs: "flex", md: "none" },
-          marginTop: "15px",
+          mt: 4,
         }}
       >
         <CardsPhone />

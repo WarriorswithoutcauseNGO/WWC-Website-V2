@@ -4,6 +4,7 @@ import Navbar from './components/navbar/Navbar';
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
 import AboutUs from './pages/AboutUs/AboutUs';
+import Donation from './pages/Donation/Donation';
 import HowToHelp from './pages/HowToHelp/HowToHelp';
 import Footer from './components/footer/Footer';
 import { CopyrightSection } from './components/footer/Footer'
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/howtohelp" element={<HowToHelp />} />
+        <Route path="/donate" element={<Donation />} />
       </Routes>
       <Footer />
       <CopyrightSection />

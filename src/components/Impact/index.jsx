@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import india_map from "../../assets/india_map.png";
-import india_map_phn from "../../assets/india_map_phn.png";
+import india_map from "../../assets/india_map.svg";
+import india_map_phn from "../../assets/india_map_phn.svg";
 import hyderabad from "../../assets/hyderabad.png";
 import hyderabad_phn from "../../assets/hyderabad_phn.png";
 

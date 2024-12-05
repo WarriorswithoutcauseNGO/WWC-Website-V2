@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import joinWWC from "../../assets/joinWWC.png";
 import joinWWC_phn from "../../assets/joinWWC_phn.png";
 import { Box, Typography, Button } from "@mui/material";
 
 export default function BecomeWarrior() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger when component is at least 20% visible
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+      },
+      {
+        root: null, // viewport
+        threshold: 0.2 // 20% visibility
+      }
+    );
+
+    const currentElement = document.querySelector('[data-component="BecomeWarrior"]');
+    
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    // Cleanup
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
   return (
     <Box
+    data-component="BecomeWarrior"
       sx={{
-        background: "#232323",
+        transition: "background-color 0.5s ease-in-out",
+        background: isVisible ? "#232323" : "transparent",
         display: "flex",
         gap: 2,
         padding: { md: "64px 10px 64px 64px", xs: 3 },
         flexDirection: { md: "row", xs: "column" },
+        // Add opacity transition for smoother reveal
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
       }}
     >
       <Box

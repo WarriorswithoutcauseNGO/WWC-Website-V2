@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import india_map from "../../assets/india_map.svg";
@@ -19,10 +19,42 @@ const AnimatedNumber = ({ target }) => {
 };
 
 export default function Impact() {
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger when component is at least 20% visible
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+      },
+      {
+        root: null, // viewport
+        threshold: 0.2 // 20% visibility
+      }
+    );
+
+    const currentElement = document.querySelector('[data-component="Actions"]');
+    
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    // Cleanup
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
   return (
-    <Box sx={{ mb: 7, mt: 4 }}>
+    <Box sx={{ mb: 7, mt: 4, background: isVisible 
+          ? "#FFE9F1" 
+          : "transparent",
+        transition: "background-color 0.5s ease-in-out",}}>
       <Typography
         sx={{
           textAlign: "center",

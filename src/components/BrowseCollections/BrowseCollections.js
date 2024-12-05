@@ -111,6 +111,7 @@ const BrowseCollections = () => {
                   Shop from Soch and wear your commitment to making a positive impact today!
                 </Typography>
 
+                <a href="https://www.sochbywwc.com/" target='_blank' rel='noreferrer'>
                 <Button
                   sx={{
                     borderRadius: "37px",
@@ -136,6 +137,7 @@ const BrowseCollections = () => {
                     Browse Collections
                   </Typography>
                 </Button>
+                </a>
               </Box>
               {/* Bottom images */}
               {/* Bottom images */}

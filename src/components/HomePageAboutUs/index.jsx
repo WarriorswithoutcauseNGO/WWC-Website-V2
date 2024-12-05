@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, Typography, Button, useMediaQuery } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import about_img_1 from "../../assets/About_img_1.png";
@@ -8,8 +8,37 @@ import about_img_3 from "../../assets/About_img_3.png";
 import about_img_1_phn from "../../assets/About_img_phn_1.png";
 import about_img_3_phn from "../../assets/About_img_3_ph.png";
 
-export default function HomePageAboutUs() {
+const HomePageAboutUs = () => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger when component is at least 20% visible
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+      },
+      {
+        root: null, // viewport
+        threshold: 0.2, // 20% visibility
+      }
+    );
+
+    const currentElement = document.querySelector(
+      '[data-component="HomePageAboutUs"]'
+    );
+
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    // Cleanup
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
 
   const isPhone = useMediaQuery("(max-width:768px)"); // Adjust breakpoint as needed
 
@@ -35,8 +64,10 @@ export default function HomePageAboutUs() {
 
   return (
     <Box
+      data-component="HomePageAboutUs"
       sx={{
-        background: "rgba(255, 162, 215, 1)",
+        background: isVisible ? "rgba(255, 162, 215, 1)" : "transparent",
+        transition: "background-color 0.5s ease-in-out",
         borderRadius: { md: "0px 0px 0px 351px", xs: "0 0 0 202px" },
         position: "relative",
         padding: "40px 0",
@@ -45,6 +76,10 @@ export default function HomePageAboutUs() {
         height: "90vh",
         pt: { md: 15, xs: 20 },
         pb: { md: 20, xs: 15 },
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition:
+          "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
       }}
     >
       <Box
@@ -93,7 +128,7 @@ export default function HomePageAboutUs() {
         >
           WarriorsWithoutCause is a PAN India{" "}
           <span style={{ fontWeight: 700 }}>youth-led NGO</span> driven by the
-          belief that “We don’t need a cause to make a change.” We've
+          belief that "We don't need a cause to make a change." We've
           transformed lives with an{" "}
           <span style={{ fontWeight: 700 }}>army of over 350 warriors</span>{" "}
           through impactful programs, health camps, educational workshops across
@@ -210,4 +245,6 @@ export default function HomePageAboutUs() {
       )}
     </Box>
   );
-}
+};
+
+export default HomePageAboutUs;

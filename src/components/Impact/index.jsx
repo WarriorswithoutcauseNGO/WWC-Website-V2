@@ -21,6 +21,34 @@ const AnimatedNumber = ({ target, startAnimation }) => {
 };
 
 export default function Impact() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger when component is at least 20% visible
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+      },
+      {
+        root: null, // viewport
+        threshold: 0.2, // 20% visibility
+      }
+    );
+
+    const currentElement = document.querySelector('[data-component="Actions"]');
+
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    // Cleanup
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
+
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const [startAnimation, setStartAnimation] = useState(false);
   const sectionRef = useRef(null);
@@ -44,7 +72,15 @@ export default function Impact() {
   }, []);
 
   return (
-    <Box ref={sectionRef} sx={{ mb: 7, mt: 4 }}>
+    <Box
+      ref={sectionRef}
+      sx={{
+        mb: 7,
+        mt: 4,
+        background: isVisible ? "#FFE9F1" : "transparent",
+        transition: "background-color 0.5s ease-in-out",
+      }}
+    >
       <Typography
         sx={{
           textAlign: "center",

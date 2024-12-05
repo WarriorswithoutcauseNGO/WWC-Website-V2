@@ -9,9 +9,10 @@ export default function BecomeWarrior() {
   const [showWarriorText, setShowWarriorText] = useState(false);
   const sectionRef = useRef(null);
   const navigate = useNavigate(); // Initialize navigate
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const textObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setShowWarriorText(true);
@@ -21,12 +22,34 @@ export default function BecomeWarrior() {
     );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      textObserver.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+        textObserver.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+      },
+      {
+        root: null,
+        threshold: 0.2,
+      }
+    );
+
+    if (sectionRef.current) {
+      visibilityObserver.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        visibilityObserver.unobserve(sectionRef.current);
       }
     };
   }, []);
@@ -34,12 +57,19 @@ export default function BecomeWarrior() {
   return (
     <Box
       ref={sectionRef}
+      data-component="BecomeWarrior"
       sx={{
-        background: "#232323",
+        transition: "background-color 0.5s ease-in-out",
+        background: isVisible ? "#232323" : "transparent",
         display: "flex",
         gap: 2,
         padding: { md: "64px 10px 64px 64px", xs: 3 },
         flexDirection: { md: "row", xs: "column" },
+        // Add opacity transition for smoother reveal
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition:
+          "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
       }}
     >
       <Box

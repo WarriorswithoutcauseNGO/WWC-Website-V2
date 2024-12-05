@@ -163,7 +163,13 @@ const OurDrives = () => {
             ))}
           </List>
         </Box>
-        <Box flex={1}>
+        <Box
+          flex={1}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Box
             component="img"
             src={

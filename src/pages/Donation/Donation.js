@@ -22,6 +22,16 @@ export default function Donation() {
         alt="Donation"
         style={{ maxWidth: '100%', height: 'auto' }}
       />
+      <Box sx={{
+        display: { md: 'none', xs: 'block' }
+      }}> <div className="scroll_lottie">
+          <iframe
+            className="slottie"
+            src="https://lottie.host/embed/4f2467e2-2a54-4316-8b5b-2932ced83805/kLcfldD68q.json"
+          ></iframe>
+          <p>scroll to learn more</p>
+        </div></Box>
+
       <DonationPageBox
         sx={{
           alignSelf: 'flex-start',

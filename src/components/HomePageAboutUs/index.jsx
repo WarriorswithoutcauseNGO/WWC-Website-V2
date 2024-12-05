@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import about_img_1 from "../../assets/About_img_1.png";
 import about_img_2 from "../../assets/About_img_2.png";
 import about_img_3 from "../../assets/About_img_3.png";
@@ -10,8 +11,26 @@ import about_img_3_phn from "../../assets/About_img_3_ph.png";
 export default function HomePageAboutUs() {
   const navigate = useNavigate();
 
+  const isPhone = useMediaQuery("(max-width:768px)"); // Adjust breakpoint as needed
+
   const handleLearnMoreClick = () => {
     navigate("/aboutus");
+  };
+
+  // Animation Variants for Sliding Effect
+  const slideInFromLeft = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+  };
+
+  const slideInFromRight = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+  };
+
+  const slideInFromBottom = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
   };
 
   return (
@@ -103,63 +122,92 @@ export default function HomePageAboutUs() {
         </Button>
       </Box>
 
-      <Box
-        sx={{
-          position: "absolute",
-          top: "60px",
-          zIndex: 0,
-          display: { xs: "none", md: "flex" },
-        }}
-      >
-        <img src={about_img_1} alt="Warriors at Work" />
-      </Box>
+      {/* Conditionally Render Images Based on Screen Size */}
+      {!isPhone && (
+        <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInFromLeft}
+            style={{
+              position: "absolute",
+              top: "60px",
+              zIndex: 0,
+              display: "flex",
+            }}
+          >
+            <img src={about_img_1} alt="Warriors at Work" />
+          </motion.div>
 
-      <Box
-        sx={{
-          position: "absolute",
-          top: "30px",
-          // left: "-150px",
-          zIndex: 0,
-          display: { xs: "flex", md: "none" },
-        }}
-      >
-        <img src={about_img_1_phn} alt="Warriors at Work (Phone)" />
-      </Box>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInFromBottom}
+            style={{
+              position: "absolute",
+              bottom: "-10px",
+              left: "150px",
+              zIndex: 0,
+              display: "flex",
+            }}
+          >
+            <img src={about_img_3} alt="Community Support" />
+          </motion.div>
 
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: "-10px",
-          left: "150px",
-          zIndex: 0,
-          display: { xs: "none", md: "flex" },
-        }}
-      >
-        <img src={about_img_3} alt="Community Support" />
-      </Box>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInFromRight}
+            style={{
+              position: "absolute",
+              top: "450px",
+              right: "0px",
+              zIndex: 0,
+              display: "flex",
+            }}
+          >
+            <img src={about_img_2} alt="Meet the Team" />
+          </motion.div>
+        </>
+      )}
 
-      <Box
-        sx={{
-          position: "absolute",
-          top: "555px",
-          right: "0px",
-          zIndex: 0,
-          display: { xs: "flex", md: "none" },
-        }}
-      >
-        <img src={about_img_3_phn} alt="Meet the Team (Phone)" />
-      </Box>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "450px",
-          right: "0px",
-          zIndex: 0,
-          display: { xs: "none", md: "flex" },
-        }}
-      >
-        <img src={about_img_2} alt="Meet the Team" />
-      </Box>
+      {isPhone && (
+        <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInFromLeft}
+            style={{
+              position: "absolute",
+              top: "30px",
+              zIndex: 0,
+              display: "flex",
+            }}
+          >
+            <img src={about_img_1_phn} alt="Warriors at Work (Phone)" />
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={slideInFromRight}
+            style={{
+              position: "absolute",
+              top: "555px",
+              right: "0px",
+              zIndex: 0,
+              display: "flex",
+            }}
+          >
+            <img src={about_img_3_phn} alt="Meet the Team (Phone)" />
+          </motion.div>
+        </>
+      )}
     </Box>
   );
 }

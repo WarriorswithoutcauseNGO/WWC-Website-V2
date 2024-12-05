@@ -211,7 +211,10 @@ function Navbar() {
               >
                 <Button
                   fullWidth
-                  component={Link}
+                  onClick={() => {
+                    scrollToSection();
+                    handleCloseNavMenu();
+                  }}
                   to="/donate"
                   sx={{
                     backgroundColor: "white",

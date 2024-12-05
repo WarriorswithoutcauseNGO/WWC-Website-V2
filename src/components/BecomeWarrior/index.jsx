@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import joinWWC from "../../assets/joinWWC.png";
 import joinWWC_phn from "../../assets/joinWWC_phn.png";
 import { Box, Typography, Button } from "@mui/material";
+import "./BecomeWarrior.css";
 
 export default function BecomeWarrior() {
+  const [showWarriorText, setShowWarriorText] = useState(false);
+  const sectionRef = useRef(null);
+  const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowWarriorText(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <Box
+      ref={sectionRef}
       sx={{
         background: "#232323",
         display: "flex",
@@ -18,21 +46,50 @@ export default function BecomeWarrior() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
+          gap: 2,
         }}
       >
-        <Typography
-          sx={{
-            fonfatmily: "Sora",
-            fontSize: { md: "48px", xs: "32px" },
-            fontWeight: 700,
-            lineHeight: "60.48px",
-            color: "white",
-            pt: 6,
-          }}
-        >
-          Become a volunteer
-        </Typography>
+        <Box>
+          <Typography
+            sx={{
+              fontFamily: "Caveat",
+              fontSize: { md: "48px", xs: "32px" },
+              fontWeight: 400,
+              color: "rgba(255, 58, 179, 1)",
+              display: "flex",
+              justifyContent: "right",
+              mr: { md: 18, xs: 6 },
+              visibility: showWarriorText ? "visible" : "hidden",
+              transition: "opacity 0.5s ease",
+              opacity: showWarriorText ? 1 : 0,
+              mt: { md: 5, xs: 0 },
+            }}
+          >
+            Warrior
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Sora",
+              fontSize: { md: "48px", xs: "30px" },
+              fontWeight: 700,
+              lineHeight: "60.48px",
+              color: "white",
+              display: "flex",
+              gap: { md: 2, xs: 1 },
+              mt: "-20px",
+            }}
+          >
+            Become a
+            <div
+              className={`volunteer-div ${
+                showWarriorText ? "animate-strike" : ""
+              }`}
+            >
+              <span className="volunteer-span">volunteer</span>
+            </div>
+          </Typography>
+        </Box>
+
         <Typography
           sx={{
             fontFamily: "Noto Sans",
@@ -75,6 +132,7 @@ export default function BecomeWarrior() {
                 boxShadow: "0px 0px 1.9px 0px #00000040",
               },
             }}
+            onClick={() => navigate("/howtohelp")} // Add navigation
           >
             READ MORE
           </Button>
@@ -131,71 +189,6 @@ export default function BecomeWarrior() {
           height: "auto",
         }}
       />
-
-      <Box
-        sx={{
-          display: { md: "none", xs: "flex" },
-          justifyContent: "space-between",
-        }}
-      >
-        <Button
-          sx={{
-            backgroundColor: "white",
-            color: "rgba(0, 0, 0, 1)",
-            padding: "8px 16px",
-            fontFamily: "Sora",
-            fontSize: "14px",
-            fontWeight: 400,
-            lineHeight: "20.16px",
-            textAlign: "left",
-            border: "none",
-            cursor: "pointer",
-            marginTop: "10px",
-            boxShadow: "0px 0px 1.9px 0px rgba(0, 0, 0, 0.25)",
-            borderRadius: "37px",
-            textTransform: "uppercase",
-            transition: "all 0.3s ease",
-            whiteSpace: "nowrap",
-            "&:hover": {
-              backgroundColor: "transparent",
-              color: "white",
-              border: "1px solid white",
-              boxShadow: "0px 0px 1.9px 0px #00000040",
-            },
-          }}
-        >
-          READ MORE
-        </Button>
-
-        <Button
-          sx={{
-            backgroundColor: "transparent",
-            color: "white",
-            padding: "8px 16px",
-            fontFamily: "Sora",
-            fontSize: "14px",
-            fontWeight: 400,
-            lineHeight: "20.16px",
-            textAlign: "left",
-            border: "1px solid white",
-            cursor: "pointer",
-            marginTop: "10px",
-            boxShadow: "0px 0px 1.9px 0px #00000040",
-            borderRadius: "37px",
-            textTransform: "uppercase",
-            transition: "all 0.3s ease",
-            whiteSpace: "nowrap",
-            "&:hover": {
-              backgroundColor: "white",
-              color: "rgba(0, 0, 0, 1)",
-              border: "none",
-              boxShadow: "0px 0px 1.9px 0px rgba(0, 0, 0, 0.25)",
-            },
-          }}
-        >
-          BECOME A WARRIOR
-        </Button>
-      </Box>
     </Box>
   );
 }

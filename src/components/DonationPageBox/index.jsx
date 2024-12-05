@@ -245,7 +245,7 @@ export default function DonationPageBox() {
 
       <Button
         variant="contained"
-        disabled={!isAcknowledged}
+        disabled={!isAcknowledged || amount <= 0}
         fullWidth
         sx={{
           marginTop: "1rem",

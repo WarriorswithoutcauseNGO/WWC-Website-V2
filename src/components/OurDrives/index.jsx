@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -20,6 +20,33 @@ const OurDrives = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger when component is at least 20% visible
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+      },
+      {
+        root: null, // viewport
+        threshold: 0.2 // 20% visibility
+      }
+    );
+
+    const currentElement = document.querySelector('[data-component="OurDrives"]');
+    
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    // Cleanup
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
+    };
+  }, []);
 
   const data = [
     {
@@ -54,9 +81,14 @@ const OurDrives = () => {
 
   return (
     <Box
+    data-component="OurDrives"
       sx={{
-        bgcolor: "#FF54BD",
+        bgcolor: isVisible ? "#FF54BD" : "#FFD4E4",
+        transition: "background-color 0.5s ease-in-out",
         p: { md: 7, xs: 1.5 },
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
       }}
     >
       <Typography

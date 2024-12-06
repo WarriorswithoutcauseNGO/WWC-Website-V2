@@ -37,6 +37,7 @@ const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) =>
         backgroundColor: "#FFF2FA",
         margin: "0 auto",
         gap: isMobile ? "20px" : "80px",
+        mb: 3
       }}
     >
       <Box
@@ -59,9 +60,12 @@ const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) =>
           Donate
         </Typography>
         <Typography
-          variant="body1"
           sx={{
-            fontFamily: "Sora, sans-serif",
+            fontFamily: "Sora",
+            fontWeight: 400,
+            fontSize: "20px",
+            lineHeight: "25.2px",
+            color: "rgba(77, 77, 77, 1)"
           }}
         >
           Your donation helps Warriorswithoutcause (WWC) provide education,
@@ -77,13 +81,13 @@ const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) =>
             color: "#FFFFFF",
             borderRadius: "37px",
             padding: "10px 20px",
-            mt: "16px",
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            "&:hover": {
-              backgroundColor: "#3a3a3a",
-            },
+            mt: 2,
+            fontFamily: "Sora",
+            fontSize: "16px",
+            fontWeight: 400,
           }}
           onClick={scrollToSection}
         >
@@ -92,16 +96,8 @@ const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) =>
             alt="Pay icon"
             style={{ height: "20px", width: "auto" }}
           />
-          <Typography
-            sx={{
-              fontWeight: 400,
-              fontSize: "16px",
-              lineHeight: "20px",
-              fontFamily: "Sora, sans-serif",
-            }}
-          >
-            DONATE NOW
-          </Typography>
+
+          DONATE NOW
         </Button>
       </Box>
       <Box

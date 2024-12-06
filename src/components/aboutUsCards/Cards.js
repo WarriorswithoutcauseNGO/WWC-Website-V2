@@ -43,9 +43,12 @@ const Cards = ({ title, description, imageSrc, imageAlt, reverse = false }) => {
           {title}
         </Typography>
         <Typography
-          variant="body1"
           sx={{
-            fontFamily: 'Sora, sans-serif',
+            fontFamily: "Sora",
+            fontWeight: 400,
+            fontSize: "20px",
+            lineHeight: "25.2px",
+            color: "rgba(77, 77, 77, 1)"
           }}
         >
           {description}

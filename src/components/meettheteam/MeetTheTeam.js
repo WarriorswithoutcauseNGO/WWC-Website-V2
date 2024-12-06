@@ -28,6 +28,7 @@ const MeetTheTeam = () => {
     <Box
       sx={{
         padding: theme.spacing(4),
+        mb: 5
       }}
     >
       <Box sx={{ mb: '22px' }}>

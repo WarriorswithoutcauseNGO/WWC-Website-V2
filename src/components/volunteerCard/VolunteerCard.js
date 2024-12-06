@@ -56,6 +56,7 @@ const VolunteerCard = ({ reverse = true }) => {
     <Box sx={{
       backgroundColor: "#FFF2FA", boxShadow: '0px 10px 13px 0px rgba(0, 0, 0, 0.1)', borderBottomLeftRadius: isMobile ? "40px" : "90px",
       borderBottomRightRadius: isMobile ? "40px" : "90px",
+      mb: 3
     }}>
       <Box
         sx={{
@@ -66,7 +67,8 @@ const VolunteerCard = ({ reverse = true }) => {
           padding: isMobile ? theme.spacing(3) : theme.spacing(6),
 
           margin: "0 auto",
-          gap: isMobile ? "20px" : "38px",
+          gap: isMobile ? "20px" : "3px",
+          px: 8
 
         }}
       >
@@ -90,9 +92,12 @@ const VolunteerCard = ({ reverse = true }) => {
             Volunteer
           </Typography>
           <Typography
-            variant="body1"
             sx={{
-              fontFamily: "Sora, sans-serif",
+              fontFamily: "Sora",
+              fontWeight: 400,
+              fontSize: "20px",
+              lineHeight: "25.2px",
+              color: "rgba(77, 77, 77, 1)"
             }}
           >
             Join Warriorswithoutcause (WWC) and become a part of a movement
@@ -103,23 +108,24 @@ const VolunteerCard = ({ reverse = true }) => {
           </Typography>
           <Button
             sx={{
-              backgroundColor: "#292929",
-              color: "#FFFFFF",
               borderRadius: "37px",
-              padding: "10px",
-              mt: "16px",
+              p: "5px 20px",
+              fontFamily: "Sora",
+              fontSize: "16px",
+              fontWeight: 400,
+              backgroundColor: "rgba(41, 41, 41, 1)",
+              color: "white",
+              textTransform: "uppercase",
+              margin: "0 auto",
+              "&:hover": {
+                backgroundColor: "white",
+                color: "black",
+              },
+              mt: 2
             }}
           >
-            <Typography
-              sx={{
-                fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "20px",
-                fontFamily: "Sora, sans-serif",
-              }}
-            >
-              BECOME A VOLUNTEER
-            </Typography>
+
+            BECOME A VOLUNTEER
           </Button>
         </Box>
         <Box
@@ -170,7 +176,7 @@ const VolunteerCard = ({ reverse = true }) => {
                 alt={card.title}
                 style={{
                   width: isMobile ? "43px" : "63px",
-                  height: isMobile ? "39px" :"57px",
+                  height: isMobile ? "39px" : "57px",
                   marginBottom: theme.spacing(1),
                 }}
               />

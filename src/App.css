@@ -8,3 +8,6 @@ body,
   margin: 0;
   background-color: rgba(255, 233, 241, 1);
 }
+html {
+  scroll-behavior: smooth;
+}

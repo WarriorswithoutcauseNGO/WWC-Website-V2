@@ -19,7 +19,7 @@ const Footer = () => {
     <Box sx={{
       backgroundColor: '#E8197A',
       color: 'white',
-      padding: isMobile ? '20px' : '40px',
+      padding: isMobile ? '28px' : '40px',
       borderRadius: isMobile ? '20px' : '40px',
       marginLeft: isMobile ? "20px" : "10px", marginRight: isMobile ? "20px" : "10px",
       height: "100%"
@@ -239,7 +239,8 @@ const WatermarkSection = () => {
         fontWeight: '900',
         pointerEvents: 'none',
         color: "#C20078",
-        lineHeight: '145.23px'
+        lineHeight: isMobile ? "76.5px" :'145.23px',
+        fontFamily:"Inter",
       }}
     >
       WWC NGO

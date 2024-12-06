@@ -11,6 +11,7 @@ import Footer from './components/footer/Footer';
 import { CopyrightSection } from './components/footer/Footer';
 import { Box } from '@mui/material';
 import InstaFooter from './components/instaFooter/InstaFooter';
+import ScrollToTop from './components/scrollToTop/ScrollToTop';
 
 function App() {
   const theme = useTheme();
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <Box sx={{ backgroundColor: '#FFF2FA' }}>
+     <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -25,7 +27,7 @@ function App() {
         <Route path="/howtohelp" element={<HowToHelp />} />
         <Route path="/donate" element={<Donation />} />
       </Routes>
-      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems:"center",justifyContent:'center' }}>
         <Footer />
         {!isMobile && <InstaFooter />}
       </Box>

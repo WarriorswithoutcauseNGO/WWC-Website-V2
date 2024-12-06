@@ -53,7 +53,10 @@ const VolunteerCard = ({ reverse = true }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ backgroundColor: "#FFF2FA" }}>
+    <Box sx={{
+      backgroundColor: "#FFF2FA", boxShadow: '0px 10px 13px 0px rgba(0, 0, 0, 0.1)', borderBottomLeftRadius: isMobile ? "40px" : "90px",
+      borderBottomRightRadius: isMobile ? "40px" : "90px",
+    }}>
       <Box
         sx={{
           display: "flex",
@@ -61,10 +64,10 @@ const VolunteerCard = ({ reverse = true }) => {
           alignItems: "center",
           justifyContent: "space-between",
           padding: isMobile ? theme.spacing(3) : theme.spacing(6),
-          borderBottomLeftRadius: isMobile ? "40px" : "90px",
-          borderBottomRightRadius: isMobile ? "40px" : "90px",
+
           margin: "0 auto",
           gap: isMobile ? "20px" : "38px",
+
         }}
       >
         <Box
@@ -155,9 +158,8 @@ const VolunteerCard = ({ reverse = true }) => {
               borderRadius: "20px",
               padding: theme.spacing(2),
               display: "flex",
-              flexDirection:isMobile ? 'row' : "column",
+              flexDirection: isMobile ? 'row' : "column",
               textAlign: "left",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
               border: "1px solid #FFCEEB",
               gap: isMobile ? '17px' : '0px'
             }}

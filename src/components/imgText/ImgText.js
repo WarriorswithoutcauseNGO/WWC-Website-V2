@@ -32,7 +32,7 @@ const ImgText = ({ heading, subHeading }) => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
         }}
       />
       <Box
@@ -52,7 +52,7 @@ const ImgText = ({ heading, subHeading }) => {
             fontWeight: 400,
             lineHeight: isMobile ? "79.64px" : "217.2px",
             textAlign: "left",
-            marginBottom: isMobile ? "-36px" : "-100px", 
+            marginBottom: isMobile ? "-36px" : "-100px",
           }}
         >
           {heading}

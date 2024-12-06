@@ -10,18 +10,17 @@ const Cards = ({ title, description, imageSrc, imageAlt, reverse = false }) => {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: isMobile 
-          ? 'column' 
+        flexDirection: isMobile
+          ? 'column'
           : reverse ? 'row-reverse' : 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: isMobile ? theme.spacing(3) : theme.spacing(6),
-        backgroundColor: '#FFF2FA',
-        borderBottomLeftRadius: isMobile ? '40px' :'90px',
+        borderBottomLeftRadius: isMobile ? '40px' : '90px',
         borderBottomRightRadius: isMobile ? '40px' : '90px',
-        // boxShadow: '0px 10px 43px 0px #00000029',
         margin: '0 auto',
-        gap: isMobile ? '20px': '80px'
+        gap: isMobile ? '20px' : '80px',
+        boxShadow: '0px 10px 13px 0px rgba(0, 0, 0, 0.1)',
       }}
     >
       <Box
@@ -68,7 +67,7 @@ const Cards = ({ title, description, imageSrc, imageAlt, reverse = false }) => {
           }}
         />
       </Box>
-    </Box>
+    </Box >
   );
 };
 

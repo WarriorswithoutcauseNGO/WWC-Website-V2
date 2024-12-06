@@ -6,10 +6,10 @@ import HTHcard from '../../components/howTohelpCardTwo/HTHC'
 
 const HowToHelp = () => {
   return (
-    <Box sx={{backgroundColor:'#FFF2FA'}}>
-        <ImgText heading="How to help" subHeading="Uplift lives"/>
-        <VolunteerCard/>
-        <HTHcard/>
+    <Box>
+      <ImgText heading="How to help" subHeading="Uplift lives" />
+      <VolunteerCard />
+      <HTHcard />
     </Box>
   )
 }

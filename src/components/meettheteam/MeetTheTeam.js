@@ -28,10 +28,9 @@ const MeetTheTeam = () => {
     <Box
       sx={{
         padding: theme.spacing(4),
-        backgroundColor: "#FFF5F5",
       }}
     >
-      <Box sx={{mb:'22px'}}>
+      <Box sx={{ mb: '22px' }}>
         <Typography
           variant="h2"
           component="h2"

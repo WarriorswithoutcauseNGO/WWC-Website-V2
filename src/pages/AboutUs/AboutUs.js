@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import Navbar from "../../components/navbar/Navbar";
+
 import ImgText from "../../components/imgText/ImgText";
 import Cards from "../../components/aboutUsCards/Cards";
 import AboutUsCardOne from "../../assets/AboutUsCard1.png";
@@ -9,7 +9,7 @@ import MeetTheTeam from "../../components/meettheteam/MeetTheTeam";
 
 const AboutUs = () => {
   return (
-    <Box sx={{backgroundColor:'#FFF2FA'}}>
+    <Box sx={{ backgroundColor: '#FFF2FA' }}>
       <ImgText heading="About Us" subHeading="Who are we" />
       <Cards
         title="Our Vision"
@@ -22,9 +22,9 @@ const AboutUs = () => {
         description="At WWC, our mission is simple yet profound: to stand with those who need it most, offering education, healthcare, and empowerment. We believe in creating lasting change driven by the hands and hearts of the people we serve. Through collaboration, advocacy, and unwavering dedication, we strive to dismantle the barriers of poverty and inequality. "
         imageSrc={AboutUsCardTwo}
         imageAlt="Our Mission"
-        reverse= 'true'
+        reverse='true'
       />
-      <MeetTheTeam/>
+      <MeetTheTeam />
     </Box>
   );
 };

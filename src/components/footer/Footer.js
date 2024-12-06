@@ -300,7 +300,7 @@ export const CopyrightSection = () => {
         }}>
         <img src={FooterFlower} alt="Footer Flower" />
         Created by
-        <a href='https://quatrodev.vercel.app/' target='_blank' rel="noreferrer">
+        <a href='https://www.linkedin.com/company/quatro-web-solutions/' target='_blank' rel="noreferrer">
           Quatro
         </a>
       </Typography>

@@ -153,7 +153,7 @@ const VolunteerCard = ({ reverse = true }) => {
           <Box
             key={index}
             sx={{
-              width: isMobile ? "351px" : "233px",
+              width: isMobile ? "340px" : "233px",
               backgroundColor: "#FFEAF7",
               borderRadius: "20px",
               padding: theme.spacing(2),
@@ -169,8 +169,8 @@ const VolunteerCard = ({ reverse = true }) => {
                 src={card.icon}
                 alt={card.title}
                 style={{
-                  width: "63px",
-                  height: "57px",
+                  width: isMobile ? "43px" : "63px",
+                  height: isMobile ? "39px" :"57px",
                   marginBottom: theme.spacing(1),
                 }}
               />
@@ -179,7 +179,7 @@ const VolunteerCard = ({ reverse = true }) => {
               <Typography
                 sx={{
                   fontWeight: "600",
-                  fontSize: "24px",
+                  fontSize: isMobile ? "20px" : "24px",
                   lineHeight: "30px",
                   fontFamily: "Sora, sans-serif",
                   marginBottom: theme.spacing(1),

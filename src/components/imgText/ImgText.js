@@ -52,7 +52,7 @@ const ImgText = ({ heading, subHeading }) => {
             fontWeight: 400,
             lineHeight: isMobile ? "79.64px" : "217.2px",
             textAlign: "left",
-            marginBottom: isMobile ? "-36px" : "-100px",
+            marginBottom: isMobile ? "-36px" : "-90px",
           }}
         >
           {heading}

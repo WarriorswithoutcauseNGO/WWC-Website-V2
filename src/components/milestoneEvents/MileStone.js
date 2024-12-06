@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, IconButton, useMediaQuery, useTheme, Button } from '@mui/material';
-import left from "../../assets/left.svg";
-import right from '../../assets/right.svg'
+import Right from '@mui/icons-material/East';
+import Left from '@mui/icons-material/West';
 
 const milestoneData = [
   {
@@ -207,7 +207,7 @@ const MileStone = () => {
                   alignItems:"center"  
                 }}
               >
-                <img src={left} alt="Previous" />
+                <Left sx={{color:"white", fontSize:"25px"}}/>
               </IconButton>
               <IconButton 
                 onClick={handleNext}
@@ -221,7 +221,7 @@ const MileStone = () => {
                   alignItems:"center"  
                 }}
               >
-                <img src={right} alt="Previous" />
+                <Right sx={{color:"white", fontSize:"25px"}}/>
               </IconButton>
             </Box>
           </Box>

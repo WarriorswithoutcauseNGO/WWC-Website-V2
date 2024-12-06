@@ -141,7 +141,7 @@ const BrowseCollections = () => {
               </Box>
               {/* Bottom images */}
               {/* Bottom images */}
-<Box
+              <Box
   sx={{
     display: 'grid',
     gridTemplateColumns: {
@@ -157,22 +157,26 @@ const BrowseCollections = () => {
       src: isXsScreen ? merchPhone : merch,
       phoneSrc: merchPhone,
       text: "MERCH",
-      alt: "Merch"
+      alt: "Merch",
+      link: "https://www.sochbywwc.com/category/oversized-tees"
     },
     {
       src: isXsScreen ? crochetFlowersPhone : crochetFlowers,
       phoneSrc: crochetFlowersPhone,
       text: "CROCHET\nFLOWERS",
-      alt: "Crochet Flowers"
+      alt: "Crochet Flowers",
+      link: "https://www.sochbywwc.com/category/crochet-flowers"
     },
     {
       src: isXsScreen ? crochetTopsPhone : crochetTops,
       phoneSrc: crochetTopsPhone,
       text: "CROCHET\nTOPS",
-      alt: "Crochet Tops"
+      alt: "Crochet Tops",
+      link: "https://www.sochbywwc.com/category/crochet-tops"
     }
   ].map((item) => (
     <Box
+      onClick={() => window.open(item.link, '_blank')}
       sx={{
         position: 'relative',
         overflow: 'hidden',

@@ -106,6 +106,7 @@ const VolunteerCard = ({ reverse = true }) => {
             a lasting impact. Together, we can turn the tide on poverty and
             inequality, creating a future where everyone thrives.
           </Typography>
+          <a href="http://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url" target="_blank" rel="noreferrer">
           <Button
             sx={{
               borderRadius: "37px",
@@ -127,6 +128,7 @@ const VolunteerCard = ({ reverse = true }) => {
 
             BECOME A VOLUNTEER
           </Button>
+          </a>
         </Box>
         <Box
           sx={{

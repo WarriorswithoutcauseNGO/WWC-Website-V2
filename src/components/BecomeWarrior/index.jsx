@@ -167,6 +167,7 @@ export default function BecomeWarrior() {
             READ MORE
           </Button>
 
+          <a href="http://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url" target="_blank" rel="noreferrer">
           <Button
             sx={{
               backgroundColor: "transparent",
@@ -195,6 +196,7 @@ export default function BecomeWarrior() {
           >
             BECOME A WARRIOR
           </Button>
+          </a>
         </Box>
       </Box>
 

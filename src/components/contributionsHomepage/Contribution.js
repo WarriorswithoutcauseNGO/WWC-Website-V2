@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import donation_qr_img from '../../assets/donation_qr_img.jpg'
 
 const theme = createTheme({
   palette: {
@@ -126,7 +127,7 @@ const Contribution = () => {
               ? "background.default"
               : "transparent",
             transition: "background-color 0.5s ease-in-out",
-            minHeight: "100vh",
+            minHeight: isMobile ? "77vh" : "100vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -137,7 +138,7 @@ const Contribution = () => {
             transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
           }}
         >
-          <Box sx={{ width: "100%" }}>
+          <Box >
             <Typography
               variant="h1"
               sx={{
@@ -163,7 +164,7 @@ const Contribution = () => {
             }}
           >
             <Box sx={{ display: "flex", flexDirection: "column", width: "100%", minWidth: isMobile ? "100%" : "459px" }}>
-              <FormControl component="fieldset">
+              {/* <FormControl component="fieldset">
                 <Box
                   sx={{
                     width: "100%",
@@ -274,7 +275,9 @@ const Contribution = () => {
                 }}
               >
                 Contribute to a brighter future
-              </Button>
+              </Button> */}
+
+              <img style={{width:"100%"}} src={donation_qr_img} alt="" />
             </Box>
           </Box>
         </Box>

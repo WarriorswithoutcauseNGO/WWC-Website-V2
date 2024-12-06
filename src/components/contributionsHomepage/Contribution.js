@@ -41,8 +41,8 @@ const theme = createTheme({
 });
 
 const Contribution = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // Changed from "sm" to "md"
-  const [selectedOption, setSelectedOption] = useState("");
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [customAmount, setCustomAmount] = useState("");
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
@@ -50,12 +50,11 @@ const Contribution = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Trigger when component is at least 20% visible
         setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
       },
       {
-        root: null, // viewport
-        threshold: 0.2 // 20% visibility
+        root: null,
+        threshold: 0.2
       }
     );
 
@@ -65,7 +64,6 @@ const Contribution = () => {
       observer.observe(currentElement);
     }
 
-    // Cleanup
     return () => {
       if (currentElement) {
         observer.unobserve(currentElement);
@@ -83,16 +81,38 @@ const Contribution = () => {
   ];
 
   const handleOptionSelect = (optionId) => {
-    setSelectedOption(optionId);
-    if (optionId !== "other") setCustomAmount("");
+    setSelectedOptions(prevSelected => {
+      // If the option is already selected, remove it
+      if (prevSelected.includes(optionId)) {
+        return prevSelected.filter(id => id !== optionId);
+      }
+      // Otherwise, add the option
+      return [...prevSelected, optionId];
+    });
+
+    // Reset custom amount if "other" is being deselected
+    if (optionId === "other" && selectedOptions.includes("other")) {
+      setCustomAmount("");
+    }
   };
 
   const handleContribute = () => {
-    const selectedItem = options.find((opt) => opt.id === selectedOption);
-    const amount = selectedOption === "other" ? parseInt(customAmount) || 0 : selectedItem.amount;
+    // Calculate total amount based on selected options
+    const selectedItems = options.filter(opt => selectedOptions.includes(opt.id));
+    const totalAmount = selectedItems.reduce((sum, item) => {
+      // For "other" option, add custom amount if provided
+      if (item.id === "other" && customAmount) {
+        return sum + parseInt(customAmount);
+      }
+      return sum + item.amount;
+    }, 0);
 
-    localStorage.setItem("label", selectedItem.label);
-    localStorage.setItem("amount", amount);
+    // Prepare labels for selected items
+    const selectedLabels = selectedItems.map(item => item.label).join(", ");
+
+    // Store in localStorage
+    localStorage.setItem("label", selectedLabels);
+    localStorage.setItem("amount", totalAmount);
 
     navigate("/donate");
   };
@@ -101,23 +121,21 @@ const Contribution = () => {
     <Box data-component="Contribution">
       <ThemeProvider theme={theme}>
         <Box
-        sx={{
-    backgroundColor: isVisible 
-      ? "background.default"
-      : "transparent" ,
-    transition: "background-color 0.5s ease-in-out",
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    p: isMobile ? 2 : 4,
-    flexDirection: isMobile ? "column" : "row",
-    
-    // Additional smooth reveal properties
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible ? "translateY(0)" : "translateY(20px)",
-    transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
-  }}
+          sx={{
+            backgroundColor: isVisible 
+              ? "background.default"
+              : "transparent",
+            transition: "background-color 0.5s ease-in-out",
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            p: isMobile ? 2 : 4,
+            flexDirection: isMobile ? "column" : "row",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
+          }}
         >
           <Box sx={{ width: "100%" }}>
             <Typography
@@ -150,7 +168,7 @@ const Contribution = () => {
                   sx={{
                     width: "100%",
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr", // Simplified from previous complex condition
+                    gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr",
                     gap: 2,
                   }}
                 >
@@ -159,14 +177,14 @@ const Contribution = () => {
                       key={option.id}
                       onClick={() => handleOptionSelect(option.id)}
                       sx={{
-                        backgroundColor: selectedOption === option.id ? "#FFB7E5" : "#FFE9F6",
+                        backgroundColor: selectedOptions.includes(option.id) ? "#FFB7E5" : "#FFE9F6",
                         border: "1px solid #FFDEF2",
                         borderRadius: "10px",
                         transition: "all 0.2s ease",
                         cursor: "pointer",
-                        transform: selectedOption === option.id ? "scale(0.98)" : "scale(1)",
+                        transform: selectedOptions.includes(option.id) ? "scale(0.98)" : "scale(1)",
                         "&:hover": {
-                          backgroundColor: selectedOption === option.id ? "#FFB7E5" : "#FFDEF2",
+                          backgroundColor: selectedOptions.includes(option.id) ? "#FFB7E5" : "#FFDEF2",
                         },
                         padding: "16px",
                         position: "relative",
@@ -177,10 +195,11 @@ const Contribution = () => {
                           variant="body1"
                           sx={{
                             color: "#7A7A7A",
-                            fontWeight: selectedOption === option.id ? "600" : "400",
+                            fontWeight: selectedOptions.includes(option.id) ? "600" : "400",
                             fontSize: "16px",
                             lineHeight: "20.16px",
                             fontFamily: "Sora, sans-serif",
+                            textAlign:'center'
                           }}
                         >
                           {option.label}
@@ -202,7 +221,7 @@ const Contribution = () => {
                           </Typography>
                         )}
                       </Box>
-                      {selectedOption === option.id && (
+                      {selectedOptions.includes(option.id) && (
                         <Box
                           sx={{
                             position: "absolute",
@@ -220,7 +239,7 @@ const Contribution = () => {
                 </Box>
               </FormControl>
 
-              {selectedOption === "other" && (
+              {selectedOptions.includes("other") && (
                 <Box sx={{ mt: 3 }}>
                   <TextField
                     fullWidth
@@ -240,13 +259,14 @@ const Contribution = () => {
               <Button
                 variant="contained"
                 onClick={handleContribute}
-                disabled={!selectedOption || (selectedOption === "other" && !customAmount)}
+                disabled={selectedOptions.length === 0 || 
+                  (selectedOptions.includes("other") && !customAmount)}
                 sx={{
                   mt: 4,
                   py: 2,
                   backgroundColor: "#DE0089",
                   "&:hover": { backgroundColor: "#D81B60" },
-                  "&.Mui-disabled": { backgroundColor: "#E91E63", opacity: 0.5 },
+                  "&.Mui-disabled": { backgroundColor: "#E91E63",  color:"#FFFFFF"},
                   color: "#FFEAF6",
                   fontFamily: 'Sora',
                   fontSize: '20px',

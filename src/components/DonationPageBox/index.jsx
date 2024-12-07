@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Checkbox, TextField, Button } from "@mui/material";
+import qrcodeImg from '../../assets/Qrcodeimg.png'
 
 export default function DonationPageBox() {
   const [isAnonymous, setIsAnonymous] = useState(true);
@@ -93,7 +94,50 @@ export default function DonationPageBox() {
         </Typography>
       </Box>
 
+      <Box sx={{display:"flex",justifyContent:"center",alignItems:'center',width:"100%"}}>
+        <img src={qrcodeImg} alt="" />
+      </Box>
+
       <Box
+  sx={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: { xs: 1, md: 2 },
+    backgroundColor: 'rgba(248, 248, 248, 0.7)',
+    borderRadius: '8px',
+    margin: { xs: '10px', md: '20px' },
+    maxWidth: { xs: '100%', md: '500px' },
+    mx: 'auto',
+  }}
+>
+  <Typography
+    sx={{
+      fontFamily: "Sora",
+      fontSize: { xs: '14px', md: '16px' },
+      fontWeight: 400,
+      color: "rgba(77, 77, 77, 1)",
+      textAlign: 'center',
+      lineHeight: 1.6,
+      '& strong': {
+        color: "rgba(222, 0, 137, 1)",
+        fontWeight: 600,
+      }
+    }}
+  >
+    Bank Details for Donation:
+    <br />
+    <strong>Bank Account Number:</strong> 50200070839175
+    <br />
+    <strong>IFSC Code:</strong> HDFC0009629
+    <br />
+    <strong>Account Holder:</strong> Warriorswithoutcause
+    <br />
+    <strong>UPI ID:</strong> 9711883411@pthdfc
+  </Typography>
+</Box>
+
+      {/* <Box
         sx={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -261,7 +305,7 @@ export default function DonationPageBox() {
         }}
       >
         Make Payment
-      </Button>
+      </Button> */}
     </Box>
   );
 }

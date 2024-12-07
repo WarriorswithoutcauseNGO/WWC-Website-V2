@@ -126,7 +126,7 @@ const HomePageAboutUs = () => {
             mb: 3,
           }}
         >
-          WarriorsWithoutCause is a PAN India{" "}
+          Warriorswithoutcause is a PAN India{" "}
           <span style={{ fontWeight: 700 }}>youth-led NGO</span> driven by the
           belief that "We don't need a cause to make a change." We've
           transformed lives with an{" "}

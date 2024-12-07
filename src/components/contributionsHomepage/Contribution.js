@@ -164,7 +164,7 @@ const Contribution = () => {
             }}
           >
             <Box sx={{ display: "flex", flexDirection: "column", width: "100%", minWidth: isMobile ? "100%" : "459px" }}>
-              {/* <FormControl component="fieldset">
+              <FormControl component="fieldset">
                 <Box
                   sx={{
                     width: "100%",
@@ -275,9 +275,7 @@ const Contribution = () => {
                 }}
               >
                 Contribute to a brighter future
-              </Button> */}
-
-              <img style={{width:"100%"}} src={donation_qr_img} alt="" />
+              </Button>
             </Box>
           </Box>
         </Box>

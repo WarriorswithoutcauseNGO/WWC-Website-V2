@@ -86,7 +86,7 @@ const ContactSection = () => (
     <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold' }}>Contact</Typography>
     <Typography sx={{ fontFamily: 'Sora, sans-serif', color: "#FFD5ED" }}>+91 9711883411</Typography>
     <Typography sx={{ fontFamily: 'Sora, sans-serif', color: "#FFD5ED" }}>info.warriorswithoutcause.com</Typography>
-    <Typography sx={{ fontFamily: 'Sora, sans-serif', color: "#FFD5ED" }}>warriorswithoutcause@gmail.com</Typography>
+    <Typography sx={{ fontFamily: 'Sora, sans-serif', color: "#FFD5ED" }}>Contact@warriorswithoutcause.org</Typography>
   </Box>
 );
 
@@ -239,8 +239,8 @@ const WatermarkSection = () => {
         fontWeight: '900',
         pointerEvents: 'none',
         color: "#C20078",
-        lineHeight: isMobile ? "76.5px" :'145.23px',
-        fontFamily:"Inter",
+        lineHeight: isMobile ? "76.5px" : '145.23px',
+        fontFamily: "Inter",
       }}
     >
       WWC NGO

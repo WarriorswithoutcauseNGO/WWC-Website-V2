@@ -1,10 +1,9 @@
-import { Alert, Box, Snackbar, TextField, Typography, useMediaQuery } from "@mui/material";
+import { Alert, Box, Snackbar, Typography, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export default function Donation() {
   const isPhoneView = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const [amount, setAmount] = useState("");
   const [notification, setNotification] = useState({ open: false, message: "", severity: "info" });
   const dmsContainerRef = useRef(null);
 
@@ -32,7 +31,6 @@ export default function Donation() {
       showNotification("Ketto SDK not loaded. Please try again.", "error");
       return;
     }
-    // Use the full API key from your dashboard!
     const dms = window.Dms({
       apiKey: "14c25882746f32bc638b202d4b961115:c87577680f2cb7e631793d98ecf5e69e3a4bba70ac6bdefd534165955e10fdab:765002c2cc35f36e6f802154a4fe55d9",
       theme: {
@@ -51,12 +49,6 @@ export default function Donation() {
 
     dms.acceptDonation({
       container: "#dms-container",
-      userConfig: {
-        donor_phone_ext: "+91",
-        donor_email: "",
-        donor_name: "",
-        donor_phone: ""
-      },
       widgetConfig: {
         widgetId: "WID687bb3571e598F05yX",
         hideNgoDetails: false
@@ -133,42 +125,30 @@ export default function Donation() {
             backdropFilter: "blur(10px)",
             maxWidth: "400px",
             width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
           }}
         >
-          <TextField
-            label="Enter Amount (INR)"
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            sx={{
-              width: "100%",
-              mb: 3,
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "12px",
-                "&:hover fieldset": {
-                  borderColor: "#DE0089",
-                },
-              },
-            }}
-            inputProps={{ min: 1 }}
-          />
           <button
             id="donate-btn"
             style={{
-              padding: "12px 24px",
-              background: "#DE0089",
+              padding: "14px 0",
+              background: "linear-gradient(90deg, #DE0089 0%, #FF1FA3 100%)",
               color: "white",
               border: "none",
-              borderRadius: "4px",
+              borderRadius: "12px",
               cursor: "pointer",
               marginBottom: "20px",
               width: "100%",
               fontWeight: 700,
-              fontSize: "18px"
+              fontSize: "20px",
+              boxShadow: "0px 2px 8px rgba(222,0,137,0.08)",
+              transition: "background 0.3s"
             }}
             onClick={handleDonateClick}
           >
-            Donate Now
+            Donate with Ketto
           </button>
           <Snackbar
             open={notification.open}

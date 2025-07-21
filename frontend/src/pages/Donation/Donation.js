@@ -133,22 +133,45 @@ export default function Donation() {
           <button
             id="donate-btn"
             style={{
-              padding: "14px 0",
-              background: "linear-gradient(90deg, #DE0089 0%, #FF1FA3 100%)",
+              padding: "16px 32px",
+              background: "linear-gradient(135deg, #DE0089 0%, #FF1FA3 50%, #FF6B9D 100%)",
               color: "white",
               border: "none",
-              borderRadius: "12px",
+              borderRadius: "16px",
               cursor: "pointer",
               marginBottom: "20px",
               width: "100%",
-              fontWeight: 700,
-              fontSize: "20px",
-              boxShadow: "0px 2px 8px rgba(222,0,137,0.08)",
-              transition: "background 0.3s"
+              fontFamily: "Sora, sans-serif",
+              fontWeight: 600,
+              fontSize: "18px",
+              letterSpacing: "0.5px",
+              boxShadow: "0px 8px 32px rgba(222, 0, 137, 0.25), 0px 4px 16px rgba(255, 31, 163, 0.15)",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              position: "relative",
+              overflow: "hidden",
+              transform: "translateY(0)",
+              backgroundSize: "200% 200%",
+              animation: "gradientShift 4s ease infinite"
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "translateY(-2px)";
+              e.target.style.boxShadow = "0px 12px 40px rgba(222, 0, 137, 0.35), 0px 6px 20px rgba(255, 31, 163, 0.25)";
+              e.target.style.backgroundPosition = "100% 0%";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "0px 8px 32px rgba(222, 0, 137, 0.25), 0px 4px 16px rgba(255, 31, 163, 0.15)";
+              e.target.style.backgroundPosition = "0% 0%";
+            }}
+            onMouseDown={(e) => {
+              e.target.style.transform = "translateY(0) scale(0.98)";
+            }}
+            onMouseUp={(e) => {
+              e.target.style.transform = "translateY(-2px) scale(1)";
             }}
             onClick={handleDonateClick}
           >
-            Donate with Ketto
+            ♡ Donate with Ketto ♡
           </button>
           <Snackbar
             open={notification.open}

@@ -13,17 +13,12 @@ export default function Donation() {
   };
 
   useEffect(() => {
-    // Load the Ketto SDK script only once
     if (!window.Dms) {
       const script = document.createElement("script");
       script.id = "ketto-sdk-script";
       script.src = "https://www.ketto.org/media/sdk/dms-sdk.min.js";
       script.async = true;
       document.body.appendChild(script);
-
-      script.onload = () => {
-        // SDK loaded, nothing else to do here
-      };
 
       return () => {
         const scriptTag = document.getElementById("ketto-sdk-script");
@@ -32,34 +27,36 @@ export default function Donation() {
     }
   }, []);
 
-  // Handler to launch the widget
   const handleDonateClick = () => {
     if (!window.Dms) {
       showNotification("Ketto SDK not loaded. Please try again.", "error");
       return;
     }
-    // Initialize the SDK and launch the widget
+    // Use the full API key from your dashboard!
     const dms = window.Dms({
-      apiKey: "14c25882746f32bc638b202d4b961115",
+      apiKey: "14c25882746f32bc638b202d4b961115:c87577680f2cb7e631793d98ecf5e69e3a4bba70ac6bdefd534165955e10fdab:765002c2cc35f36e6f802154a4fe55d9",
       theme: {
         primaryColor: "#DE0089",
         secondaryColor: "#FF1FA3"
       },
-      onInitialized: function () {
-        // Widget will be launched below
-      },
+      onInitialized: function () {},
       onError: function (error) {
         showNotification("Ketto widget failed to initialize.", "error");
       }
     });
 
     dms.on("dms:paymentStatus", function (data) {
-      // You can handle payment status updates here
       console.log("Payment status update:", data);
     });
 
     dms.acceptDonation({
       container: "#dms-container",
+      userConfig: {
+        donor_phone_ext: "+91",
+        donor_email: "",
+        donor_name: "",
+        donor_phone: ""
+      },
       widgetConfig: {
         widgetId: "WID687bb3571e598F05yX",
         hideNgoDetails: false

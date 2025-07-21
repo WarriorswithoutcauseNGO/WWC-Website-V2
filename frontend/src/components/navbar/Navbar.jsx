@@ -48,7 +48,10 @@ function Navbar() {
     }
   };
 
-  // Check if the current route is /donate
+  const handleGoHome = () => {
+    window.location.href = "/";
+  };
+
   const isDonatePage = location.pathname === "/donate";
 
   return (
@@ -59,17 +62,13 @@ function Navbar() {
         borderBottom: isDonatePage
           ? "1px solid rgba(77, 77, 77, 1)"
           : "1px solid rgba(226, 226, 226, 1)",
-        backdropFilter: "blur(27.399999618530273px)",
+        backdropFilter: "blur(27.4px)",
         paddingX: { xs: 2, md: 0 },
         zIndex: 5,
         height: "68px",
       }}
     >
-      <Container
-        disableGutters
-        maxWidth="xl"
-        sx={{ paddingLeft: 0, paddingRight: 0, height: "68px" }}
-      >
+      <Container disableGutters maxWidth="xl" sx={{ height: "68px" }}>
         <Toolbar
           disableGutters
           sx={{
@@ -80,29 +79,29 @@ function Navbar() {
             ml: { md: 2, xs: 0 },
           }}
         >
-          <Link to="/">
-            <img
-              src={navbar_logo}
-              alt="NGO Logo"
-              style={{
-                display: "flex",
-                height: "40px",
-              }}
-            />
-          </Link>
+          <img
+            src={navbar_logo}
+            alt="NGO Logo"
+            onClick={handleGoHome}
+            style={{
+              display: "flex",
+              height: "40px",
+              cursor: "pointer",
+            }}
+          />
+
           <Typography
             variant="h6"
             noWrap
-            component={Link}
-            to="/"
+            onClick={handleGoHome}
             sx={{
               ml: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "Sora",
               fontWeight: 700,
               letterSpacing: ".2rem",
-              textDecoration: "none",
               fontSize: "20px",
+              cursor: "pointer",
               color: isDonatePage
                 ? "rgba(0, 0, 0, 1)"
                 : "rgba(226, 226, 226, 1)",
@@ -114,8 +113,7 @@ function Navbar() {
           <Typography
             variant="h5"
             noWrap
-            component={Link}
-            to="/"
+            onClick={handleGoHome}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -124,22 +122,20 @@ function Navbar() {
               fontWeight: 700,
               fontSize: "24px",
               letterSpacing: ".3rem",
+              cursor: "pointer",
               color: isDonatePage
                 ? "rgba(0, 0, 0, 1)"
                 : "rgba(226, 226, 226, 1)",
-              textDecoration: "none",
               ml: 1,
             }}
           >
             WWC NGO
           </Typography>
 
+          {/* MOBILE NAV */}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
               sx={{ p: 0, color: isDonatePage ? "black" : "inherit" }}
@@ -147,29 +143,20 @@ function Navbar() {
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              transformOrigin={{ vertical: "top", horizontal: "left" }}
               PaperProps={{
                 sx: {
                   background: "rgba(255, 255, 255, 0.09)",
                   borderBottom: "1px solid rgba(226, 226, 226, 1)",
-                  backdropFilter: "blur(27.399999618530273px)",
+                  backdropFilter: "blur(27.4px)",
                   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
                   borderRadius: 0,
                   marginTop: 2.7,
                   pt: 2,
-                  maxWidth: "100%",
                   width: "100%",
                   left: "0px !important",
                 },
@@ -200,21 +187,17 @@ function Navbar() {
                   </Typography>
                 </MenuItem>
               ))}
-              <Box
-                sx={{
-                  flexGrow: 0,
-                  height: "100%",
-                  display: { xs: "flex", md: "none" },
-                  m: 2,
-                }}
-              >
+
+              <Box sx={{ display: { xs: "flex", md: "none" }, m: 2 }}>
                 <Button
                   fullWidth
                   onClick={() => {
-                    scrollToSection();
                     handleCloseNavMenu();
+                    navigate("/donate");
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }, 100);
                   }}
-                  to="/donate"
                   sx={{
                     backgroundColor: "white",
                     display: "flex",
@@ -223,10 +206,6 @@ function Navbar() {
                     px: 5,
                     py: 2,
                     borderRadius: 0,
-                    position: "relative",
-                    marginRight: 0,
-                    alignItems: "center",
-                    height: "100%",
                     textDecoration: "none",
                   }}
                   className="donation-button"
@@ -258,6 +237,7 @@ function Navbar() {
             </Menu>
           </Box>
 
+          {/* DESKTOP NAV */}
           <Box
             sx={{
               flexGrow: 1,
@@ -273,7 +253,6 @@ function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
-                  display: "block",
                   fontFamily: "Sora",
                   fontWeight: 500,
                   fontSize: "16px",
@@ -289,6 +268,7 @@ function Navbar() {
             ))}
           </Box>
 
+          {/* DONATE BUTTON (DESKTOP) */}
           <Box
             sx={{
               flexGrow: 0,
@@ -299,8 +279,11 @@ function Navbar() {
           >
             <Button
               onClick={() => {
-                navigate("/donate");
                 handleCloseNavMenu();
+                navigate("/donate");
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 100);
               }}
               sx={{
                 backgroundColor: "white",

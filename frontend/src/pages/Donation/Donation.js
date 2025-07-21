@@ -12,18 +12,31 @@ export default function Donation() {
   };
 
   useEffect(() => {
-    if (!window.Dms) {
-      const script = document.createElement("script");
-      script.id = "ketto-sdk-script";
-      script.src = "https://www.ketto.org/media/sdk/dms-sdk.min.js";
-      script.async = true;
-      document.body.appendChild(script);
+    const script = document.createElement("script");
+    script.id = "ketto-sdk-script";
+    script.src = "https://www.ketto.org/media/sdk/dms-sdk.min.js";
+    script.async = true;
+    document.body.appendChild(script);
 
-      return () => {
-        const scriptTag = document.getElementById("ketto-sdk-script");
-        if (scriptTag) scriptTag.remove();
-      };
-    }
+    return () => {
+      console.log("🧹 Cleaning up Donation page");
+
+      // Remove script
+      const existing = document.getElementById("ketto-sdk-script");
+      if (existing) existing.remove();
+
+      // Reset any scroll or overflow changes
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+
+      // Clear widget content
+      if (dmsContainerRef.current) {
+        dmsContainerRef.current.innerHTML = "";
+      }
+
+      // Clean global window state
+      if (window.Dms) delete window.Dms;
+    };
   }, []);
 
   const handleDonateClick = () => {
@@ -31,16 +44,18 @@ export default function Donation() {
       showNotification("Ketto SDK not loaded. Please try again.", "error");
       return;
     }
+
     const dms = window.Dms({
-      apiKey: "14c25882746f32bc638b202d4b961115:c87577680f2cb7e631793d98ecf5e69e3a4bba70ac6bdefd534165955e10fdab:765002c2cc35f36e6f802154a4fe55d9",
+      apiKey:
+        "14c25882746f32bc638b202d4b961115:c87577680f2cb7e631793d98ecf5e69e3a4bba70ac6bdefd534165955e10fdab:765002c2cc35f36e6f802154a4fe55d9",
       theme: {
         primaryColor: "#DE0089",
-        secondaryColor: "#FF1FA3"
+        secondaryColor: "#FF1FA3",
       },
       onInitialized: function () {},
-      onError: function (error) {
+      onError: function () {
         showNotification("Ketto widget failed to initialize.", "error");
-      }
+      },
     });
 
     dms.on("dms:paymentStatus", function (data) {
@@ -51,8 +66,8 @@ export default function Donation() {
       container: "#dms-container",
       widgetConfig: {
         widgetId: "WID687bb3571e598F05yX",
-        hideNgoDetails: false
-      }
+        hideNgoDetails: false,
+      },
     });
   };
 
@@ -69,11 +84,7 @@ export default function Donation() {
         px: { xs: 2, md: 4 },
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
         <Typography
           variant="h2"
           sx={{
@@ -90,11 +101,7 @@ export default function Donation() {
         </Typography>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
         <Typography
           sx={{
             fontFamily: "Sora, sans-serif",
@@ -107,15 +114,13 @@ export default function Donation() {
             lineHeight: { xs: "24px", md: "30px" },
           }}
         >
-          Your donation helps Warriorswithoutcause (WWC) provide education, healthcare, and opportunities to underserved communities. Every contribution makes a real difference—whether it's empowering women with skills, offering healthcare, or supporting a child's education.
+          Your donation helps Warriorswithoutcause (WWC) provide education, healthcare, and opportunities to underserved
+          communities. Every contribution makes a real difference—whether it's empowering women with skills, offering
+          healthcare, or supporting a child's education.
         </Typography>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.4 }}>
         <Box
           sx={{
             backgroundColor: "rgba(255, 255, 255, 0.8)",
@@ -127,7 +132,7 @@ export default function Donation() {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <button
@@ -145,43 +150,29 @@ export default function Donation() {
               fontWeight: 600,
               fontSize: "18px",
               letterSpacing: "0.5px",
-              boxShadow: "0px 8px 32px rgba(222, 0, 137, 0.25), 0px 4px 16px rgba(255, 31, 163, 0.15)",
+              boxShadow:
+                "0px 8px 32px rgba(222, 0, 137, 0.25), 0px 4px 16px rgba(255, 31, 163, 0.15)",
               transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
               position: "relative",
               overflow: "hidden",
               transform: "translateY(0)",
               backgroundSize: "200% 200%",
-              animation: "gradientShift 4s ease infinite"
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "translateY(-2px)";
-              e.target.style.boxShadow = "0px 12px 40px rgba(222, 0, 137, 0.35), 0px 6px 20px rgba(255, 31, 163, 0.25)";
-              e.target.style.backgroundPosition = "100% 0%";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "translateY(0)";
-              e.target.style.boxShadow = "0px 8px 32px rgba(222, 0, 137, 0.25), 0px 4px 16px rgba(255, 31, 163, 0.15)";
-              e.target.style.backgroundPosition = "0% 0%";
-            }}
-            onMouseDown={(e) => {
-              e.target.style.transform = "translateY(0) scale(0.98)";
-            }}
-            onMouseUp={(e) => {
-              e.target.style.transform = "translateY(-2px) scale(1)";
+              animation: "gradientShift 4s ease infinite",
             }}
             onClick={handleDonateClick}
           >
             ♡ Donate with Ketto ♡
           </button>
+
           <Snackbar
             open={notification.open}
             autoHideDuration={6000}
             onClose={() => setNotification({ ...notification, open: false })}
           >
-            <Alert 
+            <Alert
               onClose={() => setNotification({ ...notification, open: false })}
               severity={notification.severity}
-              sx={{ width: '100%' }}
+              sx={{ width: "100%" }}
             >
               {notification.message}
             </Alert>
@@ -189,7 +180,7 @@ export default function Donation() {
         </Box>
       </motion.div>
 
-      {/* The widget will appear here */}
+      {/* Widget renders here */}
       <div id="dms-container" ref={dmsContainerRef}></div>
     </Box>
   );

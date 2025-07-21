@@ -1,16 +1,24 @@
 .volunteer-span {
   position: relative;
+  display: inline-block;
 }
 
-.volunteer-div.animate-strike .volunteer-span:after {
+/* Ensures consistent layout before animation triggers */
+.volunteer-span:after {
   content: "";
+  display: block;
   position: absolute;
   top: 50%;
   left: 0;
   height: 7px;
+  width: 0; /* initial width, avoids layout jump */
   background: rgba(255, 58, 179, 1);
-  animation: strike 1s linear forwards;
   border-radius: 50px;
+}
+
+/* Animation only applies when triggered */
+.volunteer-div.animate-strike .volunteer-span:after {
+  animation: strike 1s linear forwards;
 }
 
 @keyframes strike {

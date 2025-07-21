@@ -1,46 +1,38 @@
-import { Box, Typography, Button, useMediaQuery } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import about_img_1 from "../../assets/About_img_1.png";
 import about_img_2 from "../../assets/About_img_2.png";
 import about_img_3 from "../../assets/About_img_3.png";
-import about_img_1_phn from "../../assets/About_img_phn_1.png";
 import about_img_3_phn from "../../assets/About_img_3_ph.png";
+import about_img_1_phn from "../../assets/About_img_phn_1.png";
 
 const HomePageAboutUs = () => {
   const navigate = useNavigate();
+  const isPhone = useMediaQuery("(max-width:768px)");
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Trigger when component is at least 20% visible
         setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
       },
-      {
-        root: null, // viewport
-        threshold: 0.2, // 20% visibility
-      }
+      { threshold: 0.2 }
     );
 
-    const currentElement = document.querySelector(
-      '[data-component="HomePageAboutUs"]'
-    );
+    const el = document.querySelector('[data-component="HomePageAboutUs"]');
+    if (el) observer.observe(el);
 
-    if (currentElement) {
-      observer.observe(currentElement);
-    }
-
-    // Cleanup
     return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
+      if (el) observer.unobserve(el);
     };
   }, []);
-
-  const isPhone = useMediaQuery("(max-width:768px)"); // Adjust breakpoint as needed
 
   const handleLearnMoreClick = () => {
     navigate("/aboutus");

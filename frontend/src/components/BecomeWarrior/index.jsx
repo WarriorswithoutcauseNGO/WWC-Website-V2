@@ -1,58 +1,54 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, useLocation } from "react-router-dom";
 import joinWWC from "../../assets/joinWWC.png";
 import joinWWC_phn from "../../assets/joinWWC_phn.png";
 import { Box, Typography, Button } from "@mui/material";
 import "./BecomeWarrior.css";
 
 export default function BecomeWarrior() {
-  const [showWarriorText, setShowWarriorText] = useState(false);
   const sectionRef = useRef(null);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isVisible, setIsVisible] = useState(false);
+  const [showWarriorText, setShowWarriorText] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  // Ensure consistent state on remount/navigation
   useEffect(() => {
-    const textObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShowWarriorText(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (sectionRef.current) {
-      textObserver.observe(sectionRef.current);
+    if (location.pathname === "/") {
+      setIsVisible(false);
+      setShowWarriorText(false);
     }
+  }, [location.pathname]);
 
-    return () => {
-      if (sectionRef.current) {
-        textObserver.unobserve(sectionRef.current);
-      }
-    };
+  // Delay animations until after mount
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
+  // Unified IntersectionObserver to trigger both states
   useEffect(() => {
-    const visibilityObserver = new IntersectionObserver(
+    if (!mounted) return;
+
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.2);
+        const visible = entry.isIntersecting && entry.intersectionRatio > 0.2;
+        setIsVisible(visible);
+        setShowWarriorText(visible);
       },
-      {
-        root: null,
-        threshold: 0.2,
-      }
+      { threshold: 0.3 }
     );
 
-    if (sectionRef.current) {
-      visibilityObserver.observe(sectionRef.current);
-    }
+    const ref = sectionRef.current;
+    if (ref) observer.observe(ref);
 
     return () => {
-      if (sectionRef.current) {
-        visibilityObserver.unobserve(sectionRef.current);
-      }
+      if (ref) observer.unobserve(ref);
     };
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return null; // Prevent hydration mismatch
 
   return (
     <Box
@@ -65,20 +61,13 @@ export default function BecomeWarrior() {
         gap: 2,
         padding: { md: "64px 10px 64px 64px", xs: 3 },
         flexDirection: { md: "row", xs: "column" },
-        // Add opacity transition for smoother reveal
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
         transition:
           "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-        }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <Box>
           <Typography
             sx={{
@@ -90,13 +79,14 @@ export default function BecomeWarrior() {
               justifyContent: "right",
               mr: { md: 18, xs: 6 },
               visibility: showWarriorText ? "visible" : "hidden",
-              transition: "opacity 0.5s ease",
               opacity: showWarriorText ? 1 : 0,
+              transition: "opacity 0.5s ease",
               mt: { md: 5, xs: 0 },
             }}
           >
             Warrior
           </Typography>
+
           <Typography
             sx={{
               fontFamily: "Sora",
@@ -136,6 +126,7 @@ export default function BecomeWarrior() {
           impacting lives and develop a deeper sense of gratitude and purpose
           while connecting with like-minded individuals.
         </Typography>
+
         <Box sx={{ display: { md: "flex", xs: "none" }, gap: 2 }}>
           <Button
             sx={{
@@ -146,7 +137,6 @@ export default function BecomeWarrior() {
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: "20.16px",
-              textAlign: "left",
               border: "none",
               cursor: "pointer",
               marginTop: "10px",
@@ -159,43 +149,45 @@ export default function BecomeWarrior() {
                 backgroundColor: "transparent",
                 color: "white",
                 border: "1px solid white",
-                boxShadow: "0px 0px 1.9px 0px #00000040",
               },
             }}
-            onClick={() => navigate("/howtohelp")} // Add navigation
+            onClick={() => navigate("/howtohelp")}
           >
             READ MORE
           </Button>
 
-          <a href="http://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url" target="_blank" rel="noreferrer">
-          <Button
-            sx={{
-              backgroundColor: "transparent",
-              color: "white",
-              padding: "10px 20px",
-              fontFamily: "Sora",
-              fontSize: "16px",
-              fontWeight: 400,
-              lineHeight: "20.16px",
-              textAlign: "left",
-              border: "1px solid white",
-              cursor: "pointer",
-              marginTop: "10px",
-              boxShadow: "0px 0px 1.9px 0px #00000040",
-              borderRadius: "37px",
-              textTransform: "uppercase",
-              transition: "all 0.3s ease",
-              whiteSpace: "nowrap",
-              "&:hover": {
-                backgroundColor: "white",
-                color: "rgba(0, 0, 0, 1)",
-                border: "none",
-                boxShadow: "0px 0px 1.9px 0px rgba(0, 0, 0, 0.25)",
-              },
-            }}
+          <a
+            href="http://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url"
+            target="_blank"
+            rel="noreferrer"
           >
-            BECOME A WARRIOR
-          </Button>
+            <Button
+              sx={{
+                backgroundColor: "transparent",
+                color: "white",
+                padding: "10px 20px",
+                fontFamily: "Sora",
+                fontSize: "16px",
+                fontWeight: 400,
+                lineHeight: "20.16px",
+                border: "1px solid white",
+                cursor: "pointer",
+                marginTop: "10px",
+                boxShadow: "0px 0px 1.9px 0px #00000040",
+                borderRadius: "37px",
+                textTransform: "uppercase",
+                transition: "all 0.3s ease",
+                whiteSpace: "nowrap",
+                "&:hover": {
+                  backgroundColor: "white",
+                  color: "rgba(0, 0, 0, 1)",
+                  border: "none",
+                  boxShadow: "0px 0px 1.9px 0px rgba(0, 0, 0, 0.25)",
+                },
+              }}
+            >
+              BECOME A WARRIOR
+            </Button>
           </a>
         </Box>
       </Box>

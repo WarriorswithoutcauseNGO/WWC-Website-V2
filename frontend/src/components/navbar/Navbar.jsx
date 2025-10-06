@@ -10,6 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as React from "react";
+import './Navbar.css'
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import navbar_logo from "../../assets/navbar_logo.svg";
 

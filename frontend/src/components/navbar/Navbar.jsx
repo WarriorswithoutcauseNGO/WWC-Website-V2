@@ -10,9 +10,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import * as React from "react";
-import './Navbar.css'
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import navbar_logo from "../../assets/navbar_logo.svg";
+import "./Navbar.css";
 
 const pages = [
   { name: "About Us", path: "/aboutus" },
@@ -23,10 +23,36 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const isSmallScreen = useMediaQuery("(max-width:1100px)");
   const location = useLocation();
-  const isDonatePage = location.pathname === "/donate";
+  const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
-  const handleCloseNavMenu = () => setAnchorElNav(null);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const scrollToSection = () => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: "contribution-section" } });
+    } else {
+      scrollTo("contribution-section");
+    }
+  };
+
+  const scrollTo = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleGoHome = () => {
+    window.location.href = "/";
+  };
+
+  const isDonatePage = location.pathname === "/donate";
 
   return (
     <AppBar
@@ -43,22 +69,31 @@ function Navbar() {
       }}
     >
       <Container disableGutters maxWidth="xl" sx={{ height: "68px" }}>
-        <Toolbar disableGutters sx={{ height: "68px", alignItems: "center" }}>
-          {/* Logo */}
-          <RouterLink to="/" aria-label="Go to home page">
-            <img
-              src={navbar_logo}
-              alt="NGO Logo"
-              style={{ display: "flex", height: "40px", cursor: "pointer" }}
-            />
-          </RouterLink>
+        <Toolbar
+          disableGutters
+          sx={{
+            paddingLeft: 0,
+            paddingRight: 0,
+            alignItems: "center",
+            height: "68px",
+            ml: { md: 2, xs: 0 },
+          }}
+        >
+          <img
+            src={navbar_logo}
+            alt="NGO Logo"
+            onClick={handleGoHome}
+            style={{
+              display: "flex",
+              height: "40px",
+              cursor: "pointer",
+            }}
+          />
 
-          {/* Desktop Title */}
           <Typography
             variant="h6"
             noWrap
-            component={RouterLink}
-            to="/"
+            onClick={handleGoHome}
             sx={{
               ml: 2,
               display: { xs: "none", md: "flex" },
@@ -67,20 +102,18 @@ function Navbar() {
               letterSpacing: ".2rem",
               fontSize: "20px",
               cursor: "pointer",
-              textDecoration: "none",
-              color: isDonatePage ? "rgba(0, 0, 0, 1)" : "rgba(226, 226, 226, 1)",
+              color: isDonatePage
+                ? "rgba(0, 0, 0, 1)"
+                : "rgba(226, 226, 226, 1)",
             }}
-            aria-label="Go to home page"
           >
             {isSmallScreen ? "WWC NGO" : "WARRIORSWITHOUTCAUSE NGO"}
           </Typography>
 
-          {/* Mobile Title */}
           <Typography
             variant="h5"
             noWrap
-            component={RouterLink}
-            to="/"
+            onClick={handleGoHome}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -90,11 +123,11 @@ function Navbar() {
               fontSize: "24px",
               letterSpacing: ".3rem",
               cursor: "pointer",
-              textDecoration: "none",
-              color: isDonatePage ? "rgba(0, 0, 0, 1)" : "rgba(226, 226, 226, 1)",
+              color: isDonatePage
+                ? "rgba(0, 0, 0, 1)"
+                : "rgba(226, 226, 226, 1)",
               ml: 1,
             }}
-            aria-label="Go to home page"
           >
             WWC NGO
           </Typography>
@@ -106,11 +139,9 @@ function Navbar() {
               onClick={handleOpenNavMenu}
               color="inherit"
               sx={{ p: 0, color: isDonatePage ? "black" : "inherit" }}
-              aria-label="Open navigation menu"
             >
               <MenuIcon />
             </IconButton>
-
             <Menu
               anchorEl={anchorElNav}
               open={Boolean(anchorElNav)}
@@ -132,16 +163,22 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page.name}
+                  onClick={handleCloseNavMenu}
+                  sx={{ py: 0, height: "10px" }}
+                >
                   <Typography
-                    component={RouterLink}
+                    component={Link}
                     to={page.path}
                     sx={{
                       textAlign: "center",
                       fontFamily: "Sora",
                       fontWeight: 500,
                       fontSize: "16px",
-                      color: isDonatePage ? "rgba(0,0,0,1)" : "rgba(226,226,226,1)",
+                      color: isDonatePage
+                        ? "rgba(0, 0, 0, 1)"
+                        : "rgba(226, 226, 226, 1)",
                       textTransform: "capitalize",
                       textDecoration: "none",
                     }}
@@ -151,13 +188,16 @@ function Navbar() {
                 </MenuItem>
               ))}
 
-              {/* Mobile Donate Button */}
               <Box sx={{ display: { xs: "flex", md: "none" }, m: 2 }}>
                 <Button
                   fullWidth
-                  component={RouterLink}
-                  to="/donate"
-                  onClick={handleCloseNavMenu}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/donate");
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }, 100);
+                  }}
                   sx={{
                     backgroundColor: "white",
                     display: "flex",
@@ -168,7 +208,7 @@ function Navbar() {
                     borderRadius: 0,
                     textDecoration: "none",
                   }}
-                  aria-label="Make a donation"
+                  className="donation-button"
                 >
                   <svg
                     className="heart-icon"
@@ -198,11 +238,17 @@ function Navbar() {
           </Box>
 
           {/* DESKTOP NAV */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "center" }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page.name}
-                component={RouterLink}
+                component={Link}
                 to={page.path}
                 onClick={handleCloseNavMenu}
                 sx={{
@@ -210,7 +256,9 @@ function Navbar() {
                   fontFamily: "Sora",
                   fontWeight: 500,
                   fontSize: "16px",
-                  color: isDonatePage ? "rgba(0,0,0,1)" : "rgba(226,226,226,1)",
+                  color: isDonatePage
+                    ? "rgba(0, 0, 0, 1)"
+                    : "rgba(226, 226, 226, 1)",
                   textTransform: "capitalize",
                   textDecoration: "none",
                 }}
@@ -220,11 +268,23 @@ function Navbar() {
             ))}
           </Box>
 
-          {/* DESKTOP DONATE BUTTON */}
-          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+          {/* DONATE BUTTON (DESKTOP) */}
+          <Box
+            sx={{
+              flexGrow: 0,
+              height: "100%",
+              display: { xs: "none", md: "flex" },
+              alignItems: "center",
+            }}
+          >
             <Button
-              component={RouterLink}
-              to="/donate"
+              onClick={() => {
+                handleCloseNavMenu();
+                navigate("/donate");
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 100);
+              }}
               sx={{
                 backgroundColor: "white",
                 display: "flex",
@@ -235,10 +295,14 @@ function Navbar() {
                 alignItems: "center",
                 height: "100%",
                 textDecoration: "none",
-                borderBottom: isDonatePage ? "1px solid rgba(77,77,77,1)" : "none",
-                borderLeft: isDonatePage ? "1px solid rgba(77,77,77,1)" : "none",
+                borderBottom: isDonatePage
+                  ? "1px solid rgba(77, 77, 77, 1)"
+                  : "none",
+                borderLeft: isDonatePage
+                  ? "1px solid rgba(77, 77, 77, 1)"
+                  : "none",
               }}
-              aria-label="Make a donation"
+              className="donation-button"
             >
               <svg
                 className="heart-icon"
@@ -253,7 +317,13 @@ function Navbar() {
                 <path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z"></path>
               </svg>
               <Typography
-                sx={{ fontFamily: "Sora", fontWeight: 700, fontSize: "16px", color: "rgba(0,0,0,1)" }}
+                className=".heart-icon"
+                sx={{
+                  fontFamily: "Sora",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  color: "rgba(0, 0, 0, 1)",
+                }}
               >
                 Make a donation
               </Typography>

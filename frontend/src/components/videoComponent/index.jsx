@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import bgVideo from "../../assets/bg-video.mp4";
 import "./VideoBackground.css";
 
@@ -35,12 +35,9 @@ function VideoBackground() {
           Experience the journey of our volunteers as they empower communities
           through education, health initiatives, and economic opportunities.
         </p>
-        <button
-          className="grow-btn"
-          onClick={() => navigate("/howtohelp")}
-        >
-          Help Us Grow
-        </button>
+        <Link to="/howtohelp" className="grow-btn">
+          Help us Grow
+        </Link>
       </div>
       <div className="scroll_lottie">
         <iframe

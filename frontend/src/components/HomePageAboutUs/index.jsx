@@ -1,7 +1,7 @@
-import { Box, Button, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import about_img_1 from "../../assets/About_img_1.png";
 import about_img_2 from "../../assets/About_img_2.png";
 import about_img_3 from "../../assets/About_img_3.png";
@@ -9,14 +9,8 @@ import about_img_3_phn from "../../assets/About_img_3_ph.png";
 import about_img_1_phn from "../../assets/About_img_phn_1.png";
 
 const HomePageAboutUs = () => {
-  const navigate = useNavigate();
   const isPhone = useMediaQuery("(max-width:768px)");
-  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,28 +28,15 @@ const HomePageAboutUs = () => {
     };
   }, []);
 
-  const handleLearnMoreClick = () => {
-    navigate("/aboutus");
-  };
-
-  // Animation Variants for Sliding Effect
-  const slideInFromLeft = {
-    hidden: { opacity: 0, x: -100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
-  };
-
-  const slideInFromRight = {
-    hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
-  };
-
-  const slideInFromBottom = {
-    hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
-  };
+  // Animation Variants
+  const slideInFromLeft = { hidden: { opacity: 0, x: -100 }, visible: { opacity: 1, x: 0, transition: { duration: 1 } } };
+  const slideInFromRight = { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0, transition: { duration: 1 } } };
+  const slideInFromBottom = { hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1 } } };
 
   return (
     <Box
+      component="section"
+      aria-label="About Us Section"
       data-component="HomePageAboutUs"
       sx={{
         background: isVisible ? "rgba(255, 162, 215, 1)" : "transparent",
@@ -70,8 +51,7 @@ const HomePageAboutUs = () => {
         pb: { md: 20, xs: 15 },
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition:
-          "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
       }}
     >
       <Box
@@ -83,51 +63,39 @@ const HomePageAboutUs = () => {
           mt: 20,
         }}
       >
-        <Typography
-          sx={{
+        <h2
+          style={{
             fontFamily: "Sora",
-            fontSize: { md: "48px", xs: "20px" },
+            fontSize: isPhone ? "20px" : "48px",
             fontWeight: 700,
-            color: "rgba(55, 55, 55, 1)",
-            pb: 2,
-            maxWidth: "95%",
-            textAlign: "center",
-            margin: "0 auto",
+            color: "rgba(55,55,55,1)",
           }}
         >
           Founded to{" "}
-          <span
-            style={{
-              fontFamily: "DM Serif Text",
-              fontStyle: "italic",
-              fontWeight: 400,
-              color: "rgba(255, 255, 255, 1)",
-            }}
-          >
+          <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#fff" }}>
             uplift
           </span>{" "}
           underserved communities
-        </Typography>
-        <Typography
-          sx={{
+        </h2>
+
+        <p
+          style={{
             fontFamily: "Sora",
-            fontSize: { md: "20px", xs: "16px" },
-            fontWeight: 400,
-            color: "rgba(55, 55, 55, 1)",
-            lineHeight: { md: "25.2px", xs: "20.16px" },
-            mb: 3,
+            fontSize: isPhone ? "16px" : "20px",
+            lineHeight: "1.5",
+            color: "rgba(55,55,55,1)",
           }}
         >
-          Warriorswithoutcause is a PAN India{" "}
-          <span style={{ fontWeight: 700 }}>youth-led NGO</span> driven by the
-          belief that "We don't need a cause to make a change." We've
-          transformed lives with an{" "}
-          <span style={{ fontWeight: 700 }}>army of over 350 warriors</span>{" "}
-          through impactful programs, health camps, educational workshops across
-          India.
-        </Typography>
+          Warriorswithoutcause is a PAN India <strong>youth-led NGO</strong> driven by the belief that "We don't need a cause to make a change."
+          We've transformed lives with an <strong>army of over 350 warriors</strong> through impactful programs, health camps, educational workshops across India.
+        </p>
+
+        {/* SEO-friendly Navigation Button */}
         <Button
+          component={RouterLink}
+          to="/aboutus"
           sx={{
+            width:'fit-content',
             borderRadius: "37px",
             p: "10px 20px",
             fontFamily: "Sora",
@@ -138,18 +106,14 @@ const HomePageAboutUs = () => {
             textTransform: "uppercase",
             display: { xs: "none", md: "block" },
             margin: "0 auto",
-            "&:hover": {
-              backgroundColor: "white",
-              color: "black",
-            },
+            "&:hover": { backgroundColor: "white", color: "black" },
           }}
-          onClick={handleLearnMoreClick}
         >
           Learn More
         </Button>
       </Box>
 
-      {/* Conditionally Render Images Based on Screen Size */}
+      {/* Desktop Images */}
       {!isPhone && (
         <>
           <motion.div
@@ -157,14 +121,9 @@ const HomePageAboutUs = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={slideInFromLeft}
-            style={{
-              position: "absolute",
-              top: "60px",
-              zIndex: 0,
-              display: "flex",
-            }}
+            style={{ position: "absolute", top: "60px", zIndex: 0 }}
           >
-            <img src={about_img_1} alt="Warriors at Work" />
+            <img src={about_img_1} alt="Volunteers working in the community" />
           </motion.div>
 
           <motion.div
@@ -172,15 +131,9 @@ const HomePageAboutUs = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={slideInFromBottom}
-            style={{
-              position: "absolute",
-              bottom: "-10px",
-              left: "150px",
-              zIndex: 0,
-              display: "flex",
-            }}
+            style={{ position: "absolute", bottom: "-10px", left: "150px", zIndex: 0 }}
           >
-            <img src={about_img_3} alt="Community Support" />
+            <img src={about_img_3} alt="Community support activities" />
           </motion.div>
 
           <motion.div
@@ -188,19 +141,14 @@ const HomePageAboutUs = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={slideInFromRight}
-            style={{
-              position: "absolute",
-              top: "450px",
-              right: "0px",
-              zIndex: 0,
-              display: "flex",
-            }}
+            style={{ position: "absolute", top: "450px", right: "0px", zIndex: 0 }}
           >
-            <img src={about_img_2} alt="Meet the Team" />
+            <img src={about_img_2} alt="Team members engaging with community" />
           </motion.div>
         </>
       )}
 
+      {/* Mobile Images */}
       {isPhone && (
         <>
           <motion.div
@@ -208,14 +156,9 @@ const HomePageAboutUs = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={slideInFromLeft}
-            style={{
-              position: "absolute",
-              top: "30px",
-              zIndex: 0,
-              display: "flex",
-            }}
+            style={{ position: "absolute", top: "30px", zIndex: 0 }}
           >
-            <img src={about_img_1_phn} alt="Warriors at Work (Phone)" />
+            <img src={about_img_1_phn} alt="Volunteers working (mobile view)" />
           </motion.div>
 
           <motion.div
@@ -223,15 +166,9 @@ const HomePageAboutUs = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={slideInFromRight}
-            style={{
-              position: "absolute",
-              top: "555px",
-              right: "0px",
-              zIndex: 0,
-              display: "flex",
-            }}
+            style={{ position: "absolute", top: "555px", right: "0px", zIndex: 0 }}
           >
-            <img src={about_img_3_phn} alt="Meet the Team (Phone)" />
+            <img src={about_img_3_phn} alt="Team meeting community (mobile view)" />
           </motion.div>
         </>
       )}

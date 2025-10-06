@@ -14,7 +14,6 @@ export default function BecomeWarrior() {
   const [showWarriorText, setShowWarriorText] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Ensure consistent state on remount/navigation
   useEffect(() => {
     if (location.pathname === "/") {
       setIsVisible(false);
@@ -22,15 +21,12 @@ export default function BecomeWarrior() {
     }
   }, [location.pathname]);
 
-  // Delay animations until after mount
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Unified IntersectionObserver to trigger both states
   useEffect(() => {
     if (!mounted) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         const visible = entry.isIntersecting && entry.intersectionRatio > 0.2;
@@ -48,28 +44,31 @@ export default function BecomeWarrior() {
     };
   }, [mounted]);
 
-  if (!mounted) return null; // Prevent hydration mismatch
+  if (!mounted) return null;
 
   return (
     <Box
+      component="section"
       ref={sectionRef}
-      data-component="BecomeWarrior"
+      aria-labelledby="become-warrior-title"
       sx={{
-        transition: "background-color 0.5s ease-in-out",
-        background: isVisible ? "#232323" : "transparent",
         display: "flex",
+        flexDirection: { md: "row", xs: "column" },
         gap: 2,
         padding: { md: "64px 10px 64px 64px", xs: 3 },
-        flexDirection: { md: "row", xs: "column" },
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
         transition:
           "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
+        backgroundColor: isVisible ? "#232323" : "transparent",
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      {/* Left content */}
+      <Box component="article" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <Box>
           <Typography
+            component="h2"
+            id="become-warrior-title"
             sx={{
               fontFamily: "Caveat",
               fontSize: { md: "48px", xs: "32px" },
@@ -88,6 +87,7 @@ export default function BecomeWarrior() {
           </Typography>
 
           <Typography
+            component="h1"
             sx={{
               fontFamily: "Sora",
               fontSize: { md: "48px", xs: "30px" },
@@ -101,9 +101,7 @@ export default function BecomeWarrior() {
           >
             Become a
             <div
-              className={`volunteer-div ${
-                showWarriorText ? "animate-strike" : ""
-              }`}
+              className={`volunteer-div ${showWarriorText ? "animate-strike" : ""}`}
             >
               <span className="volunteer-span">volunteer</span>
             </div>
@@ -111,6 +109,7 @@ export default function BecomeWarrior() {
         </Box>
 
         <Typography
+          component="p"
           sx={{
             fontFamily: "Noto Sans",
             fontSize: { md: "20px", xs: "16px" },
@@ -120,15 +119,17 @@ export default function BecomeWarrior() {
             maxWidth: { md: "88%", xs: "100%" },
           }}
         >
-          Joining Warriorswithoutcause NGO offers personal and professional
-          growth, allowing you to expand your horizons, contribute to societal
-          change, and build valuable networks. You'll gain experience by
-          impacting lives and develop a deeper sense of gratitude and purpose
-          while connecting with like-minded individuals.
+          Joining Warriorswithoutcause NGO offers personal and professional growth,
+          allowing you to expand your horizons, contribute to societal change,
+          and build valuable networks. You'll gain experience by impacting lives
+          and develop a deeper sense of gratitude and purpose while connecting
+          with like-minded individuals.
         </Typography>
 
         <Box sx={{ display: { md: "flex", xs: "none" }, gap: 2 }}>
           <Button
+            component="a"
+            href="/howtohelp"
             sx={{
               backgroundColor: "white",
               color: "rgba(0, 0, 0, 1)",
@@ -137,76 +138,66 @@ export default function BecomeWarrior() {
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: "20.16px",
-              border: "none",
-              cursor: "pointer",
-              marginTop: "10px",
-              boxShadow: "0px 0px 1.9px 0px rgba(0, 0, 0, 0.25)",
               borderRadius: "37px",
               textTransform: "uppercase",
-              transition: "all 0.3s ease",
-              whiteSpace: "nowrap",
+              boxShadow: "0px 0px 1.9px 0px rgba(0,0,0,0.25)",
               "&:hover": {
                 backgroundColor: "transparent",
                 color: "white",
                 border: "1px solid white",
               },
             }}
-            onClick={() => navigate("/howtohelp")}
           >
             READ MORE
           </Button>
 
-          <a
-            href="http://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url"
+          <Button
+            component="a"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            sx={{
+              backgroundColor: "transparent",
+              color: "white",
+              padding: "10px 20px",
+              fontFamily: "Sora",
+              fontSize: "16px",
+              fontWeight: 400,
+              lineHeight: "20.16px",
+              border: "1px solid white",
+              borderRadius: "37px",
+              textTransform: "uppercase",
+              boxShadow: "0px 0px 1.9px 0px #00000040",
+              "&:hover": {
+                backgroundColor: "white",
+                color: "rgba(0,0,0,1)",
+                border: "none",
+                boxShadow: "0px 0px 1.9px 0px rgba(0,0,0,0.25)",
+              },
+            }}
           >
-            <Button
-              sx={{
-                backgroundColor: "transparent",
-                color: "white",
-                padding: "10px 20px",
-                fontFamily: "Sora",
-                fontSize: "16px",
-                fontWeight: 400,
-                lineHeight: "20.16px",
-                border: "1px solid white",
-                cursor: "pointer",
-                marginTop: "10px",
-                boxShadow: "0px 0px 1.9px 0px #00000040",
-                borderRadius: "37px",
-                textTransform: "uppercase",
-                transition: "all 0.3s ease",
-                whiteSpace: "nowrap",
-                "&:hover": {
-                  backgroundColor: "white",
-                  color: "rgba(0, 0, 0, 1)",
-                  border: "none",
-                  boxShadow: "0px 0px 1.9px 0px rgba(0, 0, 0, 0.25)",
-                },
-              }}
-            >
-              BECOME A WARRIOR
-            </Button>
-          </a>
+            BECOME A WARRIOR
+          </Button>
         </Box>
       </Box>
 
+      {/* Images */}
       <Box
         component="img"
         src={joinWWC}
-        alt="Join WWC"
+        alt="Join Warriors Without Cause"
+        loading="lazy"
         sx={{
           display: { xs: "none", md: "block" },
           maxWidth: "100%",
           height: "auto",
         }}
       />
-
       <Box
         component="img"
         src={joinWWC_phn}
         alt="Join WWC Mobile"
+        loading="lazy"
         sx={{
           display: { xs: "block", md: "none" },
           maxWidth: "100%",

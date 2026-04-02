@@ -83,10 +83,10 @@ const HomePageAboutUs = () => {
           </span>
         </h2>
 
-        <p
+        <p className = "LearnMoreParagraph"
           style={{
             fontFamily: "Sora",
-            fontSize: isPhone ? "14px" : "16px",
+            fontSize: isPhone ? "14px" : "20px",
             lineHeight: "1.7",
             color: "rgba(55,55,55,1)",
             marginTop: isPhone ? "12px" : "16px",

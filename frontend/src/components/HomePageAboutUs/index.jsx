@@ -1,7 +1,7 @@
 import { Box, Button, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import about_img_1 from "../../assets/About_img_1.png";
 import about_img_2 from "../../assets/About_img_2.png";
 import about_img_3 from "../../assets/About_img_3.png";
@@ -10,6 +10,7 @@ import about_img_1_phn from "../../assets/About_img_phn_1.png";
 
 const HomePageAboutUs = () => {
   const isPhone = useMediaQuery("(max-width:768px)");
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const HomePageAboutUs = () => {
     >
       <Box
         sx={{
-          maxWidth: { md: "50%", xs: "85%" },
+          maxWidth: { md: "38%", xs: "80%" },
           margin: "0 auto",
           position: "relative",
           zIndex: 1,
@@ -66,46 +67,54 @@ const HomePageAboutUs = () => {
         <h2
           style={{
             fontFamily: "Sora",
-            fontSize: isPhone ? "20px" : "48px",
+            fontSize: isPhone ? "22px" : "40px",
             fontWeight: 700,
+            lineHeight: 1.25,
             color: "rgba(55,55,55,1)",
           }}
         >
-          Founded to{" "}
+          Born from{" "}
           <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#fff" }}>
-            uplift
+            compassion,
           </span>{" "}
-          underserved communities
+          driven by{" "}
+          <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#fff" }}>
+            purpose
+          </span>
         </h2>
 
         <p
           style={{
             fontFamily: "Sora",
-            fontSize: isPhone ? "16px" : "20px",
-            lineHeight: "1.5",
+            fontSize: isPhone ? "14px" : "16px",
+            lineHeight: "1.7",
             color: "rgba(55,55,55,1)",
+            marginTop: isPhone ? "12px" : "16px",
           }}
         >
-          Warriorswithoutcause is a PAN India <strong>youth-led NGO</strong> driven by the belief that "We don't need a cause to make a change."
-          We've transformed lives with an <strong>army of over 350 warriors</strong> through impactful programs, health camps, educational workshops across India.
+          Warriors Without Cause started with a simple truth — you don't need a reason to help someone.
+          What began as a handful of young people stepping up has grown into a <strong>350+ strong movement</strong> reaching
+          underserved communities across India with health camps, education drives, and real, lasting change.
         </p>
 
-        {/* SEO-friendly Navigation Button */}
         <Button
-          component={RouterLink}
-          to="/aboutus"
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/aboutus");
+          }}
           sx={{
-            width:'fit-content',
+            width: "fit-content",
             borderRadius: "37px",
-            p: "10px 20px",
+            p: "10px 28px",
             fontFamily: "Sora",
-            fontSize: "16px",
-            fontWeight: 400,
+            fontSize: "15px",
+            fontWeight: 500,
             backgroundColor: "rgba(41, 41, 41, 1)",
             color: "white",
             textTransform: "uppercase",
-            display: { xs: "none", md: "block" },
-            margin: "0 auto",
+            display: "block",
+            margin: "16px auto 0",
+            cursor: "pointer",
             "&:hover": { backgroundColor: "white", color: "black" },
           }}
         >

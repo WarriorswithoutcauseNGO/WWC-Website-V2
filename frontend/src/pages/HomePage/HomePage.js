@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Element } from "react-scroll";
 import BecomeWarrior from "../../components/BecomeWarrior";
+import BecomeWarriorPopup from "../../components/BecomeWarriorPopup";
 import BrowseCollections from "../../components/BrowseCollections/BrowseCollections";
 import HomePageAboutUs from "../../components/HomePageAboutUs";
 import Impact from "../../components/Impact";
@@ -38,6 +39,7 @@ const HomePage = () => {
 
   return (
     <div style={{ marginBottom: "48px" }}>
+      <BecomeWarriorPopup />
       <VideoComponent />
       <HomePageAboutUs />
       <Actions />

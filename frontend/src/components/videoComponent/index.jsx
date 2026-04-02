@@ -27,23 +27,42 @@ function VideoBackground() {
         <source src={bgVideo} type="video/mp4" />
       </video>
       <div className="overlay-text">
-        <div className="overlay-text_div-wwc">WARRIORSWITHOUTCAUSE</div>
         <div className="overlay-text_div">
-          We Don’t Need a Cause to Make a Change
+          <span className="nw n1">We </span>
+          <span className="nw n2">Don&#x2019;t </span>
+          <span className="nw n3">Need </span>
+          <span className="nw n4">a </span>
+          <span className="nw n5">Cause </span>
+          <span className="nw n4">to </span>
+          <span className="nw n3">Make </span>
+          <span className="nw n4">a </span>
+          <span className="nw n6">Change</span>
         </div>
         <p>
           Experience the journey of our volunteers as they empower communities
           through education, health initiatives, and economic opportunities.
         </p>
         <Link to="/howtohelp" className="grow-btn">
-          Help us Grow
+          Become a Warrior
         </Link>
       </div>
-      <div className="scroll_lottie">
-        <iframe
-          className="slottie"
-          src="https://lottie.host/embed/4f2467e2-2a54-4316-8b5b-2932ced83805/kLcfldD68q.json"
-        ></iframe>
+      <div className="scroll_lottie" onClick={scrollToSection}>
+        <svg
+          className="scroll-arrow"
+          width="20"
+          height="30"
+          viewBox="0 0 20 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 0 L10 26 M2 20 L10 28 L18 20"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
         <p>scroll to learn more</p>
       </div>
     </div>

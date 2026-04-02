@@ -6,7 +6,7 @@ import BecomeWarriorPopup from "../../components/BecomeWarriorPopup";
 import BrowseCollections from "../../components/BrowseCollections/BrowseCollections";
 import HomePageAboutUs from "../../components/HomePageAboutUs";
 import Impact from "../../components/Impact";
-import OurDrives from "../../components/OurDrives";
+import Recognition from "../../components/Recognition";
 import Actions from "../../components/actions";
 import MileStone from "../../components/milestoneEvents/MileStone";
 import StoryOfChange from "../../components/storyOfChange/StoryOfChange";
@@ -18,12 +18,10 @@ const HomePage = () => {
   useEffect(() => {
     console.log("🏠 HomePage mounted");
 
-    // Reset scroll position
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-    // Fix: restore overflow that might have been set to hidden
     const timeout = setTimeout(() => {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
@@ -43,17 +41,16 @@ const HomePage = () => {
       <VideoComponent />
       <HomePageAboutUs />
       <Actions />
+
+      {/* Our Impact Section: Stats + Milestones + Recognition */}
       <Impact />
-      <Element name="our-drives-section" id="our-drives-section">
-        <OurDrives />
-      </Element>
+      <MileStone />
+      <Recognition />
+
       <BrowseCollections />
-      {/* Unified section starts here */}
-      <div style={{ background: "#232323" }}>
+      <Element name="become-warrior-section" id="become-warrior-section">
         <BecomeWarrior />
-        <MileStone />
-      </div>
-      {/* Unified section ends here */}
+      </Element>
       <StoryOfChange />
     </div>
   );

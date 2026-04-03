@@ -6,6 +6,7 @@ import Cards from "../../components/aboutUsCards/Cards";
 import AboutUsCardOne from "../../assets/AboutUsCard1.png";
 import AboutUsCardTwo from "../../assets/AboutUsCard2.png";
 import MeetTheTeam from "../../components/meettheteam/MeetTheTeam";
+import StoryOfChange from "../../components/storyOfChange/StoryOfChange";
 
 const AboutUs = () => {
   return (
@@ -25,6 +26,7 @@ const AboutUs = () => {
         reverse='true'
       />
       <MeetTheTeam />
+      <StoryOfChange />
     </Box>
   );
 };

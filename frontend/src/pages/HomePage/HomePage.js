@@ -3,13 +3,11 @@ import { useLocation } from "react-router-dom";
 import { Element } from "react-scroll";
 import BecomeWarrior from "../../components/BecomeWarrior";
 import BecomeWarriorPopup from "../../components/BecomeWarriorPopup";
-import BrowseCollections from "../../components/BrowseCollections/BrowseCollections";
 import HomePageAboutUs from "../../components/HomePageAboutUs";
 import Impact from "../../components/Impact";
 import Recognition from "../../components/Recognition";
 import Actions from "../../components/actions";
 import MileStone from "../../components/milestoneEvents/MileStone";
-import StoryOfChange from "../../components/storyOfChange/StoryOfChange";
 import VideoComponent from "../../components/videoComponent/index";
 
 const HomePage = () => {
@@ -47,11 +45,9 @@ const HomePage = () => {
       <MileStone />
       <Recognition />
 
-      <BrowseCollections />
       <Element name="become-warrior-section" id="become-warrior-section">
         <BecomeWarrior />
       </Element>
-      <StoryOfChange />
     </div>
   );
 };

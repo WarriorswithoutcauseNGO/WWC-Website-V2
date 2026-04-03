@@ -1,20 +1,17 @@
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import Footer, { CopyrightSection } from './components/footer/Footer';
-import InstaFooter from './components/instaFooter/InstaFooter';
+import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Donation from './pages/Donation/Donation';
 import HomePage from './pages/HomePage/HomePage';
 import HowToHelp from './pages/HowToHelp/HowToHelp';
+import BeHerHero from './pages/BeHerHero/BeHerHero';
+import Blogs from './pages/Blogs/Blogs';
 
 function App() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  // ✅ Add this line to get location key
   const location = useLocation();
 
   return (
@@ -23,18 +20,15 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* ✅ Use key to force re-render when returning */}
         <Route path="/" element={<HomePage key={location.key} />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/howtohelp" element={<HowToHelp />} />
+        <Route path="/beherhero" element={<BeHerHero />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/donate" element={<Donation />} />
       </Routes>
 
-      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems:"center",justifyContent:'center' }}>
-        <Footer />
-        {!isMobile && <InstaFooter />}
-      </Box>
-      <CopyrightSection />
+      <Footer />
     </Box>
   );
 }

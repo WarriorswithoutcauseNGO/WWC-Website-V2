@@ -267,7 +267,7 @@ const Contribution = () => {
                   py: 2,
                   backgroundColor: "#DE0089",
                   "&:hover": { backgroundColor: "#D81B60" },
-                  "&.Mui-disabled": { backgroundColor: "#E91E63",  color:"#FFFFFF"},
+                  "&.Mui-disabled": { backgroundColor: "#BF0449",  color:"#FFFFFF"},
                   color: "#FFEAF6",
                   fontFamily: 'Sora',
                   fontSize: '20px',

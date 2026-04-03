@@ -29,27 +29,152 @@ const HomePageAboutUs = () => {
     };
   }, []);
 
-  // Animation Variants
   const slideInFromLeft = { hidden: { opacity: 0, x: -100 }, visible: { opacity: 1, x: 0, transition: { duration: 1 } } };
   const slideInFromRight = { hidden: { opacity: 0, x: 100 }, visible: { opacity: 1, x: 0, transition: { duration: 1 } } };
   const slideInFromBottom = { hidden: { opacity: 0, y: 100 }, visible: { opacity: 1, y: 0, transition: { duration: 1 } } };
 
+  const handleLearnMore = () => {
+    window.scrollTo(0, 0);
+    navigate("/aboutus");
+  };
+
+  if (isPhone) {
+    return (
+      <Box
+        component="section"
+        aria-label="About Us Section"
+        data-component="HomePageAboutUs"
+        sx={{
+          background: isVisible ? "#BF3475" : "transparent",
+          borderRadius: "0 0 0 120px",
+          position: "relative",
+          overflow: "hidden",
+          textAlign: "center",
+          pt: 4,
+          pb: 5,
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
+        }}
+      >
+        {/* Top image — small, rounded, inset from left */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={slideInFromLeft}
+          style={{
+            width: "140px",
+            marginLeft: "16px",
+            marginBottom: "-20px",
+            position: "relative",
+            zIndex: 0,
+          }}
+        >
+          <img
+            src={about_img_1_phn}
+            alt="Volunteers working"
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "16px",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+            }}
+          />
+        </motion.div>
+
+        {/* Content */}
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 2,
+            px: 3,
+            mt: 4,
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: "Sora",
+              fontSize: "24px",
+              fontWeight: 700,
+              lineHeight: 1.3,
+              color: "#fff",
+              margin: 0,
+            }}
+          >
+            Founded to{" "}
+            <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#F2B705" }}>
+              uplift
+            </span>{" "}
+            underserved communities
+          </h2>
+
+          <p
+            className="LearnMoreParagraph"
+            style={{
+              fontFamily: "Sora",
+              fontSize: "15px",
+              lineHeight: "1.7",
+              color: "rgba(255,255,255,0.92)",
+              marginTop: "14px",
+              marginBottom: "0",
+            }}
+          >
+            Warriorswithoutcause is a PAN India <strong>youth-led NGO</strong> driven by
+            the belief that "We don't need a cause to make a change." We've transformed
+            lives with an <strong>army of over 350 warriors</strong> through impactful
+            programs, health camps, educational workshops across India.
+          </p>
+
+        </Box>
+
+        {/* Bottom image — right aligned */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={slideInFromRight}
+          style={{
+            width: "130px",
+            marginLeft: "auto",
+            marginRight: "16px",
+            marginTop: "20px",
+            position: "relative",
+            zIndex: 0,
+          }}
+        >
+          <img
+            src={about_img_3_phn}
+            alt="Team meeting community"
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "16px",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+            }}
+          />
+        </motion.div>
+      </Box>
+    );
+  }
+
+  // Desktop view (unchanged)
   return (
     <Box
       component="section"
       aria-label="About Us Section"
       data-component="HomePageAboutUs"
       sx={{
-        background: isVisible ? "rgba(255, 162, 215, 1)" : "transparent",
+        background: isVisible ? "#BF3475" : "transparent",
         transition: "background-color 0.5s ease-in-out",
-        borderRadius: { md: "0px 0px 0px 351px", xs: "0 0 0 202px" },
+        borderRadius: "0px 0px 0px 351px",
         position: "relative",
         padding: "40px 0",
         overflow: "hidden",
         textAlign: "center",
-        height: "90vh",
-        pt: { md: 15, xs: 20 },
-        pb: { md: 20, xs: 15 },
+        minHeight: "90vh",
+        pt: 15,
+        pb: 20,
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
         transition: "opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.5s ease-in-out",
@@ -57,7 +182,7 @@ const HomePageAboutUs = () => {
     >
       <Box
         sx={{
-          maxWidth: { md: "38%", xs: "80%" },
+          maxWidth: "38%",
           margin: "0 auto",
           position: "relative",
           zIndex: 1,
@@ -67,29 +192,30 @@ const HomePageAboutUs = () => {
         <h2
           style={{
             fontFamily: "Sora",
-            fontSize: isPhone ? "22px" : "40px",
+            fontSize: "40px",
             fontWeight: 700,
             lineHeight: 1.25,
-            color: "rgba(55,55,55,1)",
+            color: "#fff",
           }}
         >
           Born from{" "}
-          <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#fff" }}>
+          <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#F2B705" }}>
             compassion,
           </span>{" "}
           driven by{" "}
-          <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#fff" }}>
+          <span style={{ fontFamily: "DM Serif Text", fontStyle: "italic", fontWeight: 400, color: "#F2B705" }}>
             purpose
           </span>
         </h2>
 
-        <p className = "LearnMoreParagraph"
+        <p
+          className="LearnMoreParagraph"
           style={{
             fontFamily: "Sora",
-            fontSize: isPhone ? "14px" : "20px",
+            fontSize: "20px",
             lineHeight: "1.7",
-            color: "rgba(55,55,55,1)",
-            marginTop: isPhone ? "12px" : "16px",
+            color: "rgba(255,255,255,0.9)",
+            marginTop: "16px",
           }}
         >
           Warriors Without Cause started with a simple truth — you don't need a reason to help someone.
@@ -98,10 +224,7 @@ const HomePageAboutUs = () => {
         </p>
 
         <Button
-          onClick={() => {
-            window.scrollTo(0, 0);
-            navigate("/aboutus");
-          }}
+          onClick={handleLearnMore}
           sx={{
             width: "fit-content",
             borderRadius: "37px",
@@ -122,65 +245,35 @@ const HomePageAboutUs = () => {
         </Button>
       </Box>
 
-      {/* Desktop Images */}
-      {!isPhone && (
-        <>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInFromLeft}
-            style={{ position: "absolute", top: "60px", zIndex: 0 }}
-          >
-            <img src={about_img_1} alt="Volunteers working in the community" />
-          </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={slideInFromLeft}
+        style={{ position: "absolute", top: "60px", zIndex: 0 }}
+      >
+        <img src={about_img_1} alt="Volunteers working in the community" />
+      </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInFromBottom}
-            style={{ position: "absolute", bottom: "-10px", left: "150px", zIndex: 0 }}
-          >
-            <img src={about_img_3} alt="Community support activities" />
-          </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={slideInFromBottom}
+        style={{ position: "absolute", bottom: "-10px", left: "150px", zIndex: 0 }}
+      >
+        <img src={about_img_3} alt="Community support activities" />
+      </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInFromRight}
-            style={{ position: "absolute", top: "450px", right: "0px", zIndex: 0 }}
-          >
-            <img src={about_img_2} alt="Team members engaging with community" />
-          </motion.div>
-        </>
-      )}
-
-      {/* Mobile Images */}
-      {isPhone && (
-        <>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInFromLeft}
-            style={{ position: "absolute", top: "30px", zIndex: 0 }}
-          >
-            <img src={about_img_1_phn} alt="Volunteers working (mobile view)" />
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={slideInFromRight}
-            style={{ position: "absolute", top: "555px", right: "0px", zIndex: 0 }}
-          >
-            <img src={about_img_3_phn} alt="Team meeting community (mobile view)" />
-          </motion.div>
-        </>
-      )}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={slideInFromRight}
+        style={{ position: "absolute", top: "450px", right: "0px", zIndex: 0 }}
+      >
+        <img src={about_img_2} alt="Team members engaging with community" />
+      </motion.div>
     </Box>
   );
 };

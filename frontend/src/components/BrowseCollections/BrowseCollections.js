@@ -9,11 +9,8 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState, useRef } from 'react';
 import crochetFlowers from '../../assets/crochetFlower.png';
-import crochetFlowersPhone from '../../assets/crochetFlowerPhone.png';
 import crochetTops from '../../assets/crochetTops.png';
-import crochetTopsPhone from '../../assets/crochetTopsPhone.png';
 import merch from '../../assets/merch.png';
-import merchPhone from '../../assets/merchPhone.png';
 import sochLogo from '../../assets/sochLogo.png';
 import video from '../../assets/sochVideo.mp4';
 
@@ -23,20 +20,23 @@ const BrowseCollections = () => {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Optional: animate in section when visible
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || isVisible) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
       },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     );
 
     const currentRef = sectionRef.current;
@@ -45,25 +45,25 @@ const BrowseCollections = () => {
     return () => {
       if (currentRef) observer.unobserve(currentRef);
     };
-  }, [mounted]);
+  }, [mounted, isVisible]);
 
   if (!mounted) return null;
 
   const collectionItems = [
     {
-      src: isXsScreen ? merchPhone : merch,
+      src: merch,
       alt: "Merch",
       text: "MERCH",
       link: "https://www.sochbywwc.com/category/oversized-tees"
     },
     {
-      src: isXsScreen ? crochetFlowersPhone : crochetFlowers,
+      src: crochetFlowers,
       alt: "Crochet Flowers",
       text: "CROCHET\nFLOWERS",
       link: "https://www.sochbywwc.com/category/crochet-flowers"
     },
     {
-      src: isXsScreen ? crochetTopsPhone : crochetTops,
+      src: crochetTops,
       alt: "Crochet Tops",
       text: "CROCHET\nTOPS",
       link: "https://www.sochbywwc.com/category/crochet-tops"
@@ -96,21 +96,29 @@ const BrowseCollections = () => {
                 display: 'flex',
                 justifyContent: { xs: 'center', lg: 'flex-start' },
                 width: '100%',
-                height: { xs: '200px', sm: '400px', md: '600px', lg: '880px' },
+                height: { xs: '360px', sm: '400px', md: '600px', lg: '880px' },
                 position: 'relative'
               }}
             >
               <video
+                ref={videoRef}
                 src={video}
                 muted
                 autoPlay
                 playsInline
+                webkit-playsinline="true"
                 controls
+                onTimeUpdate={() => {
+                  if (videoRef.current && videoRef.current.currentTime >= 34.5) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 34.5;
+                  }
+                }}
                 style={{
                   width: '100%',
                   height: '100%',
-                  maxWidth: isXsScreen ? '310px' : '100%',
-                  borderRadius: '30px',
+                  maxWidth: '100%',
+                  borderRadius: isXsScreen ? '16px' : '30px',
                   objectFit: 'cover',
                   objectPosition: 'center'
                 }}
@@ -143,15 +151,15 @@ const BrowseCollections = () => {
                 width: '100%'
               }}
             >
-              <Box sx={{ mb: { xs: 4, md: 6 } }}>
+              <Box sx={{ mb: { xs: 2, md: 6 } }}>
                 <Typography
                   variant="h2"
                   sx={{
                     fontFamily: 'Sora, sans-serif',
-                    fontSize: { xs: '32px', md: '48px' },
-                    fontWeight: 700,
-                    lineHeight: { xs: '40.32px', md: '60.45px' },
-                    mb: 3,
+                    fontSize: { xs: '20px', sm: '28px', md: '48px' },
+                    fontWeight: { xs: 600, md: 700 },
+                    lineHeight: { xs: '28px', sm: '36px', md: '60.45px' },
+                    mb: { xs: 1.5, md: 3 },
                     color: '#000000'
                   }}
                 >
@@ -162,11 +170,11 @@ const BrowseCollections = () => {
                 <Typography
                   sx={{
                     fontFamily: 'Sora, sans-serif',
-                    fontSize: { xs: '16px', md: '20px' },
+                    fontSize: { xs: '14px', md: '20px' },
                     fontWeight: 400,
-                    lineHeight: { xs: '20.16px', md: '25.2px' },
-                    mb: 3,
-                    color: '#000000'
+                    lineHeight: { xs: '22px', md: '25.2px' },
+                    mb: { xs: 2, md: 3 },
+                    color: '#555'
                   }}
                 >
                   Shop from Soch and wear your commitment to making a positive
@@ -211,8 +219,8 @@ const BrowseCollections = () => {
                 sx={{
                   display: 'grid',
                   gridTemplateColumns: {
-                    xs: '5fr',
-                    sm: 'repeat(3, 2fr)'
+                    xs: 'repeat(3, 1fr)',
+                    sm: 'repeat(3, 1fr)'
                   },
                   gap: { xs: 2, md: 2 },
                   width: '100%'
@@ -225,7 +233,7 @@ const BrowseCollections = () => {
                     sx={{
                       position: 'relative',
                       overflow: 'hidden',
-                      borderRadius: '16px',
+                      borderRadius: { xs: '10px', md: '16px' },
                       cursor: 'pointer',
                       '&:hover img': {
                         transform: 'scale(1.1)'
@@ -239,9 +247,11 @@ const BrowseCollections = () => {
                       loading="lazy"
                       sx={{
                         width: '100%',
-                        height: 'auto',
+                        height: { xs: '140px', sm: '200px', md: 'auto' },
+                        objectFit: 'cover',
                         transition: 'transform 0.3s ease',
-                        borderRadius: '16px'
+                        borderRadius: { xs: '10px', md: '16px' },
+                        display: 'block',
                       }}
                     />
                     <Box
@@ -253,13 +263,13 @@ const BrowseCollections = () => {
                         whiteSpace: 'pre-line',
                         color: 'white',
                         fontFamily: "'Bebas Neue', sans-serif",
-                        fontSize: { xs: '27px', md: '32px' },
+                        fontSize: { xs: '14px', sm: '22px', md: '32px' },
                         fontWeight: 400,
                         textAlign: 'left',
                         textUnderlinePosition: 'from-font',
                         textDecorationSkipInk: 'none',
                         textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
-                        display: { xs: 'none', sm: 'block' }
+                        display: 'block'
                       }}
                     >
                       {item.text}

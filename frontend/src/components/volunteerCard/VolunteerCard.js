@@ -68,7 +68,7 @@ const VolunteerCard = ({ reverse = true }) => {
 
           margin: "0 auto",
           gap: isMobile ? "20px" : "3px",
-          px: 8
+          px: isMobile ? 2 : 8
 
         }}
       >
@@ -95,8 +95,8 @@ const VolunteerCard = ({ reverse = true }) => {
             sx={{
               fontFamily: "Sora",
               fontWeight: 400,
-              fontSize: "20px",
-              lineHeight: "25.2px",
+              fontSize: isMobile ? "15px" : "20px",
+              lineHeight: isMobile ? "22px" : "25.2px",
               color: "rgba(77, 77, 77, 1)"
             }}
           >
@@ -154,7 +154,7 @@ const VolunteerCard = ({ reverse = true }) => {
           justifyContent: "center",
           gap: theme.spacing(2),
           margin: "0 auto",
-          paddingBottom: "114px",
+          paddingBottom: isMobile ? "40px" : "114px",
         }}
       >
         {cardData.map((card, index) => (

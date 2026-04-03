@@ -34,8 +34,8 @@ const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) =>
         <Typography
           sx={{
             fontWeight: "700",
-            fontSize: "32px",
-            lineHeight: "42.32px",
+            fontSize: isMobile ? "26px" : "32px",
+            lineHeight: isMobile ? "34px" : "42.32px",
             marginBottom: theme.spacing(2),
             fontFamily: "Sora, sans-serif",
           }}
@@ -46,8 +46,8 @@ const HTHcard = ({ title, description, imageSrc, imageAlt, reverse = false }) =>
           sx={{
             fontFamily: "Sora",
             fontWeight: 400,
-            fontSize: "20px",
-            lineHeight: "25.2px",
+            fontSize: isMobile ? "15px" : "20px",
+            lineHeight: isMobile ? "22px" : "25.2px",
             color: "rgba(77, 77, 77, 1)"
           }}
         >

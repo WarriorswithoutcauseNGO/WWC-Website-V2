@@ -122,7 +122,7 @@ export default function BecomeWarriorPopup() {
                 fontFamily: "Sora",
                 fontSize: 18,
                 fontWeight: 600,
-                color: "#ff3ab3",
+                color: "#BF0449",
                 margin: "24px 0",
               }}
             >

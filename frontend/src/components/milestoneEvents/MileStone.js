@@ -29,7 +29,7 @@ const milestones = [
     summary: "Distributed 1,000+ umbrellas, caps & slippers during Delhi heatwaves.",
     blog: "In severe heat waves in Delhi, WWC organized the Beat the Heat campaign to help needy populations. More than 1,000 umbrellas, caps, and slippers were distributed to street sellers and daily wage earners. The event involved hosting 20+ sharbat distribution events and installing water bowls for birds and stray animals to provide relief, hydration, and compassion in extreme summer.",
     img: our_drives_1,
-    gradient: "linear-gradient(135deg, #43A047, #66BB6A)",
+    gradient: "linear-gradient(135deg, #BF0449, #BF3475)",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const milestones = [
     summary: "Inclusive workplace safety training across organizations.",
     blog: "WWC has created inclusive awareness programs on POSH (Prevention of Sexual Harassment) in various organizations. These sessions focused on informing employees about workplace safety, their legal rights, and means to communicate grievances. Through spreading awareness and personal responsibility, WWC helped construct a safer, more open, and morally upright professional space among persons in all fields.",
     img: bf_img_2,
-    gradient: "linear-gradient(135deg, #E91E63, #F06292)",
+    gradient: "linear-gradient(135deg, #F28705, #F2B705)",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ const milestones = [
     summary: "Restored public spaces at Sunder Vans, Yamuna Ghat & Dwarka Forest.",
     blog: "WWC organized powerful cleanliness campaigns at Sunder Vans, Yamuna Ghat, and Dwarka Forest. These programs aimed at waste collection, environmental conservation, and community participation. Volunteers worked proactively on restoring public spaces, incorporating sustainable practices, and creating awareness of civic responsibility, enhancing the need for a clean and green environment.",
     img: our_drives_3,
-    gradient: "linear-gradient(135deg, #FF6F00, #FFA726)",
+    gradient: "linear-gradient(135deg, #BF3475, #BF0449)",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const milestones = [
     summary: "Featured on NBC News and TEDx VIPS podcast.",
     blog: "WWC achieved international fame through coverage on NBC News, spreading its mission to the international market. The organization also shared its motivational experience in an Indraprastha University TEDx VIPS podcast. Through these channels, WWC's social impact efforts were brought into the limelight, increasing credibility and reaching beyond national borders.",
     img: bf_img_4,
-    gradient: "linear-gradient(135deg, #5C6BC0, #7986CB)",
+    gradient: "linear-gradient(135deg, #F2B705, #F28705)",
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const milestones = [
     summary: "Empowered women in Delhi slums with health knowledge.",
     blog: "WWC organized sensitization campaigns on cervical cancer among underserved populations in Delhi, especially in slums. The program aimed at enlightening women on early detection, prevention, and the need for regular screening. This provided women with necessary health information, leading to higher awareness and access to timely medical help and long-term health benefits.",
     img: our_drives_2,
-    gradient: "linear-gradient(135deg, #00897B, #26A69A)",
+    gradient: "linear-gradient(135deg, #BF0449, #F28705)",
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const milestones = [
     summary: "Distributed sanitary products to 500+ underprivileged women.",
     blog: "On Menstrual Hygiene Day, WWC handed out sanitary products to more than 500 underprivileged women and held educational programs on menstrual health and hygiene. The program was meant to eliminate taboos, enhance dignity, and improve availability of basic hygiene facilities. WWC helped build healthier, more educated communities through awareness and distribution programs.",
     img: bf_img_3,
-    gradient: "linear-gradient(135deg, #EC407A, #F48FB1)",
+    gradient: "linear-gradient(135deg, #BF3475, #F2B705)",
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ const milestones = [
     summary: "Dewormed & treated 100+ stray dogs in local communities.",
     blog: "WWC held special Dog Drives to assist stray animals in local communities. More than 100 stray dogs were given necessary treatment, deworming, and medical examinations. The program was based on principles of compassion, community health, and responsible animal care, ensuring that people and animals can coexist in better, safer conditions.",
     img: bf_img_5,
-    gradient: "linear-gradient(135deg, #8D6E63, #A1887F)",
+    gradient: "linear-gradient(135deg, #F28705, #BF0449)",
   },
   {
     id: 8,
@@ -85,7 +85,7 @@ const milestones = [
     summary: "Honoured at Constitution Club of India, March 2024.",
     blog: "On March 22, 2024, WWC was recognized at the Bihar Utsav held at the Constitution Club of India by Bihar Chhatra Sansad, as an appreciation of its accomplishments and contributions to society. This felicitation marked a proud milestone in WWC's journey of social impact.",
     img: hyderabad,
-    gradient: "linear-gradient(135deg, #7B1FA2, #AB47BC)",
+    gradient: "linear-gradient(135deg, #BF0449, #BF3475)",
   },
   {
     id: 9,
@@ -93,7 +93,7 @@ const milestones = [
     summary: "Collaborated with Symbiosis, VIPS & Amity for student internships.",
     blog: "WWC organized internships with various institutions such as Symbiosis Noida, VIPS, and Amity, where students acquired significant learning and were groomed to become the next generation of social changemakers. These programs provided hands-on experience in community development and social entrepreneurship.",
     img: bf_img_1,
-    gradient: "linear-gradient(135deg, #455A64, #78909C)",
+    gradient: "linear-gradient(135deg, #F2B705, #BF3475)",
   },
   {
     id: 10,
@@ -101,7 +101,7 @@ const milestones = [
     summary: "Distributed 300+ mufflers and socks to the needy.",
     blog: "Winter was a time when WWC distributed more than 300 mufflers and socks, keeping the needy warm and comfortable, caring for them during the harshest time of the year. This initiative brought warmth and hope to the most vulnerable communities during freezing conditions.",
     img: carasol1,
-    gradient: "linear-gradient(135deg, #1565C0, #42A5F5)",
+    gradient: "linear-gradient(135deg, #BF3475, #F28705)",
   },
   {
     id: 11,
@@ -109,7 +109,7 @@ const milestones = [
     summary: "Trained 300+ individuals in adopted slums.",
     blog: "Within its adopted slums, WWC conducted self-defence training, empowering more than 300 individuals with the skills to protect themselves in hazardous conditions. These workshops instilled confidence and the ability to defend oneself in the face of threat, creating safer communities.",
     img: our_drives_4,
-    gradient: "linear-gradient(135deg, #C62828, #EF5350)",
+    gradient: "linear-gradient(135deg, #BF0449, #F2B705)",
   },
 ];
 
@@ -118,12 +118,37 @@ const MileStone = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [activeIdx, setActiveIdx] = useState(0);
   const [expanded, setExpanded] = useState(null);
+  const [inView, setInView] = useState(false);
   const timelineRef = useRef(null);
+  const sectionRef = useRef(null);
 
-  const handlePrev = () =>
+  const handlePrev = () => {
     setActiveIdx((p) => (p - 1 + milestones.length) % milestones.length);
-  const handleNext = () =>
+    setExpanded(null);
+  };
+  const handleNext = () => {
     setActiveIdx((p) => (p + 1) % milestones.length);
+    setExpanded(null);
+  };
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+    const timer = setInterval(() => {
+      setActiveIdx((p) => (p + 1) % milestones.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [inView]);
 
   useEffect(() => {
     if (!timelineRef.current || isMobile) return;
@@ -134,7 +159,7 @@ const MileStone = () => {
   const active = milestones[activeIdx];
 
   return (
-    <Box sx={{ py: { md: 8, xs: 5 }, px: { md: 6, xs: 2 } }}>
+    <Box ref={sectionRef} sx={{ py: { md: 8, xs: 5 }, px: { md: 6, xs: 2 } }}>
       <Typography
         sx={{
           textAlign: "center",
@@ -150,7 +175,7 @@ const MileStone = () => {
           style={{
             fontFamily: "DM Serif Display",
             fontStyle: "italic",
-            color: "#E91E63",
+            color: "#BF0449",
           }}
         >
           Impactful Moments
@@ -207,7 +232,7 @@ const MileStone = () => {
                   width: "100%",
                   height: 3,
                   background: i <= activeIdx
-                    ? "linear-gradient(90deg, #E91E63, #FF6F00)"
+                    ? "linear-gradient(90deg, #BF0449, #F28705)"
                     : "#ddd",
                   zIndex: 0,
                 }}
@@ -219,9 +244,9 @@ const MileStone = () => {
                 width: i === activeIdx ? 28 : 18,
                 height: i === activeIdx ? 28 : 18,
                 borderRadius: "50%",
-                background: i === activeIdx ? active.gradient : i < activeIdx ? "#E91E63" : "#ddd",
+                background: i === activeIdx ? active.gradient : i < activeIdx ? "#BF0449" : "#ddd",
                 border: i === activeIdx ? "3px solid #fff" : "none",
-                boxShadow: i === activeIdx ? "0 0 0 3px #E91E63" : "none",
+                boxShadow: i === activeIdx ? "0 0 0 3px #BF0449" : "none",
                 transition: "all 0.3s ease",
                 zIndex: 1,
                 display: "flex",
@@ -241,7 +266,7 @@ const MileStone = () => {
                 fontFamily: "Sora",
                 fontSize: { md: "10px", xs: "8px" },
                 fontWeight: i === activeIdx ? 700 : 400,
-                color: i === activeIdx ? "#E91E63" : "#999",
+                color: i === activeIdx ? "#BF0449" : "#999",
                 mt: 1,
                 textAlign: "center",
                 lineHeight: 1.2,
@@ -257,6 +282,7 @@ const MileStone = () => {
 
       {/* Active Milestone Card */}
       <Box
+        key={activeIdx}
         sx={{
           display: "flex",
           flexDirection: { md: "row", xs: "column" },
@@ -264,7 +290,11 @@ const MileStone = () => {
           borderRadius: "20px",
           overflow: "hidden",
           minHeight: { md: 320, xs: "auto" },
-          transition: "background 0.4s ease",
+          animation: "milestoneFadeIn 0.5s ease",
+          "@keyframes milestoneFadeIn": {
+            "0%": { opacity: 0, transform: "translateX(30px)" },
+            "100%": { opacity: 1, transform: "translateX(0)" },
+          },
         }}
       >
         {/* Image */}

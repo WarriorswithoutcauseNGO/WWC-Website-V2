@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import '../../fonts.css'
 
-const Cards = ({ title, description, imageSrc, imageAlt, reverse = false }) => {
+const Cards = ({ title, description, imageSrc, images, imageAlt, reverse = false }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [imgIdx, setImgIdx] = useState(0);
+  const [inView, setInView] = useState(false);
+  const cardRef = useRef(null);
+
+  const slideImages = images || (imageSrc ? [imageSrc] : []);
+  const hasSlideshow = slideImages.length > 1;
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || !hasSlideshow) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [hasSlideshow]);
+
+  useEffect(() => {
+    if (!inView || !hasSlideshow) return;
+    const iv = setInterval(() => {
+      setImgIdx((p) => (p + 1) % slideImages.length);
+    }, 3000);
+    return () => clearInterval(iv);
+  }, [inView, hasSlideshow, slideImages.length]);
 
   return (
     <Box
+      ref={cardRef}
       sx={{
         display: 'flex',
         flexDirection: isMobile
@@ -46,9 +72,10 @@ const Cards = ({ title, description, imageSrc, imageAlt, reverse = false }) => {
           sx={{
             fontFamily: "Sora",
             fontWeight: 400,
-            fontSize: "20px",
-            lineHeight: "25.2px",
-            color: "rgba(77, 77, 77, 1)"
+            fontSize: { xs: "14px", sm: "16px", md: "20px" },
+            lineHeight: { xs: "22px", md: "25.2px" },
+            color: "rgba(77, 77, 77, 1)",
+            whiteSpace: "pre-line",
           }}
         >
           {description}
@@ -58,19 +85,72 @@ const Cards = ({ title, description, imageSrc, imageAlt, reverse = false }) => {
         sx={{
           flex: 1,
           maxWidth: isMobile ? '100%' : '50%',
+          position: 'relative',
+          borderRadius: '20px',
+          overflow: 'hidden',
+          minHeight: hasSlideshow ? { xs: 200, sm: 280, md: 340 } : 'auto',
         }}
       >
-        <img
-          src={imageSrc}
-          alt={imageAlt}
-          style={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: '20px',
-          }}
-        />
+        {hasSlideshow ? (
+          <>
+            {slideImages.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`${imageAlt} ${i + 1}`}
+                style={{
+                  position: i === 0 ? 'relative' : 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '20px',
+                  opacity: imgIdx === i ? 1 : 0,
+                  transition: 'opacity 0.8s ease-in-out',
+                }}
+              />
+            ))}
+            {/* Dot indicators */}
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: 12,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                gap: '6px',
+              }}
+            >
+              {slideImages.map((_, i) => (
+                <Box
+                  key={i}
+                  onClick={() => setImgIdx(i)}
+                  sx={{
+                    width: imgIdx === i ? 20 : 8,
+                    height: 8,
+                    borderRadius: '4px',
+                    background: imgIdx === i ? '#BF0449' : 'rgba(255,255,255,0.6)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                  }}
+                />
+              ))}
+            </Box>
+          </>
+        ) : (
+          <img
+            src={slideImages[0]}
+            alt={imageAlt}
+            style={{
+              width: '100%',
+              height: 'auto',
+              borderRadius: '20px',
+            }}
+          />
+        )}
       </Box>
-    </Box >
+    </Box>
   );
 };
 

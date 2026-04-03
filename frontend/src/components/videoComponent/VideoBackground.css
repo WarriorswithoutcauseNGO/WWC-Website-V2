@@ -48,12 +48,13 @@
   font-weight: 600;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
-.n1 { color: #4CAF50; }
-.n2 { color: #81C784; }
-.n3 { color: #A5D6A7; }
-.n4 { color: #C8E6C9; }
-.n5 { color: #FFD54F; }
-.n6 { color: #66BB6A; }
+.n1 { color: #BF0449; }
+.n2 { color: #BF3475; }
+.n3 { color: #F2B705; }
+.n4 { color: #F2F2F2; }
+.n5 { color: #F28705; }
+.n6 { color: #BF0449; }
+
 .overlay-text p {
   font-family: "Sora";
   font-size: 40px;
@@ -65,7 +66,9 @@
   max-width: 55%;
   margin: 10px auto;
 }
+
 .grow-btn {
+  display: inline-block;
   background-color: white;
   color: rgba(0, 0, 0, 1);
   padding: 10px 20px;
@@ -73,7 +76,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 20.16px;
-  text-align: left;
+  text-align: center;
   border: none;
   cursor: pointer;
   margin-top: 10px;
@@ -86,6 +89,7 @@
   color: white;
   background-color: black;
 }
+
 .scroll_lottie {
   position: absolute;
   bottom: 20px;
@@ -97,6 +101,7 @@
   z-index: 2;
   cursor: pointer;
 }
+
 .scroll-arrow {
   animation: bounceArrow 1.6s ease-in-out infinite;
   cursor: pointer;
@@ -106,6 +111,7 @@
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(6px); }
 }
+
 .scroll_lottie p {
   font-family: "Inter";
   font-size: 10px;
@@ -114,15 +120,120 @@
   text-align: center;
   color: rgba(255, 255, 255, 1);
 }
+
+/* ===== MOBILE HERO (banner slideshow) ===== */
+
+.mobile-hero::before {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.mobile-banner-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.mobile-banner-img.active {
+  opacity: 1;
+}
+
+.mobile-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.mobile-overlay-text {
+  padding: 0 20px;
+}
+
+.mobile-tagline {
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
+  max-width: 90% !important;
+  margin: 12px auto !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-cta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.mobile-cta {
+  font-size: 14px !important;
+  padding: 12px 32px !important;
+  min-width: 180px;
+}
+
+.mobile-cta-secondary {
+  background: transparent !important;
+  color: white !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+}
+
+.mobile-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+.mobile-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.mobile-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.mobile-dot.active {
+  background: #F2B705;
+  transform: scale(1.3);
+}
+
+/* ===== MOBILE (max-width: 768px) overrides for desktop layout ===== */
 @media screen and (max-width: 768px) {
   .overlay-text_div {
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
   }
+
   .overlay-text p {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    max-width: 100%;
-    line-height: 25.2px;
+    max-width: 90%;
+    line-height: 30px;
+  }
+
+  .grow-btn {
+    font-size: 14px;
+    padding: 12px 28px;
+  }
+
+  .scroll_lottie {
+    bottom: 14px;
   }
 }

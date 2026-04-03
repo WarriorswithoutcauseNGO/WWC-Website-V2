@@ -1,6 +1,7 @@
 .carousel-container {
   position: relative;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -30,16 +31,19 @@
   align-items: center;
 }
 .next-btn {
-  background: rgba(255, 136, 209, 1);
-  border: 1px solid rgba(59, 59, 59, 1);
+  background: #BF0449;
+  border: 1px solid #BF0449;
   padding: 5px 20px;
   border-radius: 27px;
   margin: 5px;
   cursor: pointer;
-  color: rgba(59, 59, 59, 1);
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.next-btn img {
+  filter: brightness(0) invert(1);
 }
 .legend h2 {
   font-family: "Sora";
@@ -56,4 +60,18 @@
   line-height: 22.4px;
   text-align: left;
   margin-bottom: 0;
+}
+
+@media (max-width: 380px) {
+  .legend h2 {
+    font-size: 17px;
+    line-height: 22px;
+  }
+  .legend p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .carousel-slide img {
+    height: 200px;
+  }
 }

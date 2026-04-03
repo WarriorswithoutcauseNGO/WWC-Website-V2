@@ -63,7 +63,7 @@ export default function Actions() {
             fontWeight: 700,
             textAlign: "center",
             fontStyle: "italic",
-            color: "rgba(255, 58, 179, 1)",
+            color: "#BF0449",
           }}
         >
           brighter future.
@@ -86,6 +86,8 @@ export default function Actions() {
         sx={{
           display: { xs: "flex", md: "none" },
           mt: 4,
+          justifyContent: "center",
+          px: 2,
         }}
       >
         <CardsPhone />

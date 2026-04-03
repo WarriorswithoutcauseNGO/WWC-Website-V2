@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import bf_img_1 from "../../assets/bf_img_1.png";
-import bf_img_2 from "../../assets/bf_img_2.png";
-import bf_img_3 from "../../assets/bf_img_3.png";
-import bf_img_4 from "../../assets/bf_img_4.png";
-import bf_img_5 from "../../assets/bf_img_5.png";
+import { useNavigate } from "react-router-dom";
 import bf_img_1_phn from "../../assets/bf_img_1_phn.png";
 import bf_img_2_phn from "../../assets/bf_img_2_phn.png";
 import bf_img_3_phn from "../../assets/bf_img_3_phn.png";
@@ -14,64 +10,72 @@ import left from "../../assets/left.svg";
 import "./cardsPhone.css";
 
 const gradients = [
-  "linear-gradient(135deg, #43A047 0%, #66BB6A 50%, #A5D6A7 100%)",
-  "linear-gradient(135deg, #00897B 0%, #26A69A 50%, #80CBC4 100%)",
-  "linear-gradient(135deg, #E91E63 0%, #F06292 50%, #F8BBD0 100%)",
-  "linear-gradient(135deg, #FF6F00 0%, #FFA726 50%, #FFE0B2 100%)",
-  "linear-gradient(135deg, #5C6BC0 0%, #7986CB 50%, #C5CAE9 100%)",
+  "linear-gradient(135deg, #BF0449 0%, #BF3475 100%)",
+  "linear-gradient(135deg, #F28705 0%, #F2B705 100%)",
+  "linear-gradient(135deg, #BF3475 0%, #BF0449 100%)",
+  "linear-gradient(135deg, #F2B705 0%, #F28705 100%)",
+  "linear-gradient(135deg, #BF0449 0%, #F28705 100%)",
+];
+
+const data = [
+  {
+    id: 1,
+    title: "Zero Poverty",
+    text: '"Charity begins at home," and for us, that means ensuring no one in our community suffers the hardships of poverty. Our programs focus on fostering self-reliance by providing resources, microfinance, and sustainable livelihoods.',
+    img: bf_img_1_phn,
+    link: "/aboutus",
+  },
+  {
+    id: 2,
+    title: "Skill Development",
+    text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
+    img: bf_img_2_phn,
+    link: "/howtohelp",
+  },
+  {
+    id: 3,
+    title: "Quality Education",
+    text: 'As Nelson Mandela said, "Education is the most powerful weapon to change the world." We are committed to making quality education a reality for every child by supporting schools, offering scholarships, and nurturing young minds.',
+    img: bf_img_3_phn,
+    link: "/aboutus",
+  },
+  {
+    id: 4,
+    title: "Good Health & Sanitation",
+    text: "Health is wealth. Our programs focus on clean water, hygiene, and preventive care, building healthier communities. Through clinics, awareness programs, and education on menstrual health, we empower people to live confidently.",
+    img: bf_img_4_phn,
+    link: "/aboutus",
+  },
+  {
+    id: 5,
+    title: "Raising Awareness & Literacy",
+    text: "Knowledge is power, and informed communities can move mountains. Our awareness campaigns and literacy programs spark change by educating on gender equality, sustainability, and human rights.",
+    img: bf_img_5_phn,
+    link: "/howtohelp",
+  },
 ];
 
 export default function CardsPhone() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPhoneView, setIsPhoneView] = useState(window.innerWidth <= 768);
-
-  const data = [
-    {
-      id: 1,
-      title: "Zero Poverty",
-      text: '"Charity begins at home," and for us, that means ensuring no one in our community suffers the hardships of poverty. Our programs focus on fostering self-reliance by providing resources, microfinance, and sustainable livelihoods.',
-      img: isPhoneView ? bf_img_1_phn : bf_img_1,
-    },
-    {
-      id: 2,
-      title: "Skill Development",
-      text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
-      img: isPhoneView ? bf_img_2_phn : bf_img_2,
-    },
-    {
-      id: 3,
-      title: "Quality Education",
-      text: 'As Nelson Mandela said, "Education is the most powerful weapon to change the world." We are committed to making quality education a reality for every child by supporting schools, offering scholarships, and nurturing young minds.',
-      img: isPhoneView ? bf_img_3_phn : bf_img_3,
-    },
-    {
-      id: 4,
-      title: "Good Health & Sanitation",
-      text: "Health is wealth. Our programs focus on clean water, hygiene, and preventive care, building healthier communities. Through clinics, awareness programs, and education on menstrual health, we empower people to live confidently.",
-      img: isPhoneView ? bf_img_4_phn : bf_img_4,
-    },
-    {
-      id: 5,
-      title: "Raising Awareness & Literacy",
-      text: "Knowledge is power, and informed communities can move mountains. Our awareness campaigns and literacy programs spark change by educating on gender equality, sustainability, and human rights.",
-      img: isPhoneView ? bf_img_5_phn : bf_img_5,
-    },
-  ];
-
-  useEffect(() => {
-    const handleResize = () => setIsPhoneView(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const navigate = useNavigate();
 
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % data.length);
   const prevSlide = () =>
     setCurrentSlide((prev) => (prev - 1 + data.length) % data.length);
 
+  const handleTitleClick = () => {
+    const item = data[currentSlide];
+    if (item.link) {
+      navigate(item.link);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <div className="carousel-container">
       <div className="carousel-slide">
+        {/* Fixed-height legend to prevent CLS */}
         <div
           className="legend"
           style={{
@@ -79,9 +83,18 @@ export default function CardsPhone() {
             color: "white",
             textAlign: "left",
             background: gradients[currentSlide],
+            minHeight: "180px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
           }}
         >
-          <h2>{data[currentSlide].title}</h2>
+          <h2
+            onClick={handleTitleClick}
+            style={{ cursor: "pointer", textDecoration: "underline", textUnderlineOffset: "3px" }}
+          >
+            {data[currentSlide].title}
+          </h2>
           <p>{data[currentSlide].text}</p>
         </div>
         <img
@@ -92,6 +105,7 @@ export default function CardsPhone() {
             height: "230px",
             objectFit: "cover",
             borderRadius: "0",
+            display: "block",
           }}
         />
       </div>

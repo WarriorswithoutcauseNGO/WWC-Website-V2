@@ -1,199 +1,273 @@
-import React from 'react';
-import { Box, Typography, TextField, Button, IconButton, useMediaQuery, useTheme } from '@mui/material';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import { Link } from 'react-router-dom';
-import FooterFlower from '../../assets/footerFlower.svg';
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import {
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import { Link, useNavigate } from "react-router-dom";
+import FooterFlower from "../../assets/footerFlower.svg";
+
+const linkStyle = {
+  color: "rgba(255,255,255,0.75)",
+  textDecoration: "none",
+  fontFamily: "Sora, sans-serif",
+  fontSize: "14px",
+  lineHeight: 2.2,
+  transition: "color 0.2s",
+};
+
+const headingStyle = {
+  fontFamily: "Sora",
+  fontWeight: 700,
+  fontSize: "15px",
+  color: "#fff",
+  mb: 1.5,
+  textTransform: "uppercase",
+  letterSpacing: 0.5,
+};
 
 const Footer = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  return (
-    <Box component="footer" sx={{
-      backgroundColor: '#E8197A',
-      color: 'white',
-      padding: isMobile ? '28px' : '40px',
-      borderRadius: isMobile ? '20px' : '40px',
-      marginLeft: isMobile ? "20px" : "10px", 
-      marginRight: isMobile ? "20px" : "10px",
-      height: "100%"
-    }}>
-      {isMobile ? (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <NewsletterSection />
-          <ContactSection />
-          <LocationSection />
-          <SocialsSection />
-          <ReadJoinSection />
-          <WatermarkSection />
-        </Box>
-      ) : (
-        <Box>
-          <Box sx={{ display: 'flex', gap: '40px', mb: 4 }}>
-            <NewsletterSection />
-            <ContactSection />
-          </Box>
-          <Box sx={{ display: 'flex', gap: "40px", height: "100%" }}>
-            <LocationSection />
-            <Box sx={{ display: 'flex', gap: '21px', flexDirection: "column" }}>
-              <Box sx={{ display: 'flex', flexDirection: 'row', gap: '40px' }}>
-                <SocialsSection />
-                <ReadJoinSection />
-              </Box>
-              <WatermarkSection />
-            </Box>
-          </Box>
-        </Box>
-      )}
-    </Box>
-  );
-};
-
-// Newsletter Section
-const NewsletterSection = () => (
-  <Box sx={{ flex: 1, maxWidth: '351px' }}>
-    <Typography component="h3" sx={{ mb: 2, fontWeight: 'bold' }}>Sign Up For Our Newsletter</Typography>
-    <Box sx={{ display: 'flex' }}>
-      <TextField
-        placeholder="Email Address"
-        variant="outlined"
-        fullWidth
-        type="email"
-        aria-label="Email address for newsletter subscription"
-        sx={{
-          backgroundColor: 'white',
-          '& .MuiOutlinedInput-root': { '& fieldset': { border: 'none' } },
-          borderBottomLeftRadius: '8px',
-          borderTopLeftRadius: '8px'
-        }}
-      />
-      <Button aria-label="Subscribe to newsletter" sx={{ ml: -1, backgroundColor: '#CD0D80', minWidth: '50px' }}>
-        <ArrowForwardIcon sx={{ color: '#FFFFFF' }} />
-      </Button>
-    </Box>
-  </Box>
-);
-
-// Contact Section
-const ContactSection = () => (
-  <Box component="address" sx={{ fontStyle: 'normal' }}>
-    <Typography component="h3" sx={{ mb: 1, fontWeight: 'bold' }}>Contact</Typography>
-    <Typography sx={{ color: "#FFD5ED" }}>Phone: <a href="tel:+919711883411" style={{ color: '#FFD5ED', textDecoration: 'none' }}>+91 9711883411</a></Typography>
-    <Typography sx={{ color: "#FFD5ED" }}>Email: <a href="mailto:info.warriorswithoutcause.com" style={{ color: '#FFD5ED', textDecoration: 'none' }}>info.warriorswithoutcause.com</a></Typography>
-    <Typography sx={{ color: "#FFD5ED" }}>Email: <a href="mailto:Contact@warriorswithoutcause.org" style={{ color: '#FFD5ED', textDecoration: 'none' }}>Contact@warriorswithoutcause.org</a></Typography>
-  </Box>
-);
-
-// Location Section
-const LocationSection = () => (
-  <Box sx={{ width: { xs: '100%', md: '350px' }, maxWidth: '100%', height: '100%' }}>
-    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-      <LocationOnIcon sx={{ mr: 1 }} />
-      <Typography>Sarita Vihar, New Delhi</Typography>
-    </Box>
-    <Box sx={{ width: '100%', position: 'relative', paddingBottom: '56.25%', borderRadius: '10px', overflow: 'hidden' }}>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14024.908360486553!2d77.27964367449631!3d28.529528183769504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce16da7d5a777%3A0xfd0579811db3afe3!2sSarita%20Vihar%2C%20New%20Delhi%2C%20Delhi%2C%20India!5e0!3m2!1sen!2sus!4v1635768936896!5m2!1sen!2sus"
-        width="100%"
-        height="100%"
-        title="WWC NGO Location Map"
-        style={{ position: 'absolute', top: 0, left: 0, border: 0, borderRadius: '10px' }}
-        allowFullScreen
-        loading="lazy"
-      ></iframe>
-    </Box>
-  </Box>
-);
-
-// Socials Section
-const SocialsSection = () => (
-  <Box component="nav" aria-label="Social Media Links">
-    <Typography component="h3" sx={{ mb: 1, fontWeight: 'bold' }}>Socials</Typography>
-    <Box sx={{ display: 'flex', gap: '10px' }}>
-      <a href="https://www.instagram.com/warriorswithoutcausengo" target='_blank' rel='noopener noreferrer' aria-label="Instagram"><IconButton sx={{ backgroundColor: '#FFFFFF', borderRadius: "50%" }}><InstagramIcon /></IconButton></a>
-      <a href="https://youtube.com/@warriorswithoutcausengo" target='_blank' rel='noopener noreferrer' aria-label="YouTube"><IconButton sx={{ backgroundColor: '#FFFFFF', borderRadius: "50%" }}><YouTubeIcon /></IconButton></a>
-      <a href="https://www.linkedin.com/company/warriorswithoutcausengo/" target='_blank' rel='noopener noreferrer' aria-label="LinkedIn"><IconButton sx={{ backgroundColor: '#FFFFFF', borderRadius: "50%" }}><LinkedInIcon /></IconButton></a>
-      <a href="https://x.com/wwcngo" target='_blank' rel='noopener noreferrer' aria-label="X/Twitter"><IconButton sx={{ backgroundColor: '#FFFFFF', borderRadius: "50%" }}><TwitterIcon /></IconButton></a>
-      <a href="https://m.facebook.com/100088849480693/" target='_blank' rel='noopener noreferrer' aria-label="Facebook"><IconButton sx={{ backgroundColor: '#FFFFFF', borderRadius: "50%" }}><FacebookIcon /></IconButton></a>
-    </Box>
-  </Box>
-);
-
-// Read/Join Section
-const ReadJoinSection = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleScroll = (sectionId) => {
-    if (location.pathname !== "/") {
-      navigate("/", { state: { scrollTo: sectionId } });
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
-    <Box component="nav" aria-label="Footer Navigation Links" sx={{ display: "flex", gap: "50px" }}>
-      <Box>
-        <Typography component="h3" sx={{ mb: 1, fontWeight: "bold" }}>Read</Typography>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          <li><Link to="/aboutus" style={{ color: "#FFD5ED", textDecoration: 'none', fontFamily: 'Sora, sans-serif' }}>About Us</Link></li>
-          <li><Typography onClick={() => handleScroll("our-drives-section")} sx={{ color: "#FFD5ED", textDecoration: 'none', cursor: 'pointer', fontFamily: 'Sora, sans-serif' }}>Our Drives</Typography></li>
-        </ul>
+    <Box
+      component="footer"
+      sx={{
+        background: "linear-gradient(135deg, #BF0449 0%, #9C0339 50%, #7A0230 100%)",
+        color: "white",
+        borderRadius: { md: "32px", xs: "20px" },
+        mx: { md: 3, xs: 1.5 },
+        mt: 4,
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          p: { md: "48px 56px", xs: "32px 20px" },
+          display: "flex",
+          flexDirection: { md: "row", xs: "column" },
+          gap: { md: 6, xs: 4 },
+          flexWrap: { md: "nowrap", xs: "wrap" },
+        }}
+      >
+        {/* Column 1: About + CTA buttons */}
+        <Box sx={{ flex: { md: 1.3 }, minWidth: 0, width: { xs: "100%", md: "auto" } }}>
+          <Typography
+            sx={{
+              fontFamily: "Sora",
+              fontSize: { md: "24px", xs: "20px" },
+              fontWeight: 700,
+              mb: 1.5,
+            }}
+          >
+            Warriors Without Cause
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Sora",
+              fontSize: "14px",
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.7,
+              mb: 3,
+              maxWidth: 340,
+            }}
+          >
+            We don't need a cause to make a change. Join our 350+ warriors
+            creating real impact across India.
+          </Typography>
+
+          <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap", mb: 3 }}>
+            <Button
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/donate");
+              }}
+              sx={{
+                background: "linear-gradient(135deg, #F2B705, #F28705)",
+                color: "#fff",
+                fontFamily: "Sora",
+                fontSize: "13px",
+                fontWeight: 600,
+                borderRadius: "37px",
+                px: 3,
+                py: 1,
+                textTransform: "uppercase",
+                "&:hover": {
+                  background: "linear-gradient(135deg, #D49A04, #D47504)",
+                },
+              }}
+            >
+              Donate Now
+            </Button>
+            <Button
+              component="a"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                background: "linear-gradient(135deg, #BF3475, #BF0449)",
+                color: "#fff",
+                fontFamily: "Sora",
+                fontSize: "13px",
+                fontWeight: 600,
+                borderRadius: "37px",
+                px: 3,
+                py: 1,
+                textTransform: "uppercase",
+                "&:hover": {
+                  background: "linear-gradient(135deg, #9C0339, #BF0449)",
+                },
+              }}
+            >
+              Become a Volunteer
+            </Button>
+          </Box>
+
+          {/* Socials */}
+          <Box sx={{ display: "flex", gap: 1 }}>
+            {[
+              { icon: <InstagramIcon fontSize="small" />, url: "https://www.instagram.com/warriorswithoutcausengo", label: "Instagram" },
+              { icon: <YouTubeIcon fontSize="small" />, url: "https://youtube.com/@warriorswithoutcausengo", label: "YouTube" },
+              { icon: <LinkedInIcon fontSize="small" />, url: "https://www.linkedin.com/company/warriorswithoutcausengo/", label: "LinkedIn" },
+              { icon: <TwitterIcon fontSize="small" />, url: "https://x.com/wwcngo", label: "X" },
+              { icon: <FacebookIcon fontSize="small" />, url: "https://m.facebook.com/100088849480693/", label: "Facebook" },
+            ].map((s) => (
+              <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                <IconButton
+                  sx={{
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                    color: "#fff",
+                    width: 36,
+                    height: 36,
+                    "&:hover": { backgroundColor: "rgba(255,255,255,0.2)" },
+                  }}
+                >
+                  {s.icon}
+                </IconButton>
+              </a>
+            ))}
+          </Box>
+        </Box>
+
+        {/* Column 2: About WWC links */}
+        <Box sx={{ minWidth: 0, width: { xs: "calc(50% - 16px)", md: "auto" } }}>
+          <Typography sx={headingStyle}>About</Typography>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li><Link to="/aboutus" style={linkStyle}>About Us</Link></li>
+            <li><Link to="/aboutus" style={linkStyle}>Our Vision & Mission</Link></li>
+            <li><Link to="/aboutus" style={linkStyle}>Our Values</Link></li>
+            <li><Link to="/aboutus" style={linkStyle}>Meet the Team</Link></li>
+          </ul>
+        </Box>
+
+        {/* Column 3: What We Do */}
+        <Box sx={{ minWidth: 0, width: { xs: "calc(50% - 16px)", md: "auto" } }}>
+          <Typography sx={headingStyle}>What We Do</Typography>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li><Link to="/howtohelp" style={linkStyle}>Our Drives</Link></li>
+            <li><Link to="/beherhero" style={linkStyle}>Be Her Hero</Link></li>
+            <li><Link to="/howtohelp" style={linkStyle}>Gallery</Link></li>
+            <li><Link to="/howtohelp" style={linkStyle}>Events</Link></li>
+            <li><Link to="/blogs" style={linkStyle}>Blogs</Link></li>
+          </ul>
+        </Box>
+
+        {/* Column 4: Get Involved */}
+        <Box sx={{ minWidth: 0, width: { xs: "calc(50% - 16px)", md: "auto" } }}>
+          <Typography sx={headingStyle}>Get Involved</Typography>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li><Link to="/howtohelp" style={linkStyle}>Volunteer</Link></li>
+            <li><Link to="/donate" style={linkStyle}>Donate</Link></li>
+            <li><Link to="/howtohelp" style={linkStyle}>Careers</Link></li>
+            <li><Link to="/howtohelp" style={linkStyle}>Collaborate</Link></li>
+          </ul>
+        </Box>
+
+        {/* Column 5: Support */}
+        <Box sx={{ minWidth: 0, width: { xs: "calc(50% - 16px)", md: "auto" } }}>
+          <Typography sx={headingStyle}>Support</Typography>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li><Link to="/aboutus" style={linkStyle}>FAQs</Link></li>
+            <li><Link to="/aboutus" style={linkStyle}>Contact Us</Link></li>
+            <li><Link to="/aboutus" style={linkStyle}>Privacy Policy</Link></li>
+            <li><Link to="/aboutus" style={linkStyle}>Terms of Use</Link></li>
+          </ul>
+        </Box>
+
+        {/* Column 6: Contact (no map) */}
+        <Box component="address" sx={{ fontStyle: "normal", minWidth: 0, width: { xs: "100%", md: "auto" } }}>
+          <Typography sx={headingStyle}>Contact</Typography>
+          <Typography sx={{ ...linkStyle, display: "block" }}>
+            <a href="tel:+919711883411" style={linkStyle}>+91 9711883411</a>
+          </Typography>
+          <Typography sx={{ ...linkStyle, display: "block" }}>
+            <a href="mailto:info.warriorswithoutcause.com" style={linkStyle}>info.warriorswithoutcause.com</a>
+          </Typography>
+          <Typography sx={{ ...linkStyle, display: "block" }}>
+            <a href="mailto:Contact@warriorswithoutcause.org" style={linkStyle}>Contact@warriorswithoutcause.org</a>
+          </Typography>
+        </Box>
       </Box>
-      <Box>
-        <Typography component="h3" sx={{ mb: 1, fontWeight: "bold" }}>Join</Typography>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          <li><Link to="/aboutus" style={{ color: "#FFD5ED", textDecoration: 'none', fontFamily: 'Sora, sans-serif' }}>Team</Link></li>
-          <li><Link to="/howtohelp" style={{ color: "#FFD5ED", textDecoration: 'none', fontFamily: 'Sora, sans-serif' }}>Volunteer</Link></li>
-        </ul>
+
+      {/* Bottom divider + copyright */}
+      <Box
+        sx={{
+          borderTop: "1px solid rgba(255,255,255,0.1)",
+          px: { md: "56px", xs: "24px" },
+          py: 2,
+          display: "flex",
+          flexDirection: { md: "row", xs: "column" },
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 1,
+        }}
+      >
+        <Typography
+          sx={{
+            fontFamily: "Sora",
+            fontSize: "12px",
+            color: "rgba(255,255,255,0.5)",
+          }}
+        >
+          &copy; {new Date().getFullYear()} Warriors Without Cause &mdash; All
+          rights reserved
+        </Typography>
+        <Typography
+          sx={{
+            fontFamily: "Sora",
+            fontSize: "12px",
+            color: "rgba(255,255,255,0.5)",
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+          }}
+        >
+          <img src={FooterFlower} alt="" style={{ width: 14, height: 14 }} />
+          Created by{" "}
+          <a
+            href="https://www.linkedin.com/company/quatro-web-solutions/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none" }}
+          >
+            Quatro
+          </a>
+        </Typography>
       </Box>
     </Box>
   );
 };
 
-// Watermark
-const WatermarkSection = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  return (
-    <Typography sx={{
-      fontSize: isMobile ? '60px' : '120px',
-      fontWeight: '900',
-      pointerEvents: 'none',
-      color: "#C20078",
-      lineHeight: isMobile ? "76.5px" : '145.23px',
-      fontFamily: "Inter",
-    }}>
-      WWC NGO
-    </Typography>
-  );
-};
-
-// Copyright
-export const CopyrightSection = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-  return (
-    <Box sx={{ paddingBottom: "20px", mt: 4, textAlign: 'center', display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'center', gap: "5px" }}>
-      <Typography variant="body2" sx={{ color: "#191919" }}>
-        © 2024 WarriorsWithoutCause - All rights reserved
-      </Typography>
-      <Typography variant="body2" sx={{ color: "#191919", display: 'flex', alignItems: 'center', gap: '4px' }}>
-        <img src={FooterFlower} alt="Decorative Flower" />
-        Created by <a href='https://www.linkedin.com/company/quatro-web-solutions/' target='_blank' rel="noopener noreferrer">Quatro</a>
-      </Typography>
-    </Box>
-  )
-};
+export const CopyrightSection = () => null;
 
 export default Footer;

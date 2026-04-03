@@ -41,11 +41,12 @@ function Navbar() {
     <AppBar
       position="fixed"
       sx={{
-        background: "rgba(255, 255, 255, 0.09)",
+        background: { xs: "#fff", md: "rgba(255, 255, 255, 0.09)" },
         borderBottom: isDonatePage
           ? "1px solid rgba(77, 77, 77, 1)"
-          : "1px solid rgba(226, 226, 226, 1)",
-        backdropFilter: "blur(27.4px)",
+          : { xs: "1px solid rgba(200, 200, 200, 1)", md: "1px solid rgba(226, 226, 226, 1)" },
+        backdropFilter: { xs: "none", md: "blur(27.4px)" },
+        boxShadow: { xs: "0 1px 4px rgba(0,0,0,0.08)", md: "none" },
         paddingX: { xs: 2, md: 0 },
         zIndex: 5,
         height: "68px",
@@ -151,9 +152,14 @@ function Navbar() {
               onClick={handleOpenNavMenu}
               color="inherit"
               aria-label="Open menu"
-              sx={{ p: 0, color: isDonatePage ? "black" : "inherit" }}
+              sx={{
+                p: { xs: 1.5, md: 1 },
+                color: { xs: "black", md: isDonatePage ? "black" : "inherit" },
+                minWidth: 44,
+                minHeight: 44,
+              }}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ fontSize: { xs: 28, md: 24 } }} />
             </IconButton>
           </Box>
 
@@ -166,9 +172,9 @@ function Navbar() {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             PaperProps={{
               sx: {
-                background: "rgba(255, 255, 255, 0.09)",
+                background: { xs: "#fff", md: "rgba(255, 255, 255, 0.09)" },
                 borderBottom: "1px solid rgba(226, 226, 226, 1)",
-                backdropFilter: "blur(27.4px)",
+                backdropFilter: { xs: "none", md: "blur(27.4px)" },
                 boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
                 borderRadius: 0,
                 mt: 1,
@@ -181,7 +187,7 @@ function Navbar() {
               <MenuItem
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ py: 1.25 }}
+                sx={{ py: { xs: 2, md: 1.25 }, minHeight: { xs: 48, md: "auto" } }}
               >
                 <Typography
                   component={Link}
@@ -190,9 +196,7 @@ function Navbar() {
                     fontFamily: "Sora",
                     fontWeight: 500,
                     fontSize: "16px",
-                    color: isDonatePage
-                      ? "rgba(0, 0, 0, 1)"
-                      : "rgba(226, 226, 226, 1)",
+                    color: "rgba(0, 0, 0, 1)",
                     textTransform: "capitalize",
                     textDecoration: "none",
                   }}

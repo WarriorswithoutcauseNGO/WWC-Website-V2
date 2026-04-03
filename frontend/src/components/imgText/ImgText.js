@@ -64,7 +64,7 @@ const ImgText = ({ heading, subHeading }) => {
             fontWeight: 400,
             lineHeight: isMobile ? "54.84px" : "137.1px",
             textAlign: "center",
-            color: '#F3D100',
+            color: '#F2B705',
             fontStyle: 'italic',
             position: "relative",
             // zIndex: 2,

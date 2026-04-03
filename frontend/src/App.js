@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage/HomePage';
 import HowToHelp from './pages/HowToHelp/HowToHelp';
 import BeHerHero from './pages/BeHerHero/BeHerHero';
 import Blogs from './pages/Blogs/Blogs';
+import Newsletter from './pages/Newsletter/Newsletter';
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/howtohelp" element={<HowToHelp />} />
         <Route path="/beherhero" element={<BeHerHero />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/newsletter" element={<Newsletter />} />
         <Route path="/donate" element={<Donation />} />
       </Routes>
 

@@ -1,0 +1,346 @@
+.newsletter-page {
+  min-height: 100vh;
+  background: #FFF2FA;
+  padding-bottom: 60px;
+}
+
+/* ── Header ── */
+.newsletter-header {
+  text-align: center;
+  padding: 100px 24px 24px;
+}
+.newsletter-header h1 {
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #373737;
+  margin: 0;
+}
+.newsletter-header h1 span {
+  font-family: "DM Serif Display", serif;
+  font-style: italic;
+  color: #BF0449;
+}
+.newsletter-header .tagline {
+  font-family: "Sora", sans-serif;
+  font-size: 16px;
+  color: #777;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ── Slider ── */
+.newsletter-slider-wrap {
+  position: relative;
+  padding: 40px 0 20px;
+  overflow: hidden;
+}
+.newsletter-slider {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 40px;
+  flex-wrap: wrap;
+}
+
+/* ── Instagram Card ── */
+.insta-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  width: 320px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+.insta-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 40px rgba(191, 4, 73, 0.15);
+}
+
+.insta-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+.insta-card-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #BF0449;
+}
+.insta-card-username {
+  font-family: "Sora", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #262626;
+}
+.insta-card-date {
+  font-family: "Sora", sans-serif;
+  font-size: 11px;
+  color: #999;
+  margin-top: 1px;
+}
+
+.insta-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+}
+.insta-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.insta-card:hover .insta-card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.insta-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px 4px;
+}
+.insta-card-actions svg {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  color: #262626;
+  transition: color 0.2s;
+}
+.insta-card-actions svg:hover {
+  color: #BF0449;
+}
+.insta-card-actions .bookmark {
+  margin-left: auto;
+}
+
+.insta-card-body {
+  padding: 4px 14px 14px;
+}
+.insta-card-title {
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #262626;
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+.insta-card-summary {
+  font-family: "Sora", sans-serif;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Subscribe CTA ── */
+.newsletter-cta {
+  text-align: center;
+  padding: 48px 24px 0;
+}
+.newsletter-cta h2 {
+  font-family: "Sora", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #373737;
+  margin: 0 0 8px;
+}
+.newsletter-cta h2 span {
+  color: #BF0449;
+}
+.newsletter-cta p {
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+  color: #777;
+  margin: 0 0 24px;
+}
+.newsletter-subscribe-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.newsletter-subscribe-form input {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 20px;
+  border-radius: 37px;
+  border: 2px solid #BF0449;
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+.newsletter-subscribe-form input:focus {
+  border-color: #F28705;
+}
+.newsletter-subscribe-form button {
+  padding: 12px 32px;
+  border-radius: 37px;
+  border: none;
+  background: linear-gradient(135deg, #BF0449, #BF3475);
+  color: #fff;
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+.newsletter-subscribe-form button:hover {
+  background: linear-gradient(135deg, #9C0339, #BF0449);
+  transform: translateY(-1px);
+}
+
+/* ── Modal ── */
+.newsletter-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.newsletter-modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+}
+.newsletter-modal-close {
+  position: sticky;
+  top: 0;
+  text-align: right;
+  padding: 16px 20px 0;
+  z-index: 2;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+}
+.newsletter-modal-close button {
+  background: #f0f0f0;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+}
+.newsletter-modal-close button:hover {
+  background: #BF0449;
+  color: #fff;
+}
+.newsletter-modal-img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+}
+.newsletter-modal-body {
+  padding: 24px 28px 32px;
+}
+.newsletter-modal-body h2 {
+  font-family: "Sora", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #262626;
+  margin: 0 0 6px;
+}
+.newsletter-modal-body .modal-date {
+  font-family: "Sora", sans-serif;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 20px;
+}
+.newsletter-modal-body .modal-content {
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+.newsletter-modal-body .modal-download {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 32px;
+  border-radius: 37px;
+  background: linear-gradient(135deg, #BF0449, #F28705);
+  color: #fff;
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+.newsletter-modal-body .modal-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(191, 4, 73, 0.3);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .newsletter-header {
+    padding: 86px 20px 16px;
+  }
+  .newsletter-header h1 {
+    font-size: 30px;
+  }
+  .newsletter-header .tagline {
+    font-size: 14px;
+  }
+  .newsletter-slider {
+    gap: 20px;
+    padding: 0 16px;
+    justify-content: center;
+  }
+  .insta-card {
+    width: 280px;
+  }
+  .newsletter-cta h2 {
+    font-size: 22px;
+  }
+  .newsletter-modal-body {
+    padding: 20px 20px 28px;
+  }
+  .newsletter-modal-body h2 {
+    font-size: 20px;
+  }
+  .newsletter-modal-body .modal-content {
+    font-size: 14px;
+  }
+  .newsletter-modal-img {
+    max-height: 240px;
+  }
+}
+
+@media (max-width: 400px) {
+  .insta-card {
+    width: 100%;
+  }
+  .newsletter-slider {
+    padding: 0 12px;
+  }
+}

@@ -179,6 +179,7 @@ const Footer = () => {
             <li><Link to="/howtohelp" style={linkStyle}>Gallery</Link></li>
             <li><Link to="/howtohelp" style={linkStyle}>Events</Link></li>
             <li><Link to="/blogs" style={linkStyle}>Blogs</Link></li>
+            <li><Link to="/newsletter" style={linkStyle}>Newsletter</Link></li>
           </ul>
         </Box>
 

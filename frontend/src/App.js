@@ -11,6 +11,10 @@ import HowToHelp from './pages/HowToHelp/HowToHelp';
 import BeHerHero from './pages/BeHerHero/BeHerHero';
 import Blogs from './pages/Blogs/Blogs';
 import Newsletter from './pages/Newsletter/Newsletter';
+import Projects from './pages/Projects/Projects';
+
+/** Must match `Navbar` AppBar height (see components/navbar/Navbar.jsx). */
+const NAVBAR_HEIGHT_PX = 68;
 
 function App() {
   const location = useLocation();
@@ -20,15 +24,24 @@ function App() {
       <ScrollToTop />
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<HomePage key={location.key} />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/howtohelp" element={<HowToHelp />} />
-        <Route path="/beherhero" element={<BeHerHero />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/newsletter" element={<Newsletter />} />
-        <Route path="/donate" element={<Donation />} />
-      </Routes>
+      <Box
+        component="main"
+        sx={{
+          pt: `${NAVBAR_HEIGHT_PX}px`,
+          width: '100%',
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<HomePage key={location.key} />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/howtohelp" element={<HowToHelp />} />
+          <Route path="/beherhero" element={<BeHerHero />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/donate" element={<Donation />} />
+        </Routes>
+      </Box>
 
       <Footer />
     </Box>

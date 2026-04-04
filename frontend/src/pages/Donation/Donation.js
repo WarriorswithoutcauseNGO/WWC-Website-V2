@@ -377,7 +377,7 @@ export default function Donation() {
         <Button
           onClick={() => {
             window.scrollTo(0, 0);
-            navigate("/aboutus");
+            navigate("/projects");
           }}
           sx={{
             mt: 5,

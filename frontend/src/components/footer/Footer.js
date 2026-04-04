@@ -4,8 +4,6 @@ import {
   Typography,
   Button,
   IconButton,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -35,8 +33,6 @@ const headingStyle = {
 };
 
 const Footer = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
 
   return (
@@ -174,7 +170,7 @@ const Footer = () => {
         <Box sx={{ minWidth: 0, width: { xs: "calc(50% - 16px)", md: "auto" } }}>
           <Typography sx={headingStyle}>What We Do</Typography>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            <li><Link to="/howtohelp" style={linkStyle}>Our Drives</Link></li>
+            <li><Link to="/projects" style={linkStyle}>Our Drives in Action</Link></li>
             <li><Link to="/beherhero" style={linkStyle}>Be Her Hero</Link></li>
             <li><Link to="/howtohelp" style={linkStyle}>Gallery</Link></li>
             <li><Link to="/howtohelp" style={linkStyle}>Events</Link></li>

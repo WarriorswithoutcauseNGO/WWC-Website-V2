@@ -138,7 +138,7 @@ const VolunteerCard = ({ reverse = true }) => {
         >
           <img
             src={VolunteerImg}
-            alt="Volunteer Image"
+            alt="Volunteers at an outreach event"
             style={{
               width: "100%",
               height: "auto",

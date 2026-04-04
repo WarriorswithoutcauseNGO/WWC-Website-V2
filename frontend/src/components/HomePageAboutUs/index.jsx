@@ -166,7 +166,6 @@ const HomePageAboutUs = () => {
       data-component="HomePageAboutUs"
       sx={{
         background: isVisible ? "#BF3475" : "transparent",
-        transition: "background-color 0.5s ease-in-out",
         borderRadius: "0px 0px 0px 351px",
         position: "relative",
         padding: "40px 0",

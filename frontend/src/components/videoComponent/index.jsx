@@ -9,10 +9,10 @@ import bf_img_1_phn from "../../assets/bf_img_1_phn.png";
 import "./VideoBackground.css";
 
 const mobileBanners = [
-  { img: our_drives_1_phn, label: "Our Drives", link: "/aboutus" },
+  { img: our_drives_1_phn, label: "Our Drives", link: "/projects" },
   { img: bf_img_1_phn, label: "Education", link: "/howtohelp" },
   { img: our_drives_2_phn, label: "Health & Hygiene", link: "/donate" },
-  { img: our_drives_3_phn, label: "Environment", link: "/aboutus" },
+  { img: our_drives_3_phn, label: "Environment", link: "/projects" },
   { img: bf_img_1_phn, label: "Empower Women", link: "/beherhero" },
   { img: our_drives_4_phn, label: "Volunteer", link: "/howtohelp" },
 ];

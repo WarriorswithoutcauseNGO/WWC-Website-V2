@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-import ImgText from "../../components/imgText/ImgText";
 import Cards from "../../components/aboutUsCards/Cards";
+import AboutUsSplit from "../../components/AboutUsSplit/AboutUsSplit";
+import AboutWwcContent from "../../components/AboutWwcContent/AboutWwcContent";
+import CredibilityStrip from "../../components/CredibilityStrip/CredibilityStrip";
 import AboutUsCardOne from "../../assets/AboutUsCard1.png";
 import AboutUsCardTwo from "../../assets/AboutUsCard2.png";
 import our_drives_1 from "../../assets/our_drives_1.png";
@@ -14,6 +16,7 @@ import bf_img_2 from "../../assets/bf_img_2.png";
 import bf_img_3 from "../../assets/bf_img_3.png";
 import MeetTheTeam from "../../components/meettheteam/MeetTheTeam";
 import StoryOfChange from "../../components/storyOfChange/StoryOfChange";
+import ImpactAchievements from "../../components/ImpactAchievements/ImpactAchievements";
 
 const visionImages = [AboutUsCardOne, our_drives_1, our_drives_3, bf_img_1];
 const missionImages = [AboutUsCardTwo, our_drives_2, our_drives_4, bf_img_2, bf_img_3];
@@ -37,7 +40,8 @@ The confidence generated among individuals, the communities we work with, and th
 const AboutUs = () => {
   return (
     <Box sx={{ backgroundColor: '#FFF2FA' }}>
-      <ImgText heading="About Us" subHeading="Who are we" />
+      <AboutUsSplit />
+      <AboutWwcContent />
       <Cards
         title="Our Vision"
         description={visionText}
@@ -51,6 +55,8 @@ const AboutUs = () => {
         imageAlt="Our Mission"
         reverse='true'
       />
+      <CredibilityStrip />
+      <ImpactAchievements />
       <MeetTheTeam />
       <StoryOfChange />
     </Box>

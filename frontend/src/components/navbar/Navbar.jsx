@@ -16,7 +16,7 @@ import "./Navbar.css";
 const pages = [
   { name: "About Us", path: "/aboutus" },
   { name: "Projects", path: "/projects" },
-  { name: "How to help", path: "/howtohelp" },
+  { name: "Become a Warrior", path: "/howtohelp" },
   { name: "Newsletter", path: "/newsletter" },
 ];
 

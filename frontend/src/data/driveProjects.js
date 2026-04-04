@@ -16,50 +16,116 @@ import carasol2 from "../assets/carasol2.jpg";
 import carasol3 from "../assets/carasol3.jpg";
 
 /**
- * On-the-ground drive stories for About Us masonry & Projects page.
- * Each item: image, headline, location, drive type, impact line, full write-up.
+ * Four flagship campaigns — Projects page grid + /projects/:slug detail pages.
+ * Fields: slug, cardSummary, fullParagraphs, impactMetrics[], gallery[], dateLabel, roomTitle.
  */
-export const driveProjects = [
+export const campaignProjects = [
   {
     id: "beat-the-heat",
+    slug: "beat-the-heat",
+    headline: "Beat the Heat Campaign",
+    roomTitle: { line1: "Beat the", line2: "Heat campaign" },
     image: our_drives_1,
-    headline: "Beat the Heat",
-    location: "Delhi NCR, Chandigarh, Bengaluru",
-    driveType: "Climate relief & hydration",
-    impact: "1,200+ umbrellas, caps & slippers; 20+ sharbat drives",
+    location: "Across India (multi-city outreach)",
+    dateLabel: "Summer seasons · ongoing partnerships",
+    driveType: "Climate relief & sun protection",
+    impact: "1,200+ umbrellas distributed with Colgate India & The Better India",
+    cardSummary:
+      "Supporting daily wage workers, hawkers, and vulnerable communities through extreme summers — practical shade, hydration awareness, and dignity on the streets.",
     writeUp:
-      "In peak summer, WWC reached street vendors and daily-wage workers with cooling support, hydration, and dignity kits — extending care to birds and strays through water bowls. Volunteers coordinated across cities so relief met people where they live and work.",
+      "Peak summer outreach for street vendors and workers: umbrellas, cooling support, and education on heat safety — carried out with Colgate India and The Better India across India.",
+    fullParagraphs: [
+      "Beat the Heat supports those most affected by extreme summer temperatures — daily wage workers, hawkers, and poor members of the community. In India, summers can reach punishing highs; heat strokes, dehydration, and exhaustion are hard to avoid without support.",
+      "Together with Colgate India and The Better India, we distributed more than 1,200 umbrellas in different parts of India — offering real protection from the sun. Beyond products, the campaign spreads the message of drinking enough water, resting in shade, and recognising the signs of heat-related illness.",
+      "Volunteers were essential in spotting high-need areas and ensuring people who needed help the most were reached. Beat the Heat delivers practical relief, builds social impact with communities and partners, and improves conditions for those most vulnerable to extreme heat.",
+    ],
+    impactMetrics: [
+      { label: "Umbrellas distributed", value: "1,200+" },
+      { label: "Partners", value: "Colgate India · The Better India" },
+      { label: "Focus", value: "Street vendors & daily wage workers" },
+    ],
+    gallery: [our_drives_1, bf_img_1, carasol1, carasol2],
   },
   {
     id: "vidyaksha",
-    image: our_drives_2,
+    slug: "vidyaksha",
     headline: "Project Vidyaksha",
+    roomTitle: { line1: "Project", line2: "Vidyaksha" },
+    image: our_drives_2,
     location: "10+ slum communities",
+    dateLabel: "Ongoing · education hubs",
     driveType: "Education & life skills",
-    impact: "500+ students supported; workshops on rights & literacy",
+    impact: "500+ children · workshops on rights, literacy & confidence",
+    cardSummary:
+      "Education for underprivileged children — regular subjects plus financial literacy, self-defence, and human rights — so learning gaps shrink and confidence grows.",
     writeUp:
-      "Learning hubs and weekend classes bring foundational education, financial literacy, and confidence to children who face barriers to schooling. The programme pairs academic support with workshops on self-defence and human rights.",
+      "Weekend classes and learning hubs for 500+ children across 10+ slums — blending academics with financial literacy, self-defence, and human rights workshops.",
+    fullParagraphs: [
+      "Warriors Without Cause’s Project Vidyaksha focuses on the education sector with the goal of increasing access to learning for underprivileged children, especially from slums. The initiative reaches over 500 children from more than 10 slum areas.",
+      "Alongside regular subjects, workshops cover financial literacy, self-defence, and human rights — helping children build confidence. Mentorship supports a positive learning atmosphere and fewer gaps in education, preparing children to seize better opportunities in the future.",
+    ],
+    impactMetrics: [
+      { label: "Children supported", value: "500+" },
+      { label: "Slum communities", value: "10+" },
+      { label: "Focus areas", value: "Literacy · life skills · mentorship" },
+    ],
+    gallery: [our_drives_2, bf_img_4, About_img_1, carasol3],
   },
   {
     id: "swasthya-raksha",
-    image: our_drives_3,
+    slug: "swasthya-raksha",
     headline: "Project Swasthya Raksha",
+    roomTitle: { line1: "Swasthya", line2: "Raksha" },
+    image: our_drives_3,
     location: "Delhi & neighbouring regions",
+    dateLabel: "Ongoing · health & hygiene programme",
     driveType: "Health & menstrual hygiene",
-    impact: "10 lakh+ pads distributed; 150+ awareness drives",
+    impact: "10 lakh+ sanitary napkins · awareness & sanitation drives",
+    cardSummary:
+      "Health interventions for underserved communities — menstrual hygiene, sanitation, and awareness — so dignity and care reach women and girls who lack access.",
     writeUp:
-      "Health camps, pad distribution, and taboo-breaking conversations help women access dignity and care. Swasthya Raksha links products with education so communities can sustain healthier routines long after each drive ends.",
+      "Pad distribution and taboo-breaking conversations: 10 lakh+ napkins distributed and 150+ drives linking products with education for lasting hygiene.",
+    fullParagraphs: [
+      "Swasthya Raksha provides health interventions for underserved communities that lack access to hygienic practices and healthcare. The programme raises awareness on menstrual hygiene, sanitation, and broader health concerns.",
+      "More than 10 lakh sanitary napkins have been distributed so girls and women can manage menstrual health with dignity. We run programmes to reduce stigma, teach prevention and hygiene, and support healthier routines.",
+      "Alongside biodegradable toilets and health drives, the project strengthens the health of women and children across the region.",
+    ],
+    impactMetrics: [
+      { label: "Sanitary napkins distributed", value: "10 lakh+" },
+      { label: "Programme focus", value: "MHM · sanitation · health awareness" },
+      { label: "Reach", value: "Women & children in underserved areas" },
+    ],
+    gallery: [our_drives_3, bf_img_2, bf_img_3, About_img_3],
   },
   {
-    id: "rozgar-soch",
+    id: "project-rozgar",
+    slug: "project-rozgar",
+    headline: "Project Rozgar",
+    roomTitle: { line1: "Project", line2: "Rozgar" },
     image: our_drives_4,
-    headline: "Project Rozgar & SOCH",
     location: "Slum-adjacent communities",
-    driveType: "Livelihoods & artisan enterprise",
-    impact: "Skills training in crochet, knitting & sales support",
+    dateLabel: "Ongoing · livelihoods training",
+    driveType: "Skills & economic empowerment",
+    impact: "Knitting, sewing & crafts — pathways to independent earnings",
+    cardSummary:
+      "Skill development for women and youth in areas with few job opportunities — knitting, sewing, and crafts that unlock confidence, creativity, and independent income.",
     writeUp:
-      "Women learn marketable crafts through SOCH, with mentorship on pricing and outreach. Income blends skill-building with emotional support — turning creativity into sustainable livelihoods.",
+      "SOCH-style livelihood training: crochet, knitting, and craft skills with mentorship on pricing and sales — creativity turned into sustainable income.",
+    fullParagraphs: [
+      "Project Rozgar focuses on financial independence for women and youth in slum areas where job opportunities are scarce. Skill development is the bridge to economic empowerment.",
+      "Participants gain practical skills in knitting, sewing, and crafts that can earn income in the market. The project nurtures confidence, creativity, and an entrepreneurial mindset so people can find their own path to earn independently.",
+      "Empowering women and young people through skills increases independence — and over time, contributes to stronger homes and communities.",
+    ],
+    impactMetrics: [
+      { label: "Skills", value: "Knitting · sewing · crafts" },
+      { label: "Focus", value: "Women & youth in slum areas" },
+      { label: "Outcome", value: "Independent earnings & confidence" },
+    ],
+    gallery: [our_drives_4, bf_img_5, About_img_2, carasol1],
   },
+];
+
+const legacyDriveStories = [
   {
     id: "education-outreach",
     image: bf_img_1,
@@ -101,6 +167,11 @@ export const driveProjects = [
       "As WWC grows, new hubs adapt proven playbooks to local contexts — pairing experienced mentors with fresh volunteers so impact scales without losing the human touch.",
   },
 ];
+
+/**
+ * On-the-ground stories for About Us masonry & cylinder — flagship campaigns + legacy entries.
+ */
+export const driveProjects = [...campaignProjects, ...legacyDriveStories];
 
 /** Extra gallery entries for About Us cylinder / parallax (same shape as drive for modals). */
 const aboutUsGalleryExtras = [
@@ -188,3 +259,7 @@ const aboutUsGalleryExtras = [
 
 /** All drive stories plus extra gallery images — for About Us 3D cylinder & parallax strip. */
 export const aboutUsCylinderPhotos = [...driveProjects, ...aboutUsGalleryExtras];
+
+export function getCampaignBySlug(slug) {
+  return campaignProjects.find((c) => c.slug === slug) ?? null;
+}

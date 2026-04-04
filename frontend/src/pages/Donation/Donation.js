@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Typography,
   Button,
@@ -7,12 +8,14 @@ import {
   RadioGroup,
   FormControlLabel,
   Checkbox,
+  Snackbar,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createOrder, verifyPayment } from "../../services/api";
 
 const presetAmounts = [500, 1000, 2500, 4000];
 
@@ -43,8 +46,23 @@ export default function Donation() {
   const [nationality, setNationality] = useState("indian");
   const [showPan, setShowPan] = useState(false);
   const [pan, setPan] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [notification, setNotification] = useState({ open: false, message: "", severity: "info" });
 
   const displayAmount = isCustom ? Number(customAmount) || 0 : amount;
+
+  useEffect(() => {
+    if (document.getElementById("razorpay-checkout-js")) return;
+    const script = document.createElement("script");
+    script.id = "razorpay-checkout-js";
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  const showNotification = (message, severity = "info") => {
+    setNotification({ open: true, message, severity });
+  };
 
   const handlePreset = (val) => {
     setAmount(val);
@@ -58,11 +76,88 @@ export default function Donation() {
     setIsCustom(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Placeholder: redirect to UPI link with amount
-    const upiUrl = `upi://pay?pa=PLACEHOLDER@upi&pn=WarriorsWithoutCause&am=${displayAmount}&cu=INR&tn=Donation`;
-    window.location.href = upiUrl;
+    const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY_ID;
+    if (!razorpayKey) {
+      showNotification("Payment is not configured. Please try again later.", "error");
+      return;
+    }
+    if (!displayAmount || displayAmount < 1) {
+      showNotification("Please enter a valid amount (minimum ₹1).", "error");
+      return;
+    }
+    if (!name.trim() || !email.trim() || mobile.length !== 10) {
+      showNotification("Please fill in name, email, and a valid 10-digit mobile number.", "error");
+      return;
+    }
+    if (showPan) {
+      const panOk = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.trim());
+      if (!panOk) {
+        showNotification("Please enter a valid PAN number.", "error");
+        return;
+      }
+    }
+
+    setLoading(true);
+    try {
+      if (!window.Razorpay) {
+        throw new Error("Payment is still loading. Please wait a moment and try again.");
+      }
+      const orderData = await createOrder(displayAmount);
+      if (!orderData.success) {
+        throw new Error(orderData.message || "Failed to create order");
+      }
+
+      const description =
+        tab === "monthly"
+          ? "Monthly donation — first payment (WarriorsWithoutCause)"
+          : "Donation (WarriorsWithoutCause)";
+
+      const options = {
+        key: razorpayKey,
+        amount: Math.round(displayAmount * 100),
+        currency: "INR",
+        name: "WarriorsWithoutCause",
+        description,
+        image: `${window.location.origin}/navbar_logo.svg`,
+        order_id: orderData.orderId,
+        handler: async function (response) {
+          try {
+            const verificationData = await verifyPayment({
+              orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+            });
+            if (verificationData.success) {
+              showNotification("Payment successful! Thank you for your donation.", "success");
+            } else {
+              throw new Error(verificationData.message || "Verification failed");
+            }
+          } catch (err) {
+            showNotification("Payment verification failed. Please contact support if you were charged.", "error");
+          }
+        },
+        prefill: {
+          name: name.trim(),
+          email: email.trim(),
+          contact: mobile,
+        },
+        theme: {
+          color: "#BF0449",
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on("payment.failed", function (resp) {
+        showNotification(resp.error?.description || "Payment failed", "error");
+      });
+      rzp.open();
+    } catch (err) {
+      showNotification(err.message || "Something went wrong. Please try again.", "error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -115,6 +210,21 @@ export default function Donation() {
       </motion.div>
 
       {/* Form Card */}
+      <Snackbar
+        open={notification.open}
+        autoHideDuration={6000}
+        onClose={() => setNotification((n) => ({ ...n, open: false }))}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setNotification((n) => ({ ...n, open: false }))}
+          severity={notification.severity}
+          sx={{ width: "100%" }}
+        >
+          {notification.message}
+        </Alert>
+      </Snackbar>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -344,9 +454,9 @@ export default function Donation() {
           <Button
             type="submit"
             fullWidth
-            disabled={displayAmount <= 0}
+            disabled={displayAmount <= 0 || loading}
             sx={{
-              background: displayAmount > 0
+              background: displayAmount > 0 && !loading
                 ? "linear-gradient(135deg, #BF0449, #BF3475)"
                 : "#ccc",
               color: "#fff",
@@ -357,7 +467,7 @@ export default function Donation() {
               py: 1.8,
               textTransform: "none",
               letterSpacing: 0.5,
-              boxShadow: displayAmount > 0 ? "0 4px 16px rgba(191,4,73,0.3)" : "none",
+              boxShadow: displayAmount > 0 && !loading ? "0 4px 16px rgba(191,4,73,0.3)" : "none",
               "&:hover": {
                 background: "linear-gradient(135deg, #9C0339, #BF0449)",
               },
@@ -367,7 +477,9 @@ export default function Donation() {
               },
             }}
           >
-            Donate {displayAmount > 0 ? `₹${displayAmount.toLocaleString("en-IN")}` : ""}
+            {loading
+              ? "Opening secure checkout…"
+              : `Donate ${displayAmount > 0 ? `₹${displayAmount.toLocaleString("en-IN")}` : ""}`}
           </Button>
         </Box>
       </motion.div>

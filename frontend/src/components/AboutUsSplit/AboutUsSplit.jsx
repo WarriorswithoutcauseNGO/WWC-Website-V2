@@ -135,7 +135,7 @@ export default function AboutUsSplit() {
                 },
               }}
             >
-              Our Drives in Action
+              Projects
             </Button>
           </Box>
         </Box>

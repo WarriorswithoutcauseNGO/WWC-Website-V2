@@ -12,6 +12,7 @@ import BeHerHero from './pages/BeHerHero/BeHerHero';
 import Blogs from './pages/Blogs/Blogs';
 import Newsletter from './pages/Newsletter/Newsletter';
 import Projects from './pages/Projects/Projects';
+import CampaignDetail from './pages/Projects/CampaignDetail';
 
 /** Must match `Navbar` AppBar height (see components/navbar/Navbar.jsx). */
 const NAVBAR_HEIGHT_PX = 68;
@@ -39,6 +40,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:slug" element={<CampaignDetail />} />
           <Route path="/donate" element={<Donation />} />
         </Routes>
       </Box>

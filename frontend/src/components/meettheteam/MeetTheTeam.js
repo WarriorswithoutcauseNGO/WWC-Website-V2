@@ -10,6 +10,7 @@ import {
   useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import AnushaAttree from "../../assets/AnushaAttree.jpeg";
 import BhaviniSingh from "../../assets/BhaviniSingh.jpeg";
 import KhushiSingh from "../../assets/KhushiSingh.jpeg";
@@ -19,7 +20,7 @@ import SiyaSethi from "../../assets/SiyaSethi.jpeg";
 /**
  * Headshots + roles; bio is first-person / testimonial-style for the modal.
  */
-const teamMembers = [
+const founders = [
   {
     name: "Anusha Miree",
     image: AnushaAttree,
@@ -48,6 +49,9 @@ const teamMembers = [
     bio:
       "Stories are how we honour the work — and invite more people in. As a founder trustee, I help shape how WWC speaks, shares, and shows up online and on the ground. The part I love most is when a simple message turns someone from a viewer into a volunteer who believes they belong here too.",
   },
+];
+
+const bodMembers = [
   {
     name: "Siya Sethi",
     image: SiyaSethi,
@@ -57,10 +61,137 @@ const teamMembers = [
   },
 ];
 
+const volunteerTestimonials = [
+  {
+    quote:
+      "This experience changed how I see the world — showing up for others changed how I show up for myself.",
+    attribution: "Volunteer",
+  },
+  {
+    quote:
+      "I found confidence I never knew I had. WWC is where purpose stopped being an idea and became weekends on the ground.",
+    attribution: "Warrior",
+  },
+  {
+    quote: "It's more than volunteering, it's family — people who remind you why the work matters.",
+    attribution: "Team Member",
+  },
+];
+
+const sectionHeadingSx = {
+  fontFamily: "Sora, sans-serif",
+  fontWeight: 700,
+  fontSize: { xs: "13px", md: "14px" },
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+  color: "#BF0449",
+  mb: 2.5,
+  textAlign: "center",
+};
+
 const MeetTheTeam = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [selected, setSelected] = useState(null);
+
+  const renderMemberCard = (member) => (
+    <Box
+      key={member.name}
+      onClick={() => setSelected(member)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") setSelected(member);
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${member.name}, ${member.role}. Open profile.`}
+      sx={{
+        borderRadius: "14px",
+        overflow: "hidden",
+        cursor: "pointer",
+        bgcolor: "rgba(191, 4, 73, 0.06)",
+        border: "1px solid rgba(191, 4, 73, 0.12)",
+        boxShadow: "0 4px 20px rgba(191, 4, 73, 0.06)",
+        transition: "box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease",
+        "&:hover": {
+          boxShadow: "0 0 0 1px rgba(191,4,73,0.2), 0 8px 28px rgba(191, 52, 117, 0.15)",
+          borderColor: "rgba(191, 4, 73, 0.28)",
+          transform: "translateY(-4px)",
+          "& .team-photo": {
+            transform: "scale(1.08)",
+          },
+        },
+        "&:focus-visible": {
+          outline: "2px solid #BF0449",
+          outlineOffset: 3,
+        },
+      }}
+    >
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          aspectRatio: "4 / 5",
+          bgcolor: "rgba(191, 4, 73, 0.04)",
+        }}
+      >
+        <Box
+          component="img"
+          className="team-photo"
+          src={member.image}
+          alt=""
+          sx={{
+            width: "100%",
+            height: "100%",
+            objectFit: member.imageObjectFit ?? "cover",
+            objectPosition: member.imageObjectPosition ?? "center top",
+            display: "block",
+            transition: "transform 0.45s cubic-bezier(0.33, 1, 0.68, 1)",
+          }}
+        />
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            px: 1.5,
+            pb: 1.5,
+            pt: 5,
+            background:
+              "linear-gradient(180deg, transparent 0%, rgba(15, 10, 12, 0.55) 38%, rgba(15, 10, 12, 0.88) 100%)",
+            pointerEvents: "none",
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: "Sora",
+              fontWeight: 700,
+              fontSize: isMobile ? "13px" : "14px",
+              color: "#FFFFFF",
+              lineHeight: 1.25,
+              textShadow: "0 1px 3px rgba(0,0,0,0.65)",
+            }}
+          >
+            {member.name}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Sora",
+              fontSize: isMobile ? "10px" : "11px",
+              color: "rgba(255, 255, 255, 0.95)",
+              mt: 0.5,
+              fontWeight: 500,
+              lineHeight: 1.35,
+              textShadow: "0 1px 2px rgba(0,0,0,0.6)",
+            }}
+          >
+            {member.role}
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
 
   return (
     <Box
@@ -128,117 +259,110 @@ const MeetTheTeam = () => {
           </Typography>
         </Box>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "repeat(2, minmax(0, 1fr))",
-              sm: "repeat(2, minmax(0, 1fr))",
-              md: "repeat(3, minmax(0, 1fr))",
-              lg: "repeat(5, minmax(0, 1fr))",
-            },
-            gap: { xs: 2, md: 2.5 },
-            alignItems: "stretch",
-          }}
-        >
-          {teamMembers.map((member) => (
-            <Box
-              key={member.name}
-              onClick={() => setSelected(member)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setSelected(member);
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`${member.name}, ${member.role}. Open profile.`}
-              sx={{
-                borderRadius: "14px",
-                overflow: "hidden",
-                cursor: "pointer",
-                bgcolor: "rgba(191, 4, 73, 0.06)",
-                border: "1px solid rgba(191, 4, 73, 0.12)",
-                boxShadow: "0 4px 20px rgba(191, 4, 73, 0.06)",
-                transition: "box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease",
-                "&:hover": {
-                  boxShadow: "0 0 0 1px rgba(191,4,73,0.2), 0 8px 28px rgba(191, 52, 117, 0.15)",
-                  borderColor: "rgba(191, 4, 73, 0.28)",
-                  transform: "translateY(-4px)",
-                  "& .team-photo": {
-                    transform: "scale(1.08)",
-                  },
-                },
-                "&:focus-visible": {
-                  outline: "2px solid #BF0449",
-                  outlineOffset: 3,
-                },
-              }}
-            >
+        {/* 1 — Founders */}
+        <Box component="section" aria-labelledby="founders-heading" sx={{ mb: { xs: 5, md: 7 } }}>
+          <Typography id="founders-heading" component="h3" sx={sectionHeadingSx}>
+            Founders
+          </Typography>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "repeat(2, minmax(0, 1fr))",
+                sm: "repeat(2, minmax(0, 1fr))",
+                md: "repeat(4, minmax(0, 1fr))",
+              },
+              gap: { xs: 2, md: 2.5 },
+              alignItems: "stretch",
+            }}
+          >
+            {founders.map(renderMemberCard)}
+          </Box>
+        </Box>
+
+        {/* 2 — Board of directors */}
+        <Box component="section" aria-labelledby="bod-heading" sx={{ mb: { xs: 5, md: 7 } }}>
+          <Typography id="bod-heading" component="h3" sx={sectionHeadingSx}>
+            Board of directors
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+            }}
+          >
+            <Box sx={{ width: "100%", maxWidth: 320 }}>{bodMembers.map(renderMemberCard)}</Box>
+          </Box>
+        </Box>
+
+        {/* 3 — Volunteer testimonials */}
+        <Box component="section" aria-labelledby="volunteer-testimonials-heading">
+          <Typography id="volunteer-testimonials-heading" component="h3" sx={sectionHeadingSx}>
+            Volunteer testimonials
+          </Typography>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "repeat(3, minmax(0, 1fr))" },
+              gap: { xs: 2, md: 2.5 },
+            }}
+          >
+            {volunteerTestimonials.map((t, i) => (
               <Box
+                key={i}
                 sx={{
                   position: "relative",
-                  overflow: "hidden",
-                  aspectRatio: "4 / 5",
-                  bgcolor: "rgba(191, 4, 73, 0.04)",
+                  p: { xs: 2.5, md: 3 },
+                  borderRadius: "16px",
+                  bgcolor: "rgba(191, 4, 73, 0.05)",
+                  border: "1px solid rgba(191, 4, 73, 0.1)",
+                  boxShadow: "0 4px 24px rgba(191, 4, 73, 0.06)",
+                  minHeight: { md: 200 },
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                <Box
-                  component="img"
-                  className="team-photo"
-                  src={member.image}
-                  alt=""
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: member.imageObjectFit ?? "cover",
-                    objectPosition: member.imageObjectPosition ?? "center top",
-                    display: "block",
-                    transition: "transform 0.45s cubic-bezier(0.33, 1, 0.68, 1)",
-                  }}
-                />
-                <Box
-                  aria-hidden
+                <FormatQuoteIcon
                   sx={{
                     position: "absolute",
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    px: 1.5,
-                    pb: 1.5,
-                    pt: 5,
-                    background:
-                      "linear-gradient(180deg, transparent 0%, rgba(15, 10, 12, 0.55) 38%, rgba(15, 10, 12, 0.88) 100%)",
-                    pointerEvents: "none",
+                    top: 12,
+                    left: 14,
+                    fontSize: 36,
+                    color: "rgba(191, 4, 73, 0.2)",
+                  }}
+                  aria-hidden
+                />
+                <Typography
+                  sx={{
+                    fontFamily: "Sora, sans-serif",
+                    fontSize: { xs: "14px", md: "15px" },
+                    lineHeight: 1.75,
+                    color: "#3a3a3a",
+                    pl: 2,
+                    pt: 1,
+                    flex: 1,
                   }}
                 >
-                  <Typography
-                    sx={{
-                      fontFamily: "Sora",
-                      fontWeight: 700,
-                      fontSize: isMobile ? "13px" : "14px",
-                      color: "#FFFFFF",
-                      lineHeight: 1.25,
-                      textShadow: "0 1px 3px rgba(0,0,0,0.65)",
-                    }}
-                  >
-                    {member.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "Sora",
-                      fontSize: isMobile ? "10px" : "11px",
-                      color: "rgba(255, 255, 255, 0.95)",
-                      mt: 0.5,
-                      fontWeight: 500,
-                      lineHeight: 1.35,
-                      textShadow: "0 1px 2px rgba(0,0,0,0.6)",
-                    }}
-                  >
-                    {member.role}
-                  </Typography>
-                </Box>
+                  {t.quote}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "Sora, sans-serif",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "#BF0449",
+                    mt: 2,
+                    pl: 2,
+                  }}
+                >
+                  — {t.attribution}
+                </Typography>
               </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </Box>
       </Box>
 

@@ -1,4 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import ElectricalServices from "@mui/icons-material/ElectricalServices";
+import Female from "@mui/icons-material/Female";
+import FoodBank from "@mui/icons-material/FoodBank";
+import HowToReg from "@mui/icons-material/HowToReg";
+import LocalHospital from "@mui/icons-material/LocalHospital";
+import School from "@mui/icons-material/School";
+import WorkOutline from "@mui/icons-material/WorkOutline";
 import React from "react";
 
 const problems = [
@@ -6,36 +13,50 @@ const problems = [
     title: "Inaccessibility of healthcare",
     body:
       "Communities living in slums often lack affordable medical infrastructure. Families are forced to choose between treatment and survival; preventable conditions go unaddressed. WWC’s medical camps provide treatment and referrals, education, and screening.",
+    Icon: LocalHospital,
+    accent: "linear-gradient(145deg, rgba(191,4,73,0.18) 0%, rgba(191,52,117,0.08) 100%)",
   },
   {
     title: "Educational deprivation",
     body:
       "Children lose access to quality education because of distance, cost, or family pressures. Without basic literacy, exploitative labour replaces opportunity. WWC’s education programmes bring knowledge, tools, and hope for different futures.",
+    Icon: School,
+    accent: "linear-gradient(145deg, rgba(242,183,5,0.2) 0%, rgba(191,4,73,0.08) 100%)",
   },
   {
     title: "Menstrual hygiene poverty",
     body:
       "Millions lack access to affordable menstrual products and resort to unsafe alternatives. Girls miss school and fall behind. WWC’s distribution and awareness workshops address both material needs and cultural taboos.",
+    Icon: Female,
+    accent: "linear-gradient(145deg, rgba(191,52,117,0.2) 0%, rgba(242,135,5,0.1) 100%)",
   },
   {
     title: "Infrastructure shortages",
     body:
       "Electricity gaps limit study hours and safety; poor sanitation spreads disease and disproportionately affects women and girls. WWC supports electrical and washroom initiatives and works with authorities toward lasting solutions.",
+    Icon: ElectricalServices,
+    accent: "linear-gradient(145deg, rgba(242,135,5,0.18) 0%, rgba(191,4,73,0.08) 100%)",
   },
   {
     title: "Food insecurity",
     body:
       "Families cannot afford adequate nutrition, affecting children’s development and adults’ productivity. WWC provides food relief and programmes that address root causes where possible.",
+    Icon: FoodBank,
+    accent: "linear-gradient(145deg, rgba(191,4,73,0.16) 0%, rgba(242,183,5,0.12) 100%)",
   },
   {
     title: "Unemployment & skill gaps",
     body:
       "Unskilled workers without networks remain vulnerable to exploitative labour. WWC’s capacity-building opens paths to economic independence.",
+    Icon: WorkOutline,
+    accent: "linear-gradient(145deg, rgba(191,52,117,0.16) 0%, rgba(242,135,5,0.1) 100%)",
   },
   {
     title: "Social exclusion",
     body:
       "Many in underserved settlements are unaware of government schemes and their rights. WWC helps people access entitlements so they can claim their citizenship with confidence.",
+    Icon: HowToReg,
+    accent: "linear-gradient(145deg, rgba(191,4,73,0.18) 0%, rgba(191,52,117,0.1) 100%)",
   },
 ];
 
@@ -171,31 +192,70 @@ export default function AboutWwcContent() {
         Our work responds to systemic gaps that keep families in cycles of hardship.
       </Typography>
 
-      {problems.map((p) => (
-        <Box
-          key={p.title}
-          sx={{
-            mb: 2.5,
-            pl: { xs: 2, md: 2.5 },
-            borderLeft: "3px solid #BF3475",
-          }}
-        >
-          <Typography
+      {problems.map((p) => {
+        const Icon = p.Icon;
+        return (
+          <Box
+            key={p.title}
             sx={{
-              fontFamily: "Sora",
-              fontWeight: 700,
-              fontSize: { xs: "15px", md: "16px" },
-              color: "#BF0449",
-              mb: 0.75,
+              mb: 2.5,
+              display: "flex",
+              gap: { xs: 2, md: 2.5 },
+              alignItems: "flex-start",
+              pl: { xs: 0, sm: 0 },
             }}
           >
-            {p.title}
-          </Typography>
-          <Typography sx={{ fontFamily: "Sora", fontSize: "15px", lineHeight: 1.75, color: "#444" }}>
-            {p.body}
-          </Typography>
-        </Box>
-      ))}
+            <Box
+              aria-hidden
+              sx={{
+                flexShrink: 0,
+                width: { xs: 52, sm: 58 },
+                height: { xs: 52, sm: 58 },
+                borderRadius: "14px",
+                background: p.accent,
+                border: "1px solid rgba(191, 4, 73, 0.12)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 6px 20px rgba(191, 4, 73, 0.1)",
+              }}
+            >
+              <Icon
+                sx={{
+                  fontSize: { xs: 26, sm: 30 },
+                  color: "#BF0449",
+                }}
+              />
+            </Box>
+            <Box
+              sx={{
+                flex: 1,
+                minWidth: 0,
+                borderLeft: {
+                  xs: "2px solid rgba(191, 52, 117, 0.35)",
+                  sm: "3px solid #BF3475",
+                },
+                pl: { xs: 1.75, sm: 2, md: 2.5 },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Sora",
+                  fontWeight: 700,
+                  fontSize: { xs: "15px", md: "16px" },
+                  color: "#BF0449",
+                  mb: 0.75,
+                }}
+              >
+                {p.title}
+              </Typography>
+              <Typography sx={{ fontFamily: "Sora", fontSize: "15px", lineHeight: 1.75, color: "#444" }}>
+                {p.body}
+              </Typography>
+            </Box>
+          </Box>
+        );
+      })}
 
       <Typography
         component="h3"

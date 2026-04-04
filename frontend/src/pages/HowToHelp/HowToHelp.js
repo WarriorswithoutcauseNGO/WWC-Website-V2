@@ -1,6 +1,11 @@
 import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
 import Diversity3OutlinedIcon from "@mui/icons-material/Diversity3Outlined";
+import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import HandshakeOutlinedIcon from "@mui/icons-material/HandshakeOutlined";
+import LeaderboardOutlinedIcon from "@mui/icons-material/LeaderboardOutlined";
+import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
+import TrackChangesOutlinedIcon from "@mui/icons-material/TrackChangesOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import { Box, Button, Container, IconButton, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,12 +17,12 @@ import sochVideo from "../../assets/sochVideo.mp4";
 const VOLUNTEER_FORM =
   "https://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url";
 
-const experienceBullets = [
-  "Grassroots social impact",
-  "Leadership development",
-  "Emotional growth",
-  "Meaningful human connections",
-  "Purpose-driven action",
+const experienceItems = [
+  { text: "Grassroots social impact", Icon: ParkOutlinedIcon },
+  { text: "Leadership development", Icon: LeaderboardOutlinedIcon },
+  { text: "Emotional growth", Icon: PsychologyOutlinedIcon },
+  { text: "Meaningful human connections", Icon: HandshakeOutlinedIcon },
+  { text: "Purpose-driven action", Icon: TrackChangesOutlinedIcon },
 ];
 
 const whyItems = [
@@ -75,7 +80,7 @@ const sectionRule = (
       color: "rgba(191, 4, 73, 0.35)",
       fontSize: { xs: "18px", md: "22px" },
       letterSpacing: "0.45em",
-      my: { xs: 5, md: 7 },
+      my: { xs: 1, md: 1.5 },
     }}
   >
     ⸻
@@ -190,12 +195,13 @@ const HowToHelp = () => {
             id="exp-heading"
             sx={{
               fontFamily: "Sora",
-              fontSize: "12px",
-              letterSpacing: "0.2em",
+              fontWeight: 600,
+              fontSize: { xs: "16px", sm: "17px", md: "20px" },
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
               color: "#BF0449",
               textAlign: "center",
-              mb: 2,
+              mb: 2.5,
             }}
           >
             About the experience
@@ -232,7 +238,7 @@ const HowToHelp = () => {
               fontWeight: 600,
               fontSize: "15px",
               color: "#1a1a1a",
-              mb: 2,
+              mb: 2.5,
               textAlign: "center",
             }}
           >
@@ -240,33 +246,63 @@ const HowToHelp = () => {
           </Typography>
           <Box
             component="ul"
+            aria-label="What you will experience as a volunteer"
             sx={{
               listStyle: "none",
               p: 0,
               m: 0,
-              maxWidth: 420,
+              maxWidth: 560,
               mx: "auto",
+              borderRadius: "18px",
+              border: "1px solid rgba(191, 4, 73, 0.14)",
+              bgcolor: "rgba(255, 255, 255, 0.98)",
+              boxShadow: "0 8px 36px rgba(191, 4, 73, 0.08)",
+              px: { xs: 2, sm: 2.5 },
+              py: { xs: 1.5, md: 2 },
             }}
           >
-            {experienceBullets.map((line) => (
+            {experienceItems.map(({ text, Icon }, idx) => (
               <Box
                 component="li"
-                key={line}
+                key={text}
                 sx={{
-                  fontFamily: "Sora",
-                  fontSize: { xs: "15px", md: "16px" },
-                  color: "#444",
-                  py: 1,
-                  pl: 0,
                   display: "flex",
-                  alignItems: "flex-start",
-                  gap: 1.5,
+                  alignItems: "center",
+                  gap: { xs: 1.5, sm: 2 },
+                  py: { xs: 1.5, md: 1.75 },
+                  px: { xs: 0.5, sm: 1 },
+                  borderBottom:
+                    idx < experienceItems.length - 1 ? "1px solid rgba(191, 4, 73, 0.08)" : "none",
                 }}
               >
-                <Box component="span" sx={{ color: "#BF0449", fontSize: "18px", lineHeight: 1.2 }}>
-                  ✔
+                <Box
+                  aria-hidden
+                  sx={{
+                    flexShrink: 0,
+                    width: { xs: 44, sm: 50 },
+                    height: { xs: 44, sm: 50 },
+                    borderRadius: "14px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "linear-gradient(145deg, rgba(191, 4, 73, 0.11) 0%, rgba(242, 183, 5, 0.08) 100%)",
+                    border: "1px solid rgba(191, 4, 73, 0.16)",
+                  }}
+                >
+                  <Icon sx={{ fontSize: { xs: 24, sm: 26 }, color: "#BF0449" }} />
                 </Box>
-                {line}
+                <Typography
+                  component="span"
+                  sx={{
+                    fontFamily: "Sora",
+                    fontSize: { xs: "15px", md: "16px" },
+                    color: "#333",
+                    fontWeight: 500,
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {text}
+                </Typography>
               </Box>
             ))}
           </Box>
@@ -276,7 +312,7 @@ const HowToHelp = () => {
       {sectionRule}
 
       {/* —— Reel carousel —— */}
-      <Box component="section" aria-labelledby="reel-heading" sx={{ pb: { xs: 2, md: 4 } }}>
+      <Box component="section" aria-labelledby="reel-heading" sx={{ pb: { xs: 1, md: 2 } }}>
         <Container maxWidth="lg">
           <Typography
             id="reel-heading"
@@ -381,7 +417,7 @@ const HowToHelp = () => {
       {sectionRule}
 
       {/* —— Why become a Warrior —— */}
-      <Box component="section" aria-labelledby="why-heading" sx={{ px: 2, py: { xs: 4, md: 6 } }}>
+      <Box component="section" aria-labelledby="why-heading" sx={{ px: 2, pt: { xs: 1.5, md: 2 }, pb: { xs: 2, md: 3 } }}>
         <Container maxWidth="lg">
           <Typography
             id="why-heading"
@@ -390,7 +426,7 @@ const HowToHelp = () => {
               fontSize: { xs: "28px", md: "36px" },
               color: "#1a1a1a",
               textAlign: "center",
-              mb: 5,
+              mb: 3,
             }}
           >
             Why Become a Warrior?
@@ -428,7 +464,7 @@ const HowToHelp = () => {
       {sectionRule}
 
       {/* —— Testimonials —— */}
-      <Box component="section" aria-labelledby="test-heading" sx={{ px: 2, py: { xs: 4, md: 6 } }}>
+      <Box component="section" aria-labelledby="test-heading" sx={{ px: 2, pt: { xs: 1.5, md: 2 }, pb: { xs: 3, md: 4 } }}>
         <Container maxWidth="sm">
           <Typography
             id="test-heading"
@@ -439,7 +475,7 @@ const HowToHelp = () => {
               textTransform: "uppercase",
               color: "#BF0449",
               textAlign: "center",
-              mb: 3,
+              mb: 2,
             }}
           >
             Voices from our community
@@ -525,7 +561,7 @@ const HowToHelp = () => {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            filter: "blur(14px) brightness(0.45)",
+            filter: "blur(9px) brightness(0.76)",
             transform: "scale(1.15)",
           }}
         />
@@ -533,7 +569,7 @@ const HowToHelp = () => {
           sx={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(191,4,73,0.5) 0%, rgba(26,10,18,0.75) 100%)",
+            background: "linear-gradient(135deg, rgba(191,4,73,0.3) 0%, rgba(26,10,18,0.44) 100%)",
           }}
         />
         <Container maxWidth="md" sx={{ position: "relative", zIndex: 1, px: 2, textAlign: "center" }}>

@@ -84,6 +84,7 @@ export default function AboutUsVerticalGallery({ photos, onSelect }) {
         (dy / Math.max(400, maxScrollTotal * 0.85 + 200)) * 1.1;
 
       if (dy > 0) {
+        /* At end of gallery: do not preventDefault so the page can scroll down */
         if (p >= 1 - 1e-4) return;
         e.preventDefault();
         applyProgress(cols, Math.min(1, p + deltaP));
@@ -161,6 +162,8 @@ export default function AboutUsVerticalGallery({ photos, onSelect }) {
             alignItems: "stretch",
             width: "100%",
             outline: "none",
+            /* Allow wheel to chain to the page once columns are at max scroll */
+            overscrollBehavior: "auto",
             "&:focus-visible": {
               boxShadow: "0 0 0 2px rgba(191,4,73,0.35)",
               borderRadius: 1,
@@ -180,7 +183,7 @@ export default function AboutUsVerticalGallery({ photos, onSelect }) {
                 minHeight: 0,
                 maxHeight: wallHeight,
                 overflowY: "auto",
-                overscrollBehaviorY: "contain",
+                overscrollBehaviorY: "auto",
                 WebkitOverflowScrolling: "touch",
                 display: "flex",
                 flexDirection: "column",

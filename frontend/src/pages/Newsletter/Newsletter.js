@@ -128,7 +128,7 @@ export default function Newsletter() {
       {/* Header */}
       <header className="newsletter-header">
         <h1>
-          WWC <span>Buzz</span>
+          WWC<span>Buzz</span>
         </h1>
         <p className="tagline">
           Because every small act of kindness deserves to be told

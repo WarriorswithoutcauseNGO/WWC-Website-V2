@@ -22,7 +22,7 @@ import SiyaSethi from "../../assets/SiyaSethi.jpeg";
  */
 const founders = [
   {
-    name: "Anusha Miree",
+    name: "Anusha Attree",
     image: AnushaAttree,
     role: "Founder Trustee",
     bio:

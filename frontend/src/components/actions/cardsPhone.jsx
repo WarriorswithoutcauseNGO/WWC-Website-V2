@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bf_img_1_phn from "../../assets/bf_img_1_phn.png";
-import bf_img_2_phn from "../../assets/bf_img_2_phn.png";
-import bf_img_3_phn from "../../assets/bf_img_3_phn.png";
-import bf_img_4_phn from "../../assets/bf_img_4_phn.png";
-import bf_img_5_phn from "../../assets/bf_img_5_phn.png";
+import {
+  wa20,
+  wa21,
+  wa22,
+  wa23,
+  wa24,
+} from "../../assets/whatsappTimeline";
 import right from "../../assets/right.svg";
 import left from "../../assets/left.svg";
 import "./cardsPhone.css";
@@ -22,35 +24,35 @@ const data = [
     id: 1,
     title: "Zero Poverty",
     text: '"Charity begins at home," and for us, that means ensuring no one in our community suffers the hardships of poverty. Our programs focus on fostering self-reliance by providing resources, microfinance, and sustainable livelihoods.',
-    img: bf_img_1_phn,
+    img: wa20,
     link: "/aboutus",
   },
   {
     id: 2,
     title: "Skill Development",
     text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
-    img: bf_img_2_phn,
+    img: wa21,
     link: "/howtohelp",
   },
   {
     id: 3,
     title: "Quality Education",
     text: 'As Nelson Mandela said, "Education is the most powerful weapon to change the world." We are committed to making quality education a reality for every child by supporting schools, offering scholarships, and nurturing young minds.',
-    img: bf_img_3_phn,
+    img: wa22,
     link: "/aboutus",
   },
   {
     id: 4,
     title: "Good Health & Sanitation",
     text: "Health is wealth. Our programs focus on clean water, hygiene, and preventive care, building healthier communities. Through clinics, awareness programs, and education on menstrual health, we empower people to live confidently.",
-    img: bf_img_4_phn,
+    img: wa23,
     link: "/aboutus",
   },
   {
     id: 5,
     title: "Raising Awareness & Literacy",
     text: "Knowledge is power, and informed communities can move mountains. Our awareness campaigns and literacy programs spark change by educating on gender equality, sustainability, and human rights.",
-    img: bf_img_5_phn,
+    img: wa24,
     link: "/howtohelp",
   },
 ];

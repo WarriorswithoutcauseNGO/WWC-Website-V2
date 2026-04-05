@@ -14,13 +14,12 @@ import our_drives_1 from "../../assets/our_drives_1.png";
 import our_drives_2 from "../../assets/our_drives_2.png";
 import our_drives_3 from "../../assets/our_drives_3.png";
 import our_drives_4 from "../../assets/our_drives_4.png";
-import bf_img_1 from "../../assets/bf_img_1.png";
+import { wa08, wa11 } from "../../assets/whatsappTimeline";
 import bf_img_2 from "../../assets/bf_img_2.png";
 import bf_img_3 from "../../assets/bf_img_3.png";
 import bf_img_4 from "../../assets/bf_img_4.png";
-import bf_img_5 from "../../assets/bf_img_5.png";
-import hyderabad from "../../assets/hyderabad.png";
-import carasol1 from "../../assets/carasol1.jpg";
+import bf_img_5 from "../../assets/whatsapp_timeline_17.jpeg";
+import Award from "../../assets/Award.jpeg";
 
 const milestones = [
   {
@@ -84,7 +83,7 @@ const milestones = [
     title: "FELICITATION BY BIHAR CHHATRA SANSAD",
     summary: "Honoured at Constitution Club of India, March 2024.",
     blog: "On March 22, 2024, WWC was recognized at the Bihar Utsav held at the Constitution Club of India by Bihar Chhatra Sansad, as an appreciation of its accomplishments and contributions to society. This felicitation marked a proud milestone in WWC's journey of social impact.",
-    img: hyderabad,
+    img: Award,
     gradient: "linear-gradient(135deg, #BF0449, #BF3475)",
   },
   {
@@ -92,7 +91,7 @@ const milestones = [
     title: "INTERNSHIP PROGRAMS",
     summary: "Collaborated with Symbiosis, VIPS & Amity for student internships.",
     blog: "WWC organized internships with various institutions such as Symbiosis Noida, VIPS, and Amity, where students acquired significant learning and were groomed to become the next generation of social changemakers. These programs provided hands-on experience in community development and social entrepreneurship.",
-    img: bf_img_1,
+    img: wa11,
     gradient: "linear-gradient(135deg, #F2B705, #BF3475)",
   },
   {
@@ -100,7 +99,7 @@ const milestones = [
     title: "WINTER RELIEF EFFORTS",
     summary: "Distributed 300+ mufflers and socks to the needy.",
     blog: "Winter was a time when WWC distributed more than 300 mufflers and socks, keeping the needy warm and comfortable, caring for them during the harshest time of the year. This initiative brought warmth and hope to the most vulnerable communities during freezing conditions.",
-    img: carasol1,
+    img: wa08,
     gradient: "linear-gradient(135deg, #BF3475, #F28705)",
   },
   {
@@ -304,6 +303,10 @@ const MileStone = () => {
             minHeight: { xs: 220, md: 320 },
             position: "relative",
             overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            bgcolor: "rgba(0,0,0,0.2)",
           }}
         >
           <Box
@@ -312,8 +315,9 @@ const MileStone = () => {
             alt={active.title}
             sx={{
               width: "100%",
-              height: "100%",
-              objectFit: "cover",
+              height: "auto",
+              maxHeight: { xs: 280, md: 380 },
+              objectFit: "contain",
               display: "block",
             }}
           />
@@ -461,7 +465,11 @@ const MileStone = () => {
             <Box
               sx={{
                 position: "relative",
-                height: { md: 280, xs: 180 },
+                minHeight: { md: 160, xs: 120 },
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: "#1a1a1a",
                 overflow: "hidden",
                 borderRadius: "20px 20px 0 0",
               }}
@@ -470,13 +478,24 @@ const MileStone = () => {
                 component="img"
                 src={milestones[expanded].img}
                 alt={milestones[expanded].title}
-                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: { md: "min(42vh, 360px)", xs: "min(38vh, 280px)" },
+                  objectFit: "contain",
+                  display: "block",
+                }}
               />
               <Box
                 sx={{
                   position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(transparent 40%, rgba(0,0,0,0.6))",
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  height: "48%",
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%)",
+                  pointerEvents: "none",
                 }}
               />
               <Typography

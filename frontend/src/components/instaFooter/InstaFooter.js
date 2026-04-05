@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Link, Typography } from '@mui/material';
-import carasolImg1 from '../../assets/carasol1.jpg';
-import carasolImg2 from '../../assets/carasol2.jpg';
-import carasolImg3 from '../../assets/carasol3.jpg';
+import { wa25, wa26, wa27 } from '../../assets/whatsappTimeline';
 import instaLogo from '../../assets/InstagramLogo.png';
 
 const InstaFooter = () => {
-  const images = [carasolImg1, carasolImg2, carasolImg3];
+  const images = [wa25, wa26, wa27];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {

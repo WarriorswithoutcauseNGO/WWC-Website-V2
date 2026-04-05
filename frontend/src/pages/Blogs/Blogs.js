@@ -3,17 +3,19 @@ import { Link } from "react-router-dom";
 import "./Blogs.css";
 import { deleteCustomBlog, getCustomBlogs, isCustomBlogPost } from "./blogsStorage";
 
-import our_drives_1 from "../../assets/our_drives_1.png";
-import our_drives_2 from "../../assets/our_drives_2.png";
-import our_drives_3 from "../../assets/our_drives_3.png";
 import our_drives_4 from "../../assets/our_drives_4.png";
-import bf_img_1 from "../../assets/bf_img_1.png";
-import bf_img_2 from "../../assets/bf_img_2.png";
-import bf_img_3 from "../../assets/bf_img_3.png";
-import bf_img_4 from "../../assets/bf_img_4.png";
 import bf_img_5 from "../../assets/bf_img_5.png";
-import hyderabad from "../../assets/hyderabad.png";
-import carasol1 from "../../assets/carasol1.jpg";
+import {
+  wa09,
+  wa12,
+  wa31,
+  wa32,
+  wa33,
+  wa34,
+  wa35,
+  wa36,
+  wa37,
+} from "../../assets/whatsappTimeline";
 
 const DEFAULT_BLOGS = [
   {
@@ -73,7 +75,7 @@ The philosophical essence of WarriorsWithoutCause acts as a reminder that change
 Through compassion, continuity, and community work, WarriorsWithoutCause shows that one does not have to make the biggest gesture in order to exert influence. It comes about when average people choose to behave in a benevolent and responsible manner.
 
 With the ever-present values of scale and fame, which tend to be praised in a globalized setting, WarriorsWithoutCause is an excellent example of how small measures, guided by values of well-being, can lead to considerable and remarkable influence.`,
-    img: our_drives_1,
+    img: wa31,
     category: "Philosophy",
     tags: ["Social Impact", "Empathy", "Community"],
     readTime: 8,
@@ -144,7 +146,7 @@ Final Reflection
 The example of WarriorsWithoutCause defines the way in which an NGO can turn the intention into the impact by planning, establishing a connection with the community, and making people act. By imparting order to kindness and guidance to goodwill, WarriorsWithoutCause makes sure that social change is not an accident but a planned event.
 
 All the initiatives are based on a promise of empathy, accountability, and sustainability. As the WarriorsWithoutCause paradigm depicts, actual change is realised when an intent is coupled with action, consistency and accountability.`,
-    img: bf_img_1,
+    img: wa12,
     category: "NGO Insight",
     tags: ["NGO", "Planning", "Impact"],
     readTime: 7,
@@ -197,7 +199,7 @@ Conclusion: Grassroots Change
 The grassroots efforts aim to be the foundation of social change since the problems begin at communities and that is the center they target. Local experience, confidence and empowerment make NGOs generate meaningful and sustainable change.
 
 The effectiveness of grassroots is ultimate in WarriorsWithoutCause which focuses on people, participation and long-lasting effect. Their approach is to make us recall that genuine social changes do not begin in the boardrooms and policy papers but in the communities where such changes are most in need.`,
-    img: our_drives_3,
+    img: wa32,
     category: "Community",
     tags: ["Grassroots", "Empowerment", "Sustainability"],
     readTime: 7,
@@ -248,7 +250,7 @@ Why NGOs Are Essential Today
 NGOs are becoming very vital in the development of inclusiveness and equity in a world that has become extremely unequal. They make sure that development cuts across every part of the society and not just society in the privileged positions.
 
 Through the funding of NGOs and the involvement in their activities, the society is stepping nearer to the vision of the future characterized by equity, dignity, and access to opportunity for everyone.`,
-    img: bf_img_4,
+    img: wa33,
     category: "Advocacy",
     tags: ["Inequality", "Social Justice", "Inclusion"],
     readTime: 7,
@@ -297,7 +299,7 @@ Conclusion: Building a Lasting Social Impact
 WarriorsWithoutCause builds sustainable social development through the combination of strategic planning, community empowerment, education outreach and synergy. It has a long-term view to ensure that initiatives offer value over the long term, bypassing short relief.
 
 Sustainable development is a course; with care and discipline, WarriorsWithoutCause will always be on this course — generating influences that can survive beyond the moment.`,
-    img: bf_img_2,
+    img: wa34,
     category: "Sustainability",
     tags: ["Development", "Empowerment", "Education"],
     readTime: 7,
@@ -348,7 +350,7 @@ Conclusion: A Journey Worth Taking
 The life of an NGO is full of challenges, which can only be sustained by commitment, and influenced by change. WarriorsWithoutCause is an excellent example of how commitment and flexibility can turn intent into permanence.
 
 WCW has survived through perseverance, learning and cooperation still with its mission. This is not just a trip of organisational expansion but of creating a better and fairer society. All the actions of WarriorsWithoutCause demonstrate some belief in change — in a sense that makes the way worth the walk.`,
-    img: hyderabad,
+    img: wa35,
     category: "NGO Insight",
     tags: ["Journey", "Commitment", "Growth"],
     readTime: 6,
@@ -403,7 +405,7 @@ Conclusion: Trust as the Route to Sustaining Influence
 The building of trust in societies is the most crucial resource of an NGO. It converts efforts into collaborations and work efforts into sustainable transformation. WarriorsWithoutCause are a good example of how trust is earned through constancy, honesty, and sincerity.
 
 In the field of social work, trust is not an option, it is an essential requirement.`,
-    img: our_drives_2,
+    img: wa36,
     category: "Community",
     tags: ["Trust", "Relationships", "Transparency"],
     readTime: 6,
@@ -454,7 +456,7 @@ Conclusion: Turning Drives Into Lasting Change
 Social drives mark the beginning of impact, not the end. What happens afterward determines the true value of the effort. Through follow-up, evaluation, empowerment, and community engagement, WarriorsWithoutCause ensures that social drives lead to meaningful outcomes.
 
 By focusing on real impact beyond the event, WarriorsWithoutCause demonstrates a commitment to sustainable social change.`,
-    img: bf_img_3,
+    img: wa37,
     category: "Social Impact",
     tags: ["Drives", "Impact", "Follow-up"],
     readTime: 6,
@@ -619,7 +621,7 @@ Conclusion: Making Effort Impactful
 The history of any social drive is the history of purpose and people working in collaboration. Through WarriorsWithoutCause it is shown that good social programs need more than action — they need purpose, cooperation, and accountability.
 
 Through careful planning, empowerment and keeping purpose at the core, WarriorsWithoutCause makes social drives have a long-lasting effect. Social drives are effective instruments of change when planning is done, people are engaged, and purpose drives the action.`,
-    img: carasol1,
+    img: wa09,
     category: "NGO Insight",
     tags: ["Planning", "Volunteering", "Purpose"],
     readTime: 6,

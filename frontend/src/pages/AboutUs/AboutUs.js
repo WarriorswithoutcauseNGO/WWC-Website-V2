@@ -14,12 +14,44 @@ import our_drives_4 from "../../assets/our_drives_4.png";
 import bf_img_1 from "../../assets/bf_img_1.png";
 import bf_img_2 from "../../assets/bf_img_2.png";
 import bf_img_3 from "../../assets/bf_img_3.png";
+import bf_img_4 from "../../assets/bf_img_4.png";
+import bf_img_5 from "../../assets/bf_img_5.png";
+import hyderabad from "../../assets/hyderabad.png";
+import carasol1 from "../../assets/carasol1.jpg";
+import carasol2 from "../../assets/carasol2.jpg";
+import carasol3 from "../../assets/carasol3.jpg";
+import About_img_1 from "../../assets/About_img_1.png";
+import About_img_2 from "../../assets/About_img_2.png";
+import About_img_3 from "../../assets/About_img_3.png";
 import MeetTheTeam from "../../components/meettheteam/MeetTheTeam";
 import StoryOfChange from "../../components/storyOfChange/StoryOfChange";
 import ImpactAchievements from "../../components/ImpactAchievements/ImpactAchievements";
+import { wa13 } from "../../assets/whatsappTimeline";
 
-const visionImages = [AboutUsCardOne, our_drives_1, our_drives_3, bf_img_1];
-const missionImages = [AboutUsCardTwo, our_drives_2, our_drives_4, bf_img_2, bf_img_3];
+const visionImages = [
+  AboutUsCardOne,
+  our_drives_1,
+  our_drives_3,
+  wa13,
+  About_img_1,
+  About_img_2,
+  About_img_3,
+  bf_img_1,
+];
+
+const missionImages = [
+  AboutUsCardTwo,
+  our_drives_2,
+  our_drives_4,
+  bf_img_2,
+  bf_img_3,
+  bf_img_4,
+  bf_img_5,
+  hyderabad,
+  carasol1,
+  carasol2,
+  carasol3,
+];
 
 const visionText = `Our society will be one where empathy rather than duty drives us to act, where compassion comes naturally to us all, and where every voice will be valued. Knowledge, connection, and the guts to care will be the beginning steps toward meaningful change — that is what Warriors Without Cause stands for.
 

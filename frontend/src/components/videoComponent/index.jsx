@@ -5,15 +5,15 @@ import our_drives_1_phn from "../../assets/our_drives_1_phn.png";
 import our_drives_2_phn from "../../assets/our_drives_2_phn.png";
 import our_drives_3_phn from "../../assets/our_drives_3_phn.png";
 import our_drives_4_phn from "../../assets/our_drives_4_phn.png";
-import bf_img_1_phn from "../../assets/bf_img_1_phn.png";
+import { wa01, wa14 } from "../../assets/whatsappTimeline";
 import "./VideoBackground.css";
 
 const mobileBanners = [
   { img: our_drives_1_phn, label: "Our Drives", link: "/projects" },
-  { img: bf_img_1_phn, label: "Education", link: "/howtohelp" },
+  { img: wa14, label: "Education", link: "/howtohelp" },
   { img: our_drives_2_phn, label: "Health & Hygiene", link: "/donate" },
   { img: our_drives_3_phn, label: "Environment", link: "/projects" },
-  { img: bf_img_1_phn, label: "Empower Women", link: "/beherhero" },
+  { img: wa01, label: "Empower Women", link: "/beherhero" },
   { img: our_drives_4_phn, label: "Volunteer", link: "/howtohelp" },
 ];
 

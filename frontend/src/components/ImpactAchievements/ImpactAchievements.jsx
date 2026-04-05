@@ -8,11 +8,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import our_drives_1 from "../../assets/our_drives_1.png";
-import our_drives_2 from "../../assets/our_drives_2.png";
-import our_drives_3 from "../../assets/our_drives_3.png";
-import bf_img_1 from "../../assets/bf_img_1.png";
-import hyderabad from "../../assets/hyderabad.png";
+import Award from "../../assets/Award.jpeg";
+import { wa10, wa28, wa29, wa30 } from "../../assets/whatsappTimeline";
 
 /**
  * Media & institution logos loaded from public CDNs (Wikimedia / official SVG hosts).
@@ -83,28 +80,28 @@ const INSTITUTIONS = [
 
 const ACADEMIC_SLIDES = [
   {
-    image: our_drives_2,
+    image: wa28,
     institution: "Symbiosis International University",
     quote:
       "Interning with WWC showed me how classroom ideas turn into real community impact. The mentorship changed how I think about leadership.",
     student: "Student intern, Symbiosis Noida",
   },
   {
-    image: bf_img_1,
+    image: wa10,
     institution: "IIT Delhi",
     quote:
       "Their session on social responsibility resonated with so many of us — it was honest, practical, and deeply motivating.",
     student: "Student representative",
   },
   {
-    image: our_drives_3,
+    image: wa29,
     institution: "University of Delhi",
     quote:
       "WWC’s workshops made us question what ‘helping’ really means — with empathy first, always. We left wanting to volunteer.",
     student: "DU student participant",
   },
   {
-    image: hyderabad,
+    image: wa30,
     institution: "Amity University",
     quote:
       "Collaborating on drives and awareness campaigns helped me build confidence and friendships rooted in service.",
@@ -371,7 +368,7 @@ export default function ImpactAchievements() {
           >
             <Box
               component="img"
-              src={our_drives_1}
+              src={Award}
               alt="Award ceremony and community recognition"
               sx={{
                 width: "100%",

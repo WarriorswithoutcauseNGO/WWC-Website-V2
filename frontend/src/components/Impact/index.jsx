@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import india_map from "../../assets/india_map.svg";
 import india_map_phn from "../../assets/india_map_phn.svg";
@@ -136,8 +136,13 @@ export default function Impact() {
   const [hoveredStat, setHoveredStat] = useState(null);
   const [featuredStat, setFeaturedStat] = useState(0);
   const [photoIdx, setPhotoIdx] = useState(0);
-  const [drivesOpen, setDrivesOpen] = useState(false);
+  /** Section visible in viewport (any scroll method: wheel, scrollbar, touch, keys). */
+  const [drivesInView, setDrivesInView] = useState(false);
+  /** User tapped button to collapse while still in view; resets when section leaves viewport. */
+  const [drivesUserCollapsed, setDrivesUserCollapsed] = useState(false);
+  const drivesOpen = drivesInView && !drivesUserCollapsed;
   const sectionRef = useRef(null);
+  const drivesSectionRef = useRef(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -169,9 +174,24 @@ export default function Impact() {
     return () => clearInterval(iv);
   }, [inView]);
 
-  const openDrives = useCallback(() => setDrivesOpen(true), []);
-  const closeDrives = useCallback(() => setDrivesOpen(false), []);
-  const toggleDrives = useCallback(() => setDrivesOpen((p) => !p), []);
+  useEffect(() => {
+    const el = drivesSectionRef.current;
+    if (!el) return;
+    /** Mobile: lower threshold + full viewport (touch scroll, iOS). Desktop: stricter bottom inset. */
+    const options = isMobile
+      ? { threshold: 0.05, rootMargin: "0px" }
+      : { threshold: 0.12, rootMargin: "0px 0px -6% 0px" };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        setDrivesInView(visible);
+        if (!visible) setDrivesUserCollapsed(false);
+      },
+      options
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isMobile]);
 
   return (
     <Box
@@ -267,6 +287,7 @@ export default function Impact() {
                 overflow: "hidden",
                 position: "relative",
                 minHeight: { md: 240, xs: 200 },
+                bgcolor: "rgba(0,0,0,0.06)",
               }}
             >
               {drivePhotos.map((src, i) => (
@@ -280,7 +301,8 @@ export default function Impact() {
                     inset: 0,
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    objectFit: "contain",
+                    objectPosition: "center",
                     opacity: photoIdx === i ? 1 : 0,
                     transition: "opacity 0.8s ease-in-out",
                   }}
@@ -301,15 +323,21 @@ export default function Impact() {
         </Box>
       </Box>
 
-      {/* Our Drives in Action — opens on hover */}
+      {/* Our Drives in Action — expands when this block scrolls into view (wheel, scrollbar, touch) */}
       <Box
-        onMouseEnter={isMobile ? undefined : openDrives}
-        onMouseLeave={isMobile ? undefined : closeDrives}
-        sx={{ mt: 5 }}
+        ref={drivesSectionRef}
+        sx={{
+          mt: 5,
+          scrollMarginTop: { xs: "72px", md: 0 },
+        }}
       >
         <Box sx={{ textAlign: "center" }}>
           <Button
-            onClick={isMobile ? toggleDrives : undefined}
+            type="button"
+            onClick={() => {
+              if (drivesInView) setDrivesUserCollapsed((c) => !c);
+            }}
+            aria-expanded={drivesOpen}
             sx={{
               background: "linear-gradient(135deg, #BF0449 0%, #F28705 100%)",
               color: "#fff",
@@ -330,7 +358,11 @@ export default function Impact() {
               transition: "all 0.3s ease",
             }}
           >
-            Our Drives in Action
+            {drivesInView
+              ? drivesUserCollapsed
+                ? "Show drives"
+                : "Hide drives"
+              : "Our Drives in Action"}
           </Button>
         </Box>
 
@@ -362,8 +394,12 @@ export default function Impact() {
                   flex: 1,
                   borderRadius: "16px",
                   overflow: "hidden",
-                  minHeight: { md: 200, xs: 180 },
-                  maxHeight: { md: 240, xs: 200 },
+                  minHeight: { md: 220, xs: 200 },
+                  maxHeight: { md: 280, xs: 240 },
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  bgcolor: "rgba(0,0,0,0.18)",
                 }}
               >
                 <Box
@@ -372,8 +408,9 @@ export default function Impact() {
                   alt={drive.head}
                   sx={{
                     width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
+                    height: "auto",
+                    maxHeight: { md: 260, xs: 220 },
+                    objectFit: "contain",
                     borderRadius: "16px",
                     display: "block",
                   }}

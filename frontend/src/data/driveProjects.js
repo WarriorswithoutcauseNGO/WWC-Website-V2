@@ -14,6 +14,14 @@ import bf_img_5 from "../assets/bf_img_5.png";
 import carasol1 from "../assets/carasol1.jpg";
 import carasol2 from "../assets/carasol2.jpg";
 import carasol3 from "../assets/carasol3.jpg";
+import {
+  wa02,
+  wa03,
+  wa04,
+  wa05,
+  wa06,
+  wa07,
+} from "../assets/whatsappTimeline";
 
 /**
  * Four flagship campaigns — Projects page grid + /projects/:slug detail pages.
@@ -44,7 +52,7 @@ export const campaignProjects = [
       { label: "Partners", value: "Colgate India · The Better India" },
       { label: "Focus", value: "Street vendors & daily wage workers" },
     ],
-    gallery: [our_drives_1, bf_img_1, carasol1, carasol2],
+    gallery: [our_drives_1, wa03, carasol1, carasol2],
   },
   {
     id: "vidyaksha",
@@ -121,14 +129,14 @@ export const campaignProjects = [
       { label: "Focus", value: "Women & youth in slum areas" },
       { label: "Outcome", value: "Independent earnings & confidence" },
     ],
-    gallery: [our_drives_4, bf_img_5, About_img_2, carasol1],
+    gallery: [our_drives_4, bf_img_5, About_img_2, wa04],
   },
 ];
 
 const legacyDriveStories = [
   {
     id: "education-outreach",
-    image: bf_img_1,
+    image: wa02,
     headline: "Education outreach",
     location: "Multiple hubs",
     driveType: "Schooling & scholarships",
@@ -227,7 +235,7 @@ const aboutUsGalleryExtras = [
   },
   {
     id: "gallery-carousel-1",
-    image: carasol1,
+    image: wa05,
     headline: "Momentum",
     location: "Campaign highlights",
     driveType: "Awareness & action",
@@ -237,7 +245,7 @@ const aboutUsGalleryExtras = [
   },
   {
     id: "gallery-carousel-2",
-    image: carasol2,
+    image: wa06,
     headline: "Side by side",
     location: "Community partners",
     driveType: "Collaboration",
@@ -247,13 +255,53 @@ const aboutUsGalleryExtras = [
   },
   {
     id: "gallery-carousel-3",
-    image: carasol3,
+    image: wa07,
     headline: "Forward motion",
     location: "Growth & reflection",
     driveType: "Impact storytelling",
     impact: "Every frame is a promise kept",
     writeUp:
       "Photos remind us that change is cumulative — hundreds of small brave acts adding up to a movement.",
+  },
+  {
+    id: "gallery-about-open-1",
+    image: bf_img_1,
+    headline: "Learning circles",
+    location: "Slum classrooms & hubs",
+    driveType: "Education & mentorship",
+    impact: "Small groups, steady progress",
+    writeUp:
+      "Regular sessions build trust and literacy — volunteers meet students where they are, week after week.",
+  },
+  {
+    id: "gallery-about-open-2",
+    image: carasol1,
+    headline: "Campaign energy",
+    location: "Rallies & awareness days",
+    driveType: "Visibility & voice",
+    impact: "Curiosity turned into commitment",
+    writeUp:
+      "High-visibility days help new volunteers find WWC — and remind communities that someone is showing up for them.",
+  },
+  {
+    id: "gallery-about-open-3",
+    image: carasol2,
+    headline: "Partners on the ground",
+    location: "Neighbourhoods & networks",
+    driveType: "Collaboration",
+    impact: "Shared effort, shared wins",
+    writeUp:
+      "Local partners and residents co-create solutions — so programmes fit context and last beyond a single event.",
+  },
+  {
+    id: "gallery-about-open-4",
+    image: carasol3,
+    headline: "Moments that stay",
+    location: "Field archive",
+    driveType: "Memory & meaning",
+    impact: "Every picture is a story",
+    writeUp:
+      "We document not for vanity but to honour people’s time — and to learn what to repeat and what to improve.",
   },
 ];
 

@@ -1,45 +1,47 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import bf_img_1 from "../../assets/bf_img_1.png";
-import bf_img_2 from "../../assets/bf_img_2.png";
-import bf_img_3 from "../../assets/bf_img_3.png";
-import bf_img_4 from "../../assets/bf_img_4.png";
-import bf_img_5 from "../../assets/bf_img_5.png";
+import {
+  wa15,
+  wa16,
+  wa17,
+  wa18,
+  wa19,
+} from "../../assets/whatsappTimeline";
 import "./cardsDesktop.css";
 
 const cards = [
   {
     title: "Zero<br/>Poverty",
     text: '"Charity begins at home," and for us, that means ensuring no one in our community suffers the hardships of poverty. Our programs focus on fostering self-reliance by providing resources, microfinance, and sustainable livelihoods.',
-    img: bf_img_1,
+    img: wa15,
     alt: "Zero Poverty",
     gradient: "linear-gradient(135deg, #BF0449 0%, #BF3475 100%)",
   },
   {
     title: "Skill<br/>Development",
     text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
-    img: bf_img_2,
+    img: wa16,
     alt: "Skill Development",
     gradient: "linear-gradient(135deg, #F28705 0%, #F2B705 100%)",
   },
   {
     title: "Quality<br/>Education",
     text: 'As Nelson Mandela said, "Education is the most powerful weapon to change the world." We are committed to making quality education a reality for every child by supporting schools, offering scholarships, and nurturing young minds.',
-    img: bf_img_3,
+    img: wa17,
     alt: "Quality Education",
     gradient: "linear-gradient(135deg, #BF3475 0%, #BF0449 100%)",
   },
   {
     title: "Good Health &<br/>Sanitation",
     text: "Health is wealth. Our programs focus on clean water, hygiene, and preventive care, building healthier communities. Through clinics, awareness programs, and education on menstrual health, we empower people to live confidently.",
-    img: bf_img_4,
+    img: wa18,
     alt: "Good Health & Sanitation",
     gradient: "linear-gradient(135deg, #F2B705 0%, #F28705 100%)",
   },
   {
     title: "Raising Awareness<br/>& Literacy",
     text: "Knowledge is power, and informed communities can move mountains. Our awareness campaigns and literacy programs spark change by educating on gender equality, sustainability, and human rights.",
-    img: bf_img_5,
+    img: wa19,
     alt: "Raising Awareness & Literacy",
     gradient: "linear-gradient(135deg, #BF0449 0%, #F28705 100%)",
   },

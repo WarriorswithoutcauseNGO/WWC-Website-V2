@@ -63,18 +63,40 @@ const bodMembers = [
 
 const volunteerTestimonials = [
   {
-    quote:
-      "This experience changed how I see the world — showing up for others changed how I show up for myself.",
-    attribution: "Volunteer",
+    name: "Sakshi Chopra",
+    role: "Senior HR Director",
+    quote: `Joining WarriorsWithoutCause has been a truly transformative experience.
+
+When I first became a part of this incredible community, I wanted to contribute in any way I could, to help, to give back, to make a difference. But what I found was something much greater, a sense of belonging, growth, and purpose that continues to inspire me every single day.
+
+As Senior HR Director, I've learned that leadership is not just about guiding a team, but about understanding, empowering, and uplifting the people within it. WWC has taught me that compassion and empathy are the strongest pillars of any organization and when people feel valued and supported, they can move mountains together.
+
+Every campaign, every outreach, and every shared smile has reaffirmed my belief that change begins with people who care. WWC is more than just an organization—it's a family united by kindness, hope, and the drive to create a better world.
+
+I feel deeply grateful to walk this journey with such passionate changemakers, and proud to call WarriorsWithoutCause my home.`,
   },
   {
-    quote:
-      "I found confidence I never knew I had. WWC is where purpose stopped being an idea and became weekends on the ground.",
-    attribution: "Warrior",
+    name: "Palak",
+    role: "Policy & Research Head",
+    quote: `My journey with WarriorsWithoutCause began with a desire to contribute and gradually grew into something deeply meaningful. Over time, it became a space of learning and belonging, driven by empathy and shared purpose. I had the opportunity to grow alongside the organisation, eventually taking on the role of Research Head through trust and continuous support. This transition was organic and rooted in encouragement and learning. Leading research initiatives taught me the value of collaboration, respect for ideas, and collective responsibility.
+
+The team's dedication and sincerity consistently inspire meaningful action and impact. Working with such committed individuals highlighted how shared efforts strengthen outcomes beyond individual contributions. This journey has shaped me not only as a leader but also as a person. Being part of WarriorsWithoutCause continues to motivate me to give my best towards creating lasting change.`,
   },
   {
-    quote: "It's more than volunteering, it's family — people who remind you why the work matters.",
-    attribution: "Team Member",
+    name: "Saanvi Goel",
+    role: "PR Department, WarriorsWithoutCause",
+    quote: `I've been volunteering with WWC for the past 3 months, and honestly, it's been one of the most fulfilling experiences I've ever had. From our menstrual hygiene kits distribution drive to the Diwali celebration where we distributed sarees, every drive has left me with beautiful memories and meaningful lessons. Seeing the happiness on people's faces and knowing that we could make even a small difference truly warms my heart.
+
+Being a part of the PR Department has also been such an amazing journey. I love how every member here supports one another, and there's always this positive, encouraging energy that makes you feel seen and valued. Everyone at WWC is genuinely so sweet, kind, and passionate about what they do. It really feels like one big family working toward a common goal.
+
+WWC has taught me what teamwork, empathy, and community truly mean. I've met some of the most inspiring people here, and each interaction motivates me to keep doing more for the world around us. I absolutely love being here. It's a place that makes me feel grounded, happy, and hopeful for a better tomorrow.`,
+  },
+  {
+    name: "Sahil Udar",
+    role: "Social Media Head, WarriorsWithoutCause",
+    quote: `When I first joined WarriorsWithoutCause, I'll admit I was chasing the same thing I'd pursued in college societies: a certificate, a title for my resume. But everything changed the day I attended my first drive and met the children there. Teaching them, listening to their stories, seeing their faces light up with curiosity—that's when I discovered the real purpose behind all of this. In that moment, I realized how hollow most certificates really are, just checkboxes we ticked off without doing meaningful work.
+
+Almost a year into this journey, I'm a different person. The metrics I once cared about feel insignificant now. What matters to me today is the actual impact we create, no matter how small. It's the real conversations, the genuine connections with the children and communities we interact with. This experience has taught me that the most valuable things we do are often the ones that never make it onto a resume, and I wouldn't trade that lesson for any certificate in the world.`,
   },
 ];
 
@@ -304,13 +326,13 @@ const MeetTheTeam = () => {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "repeat(3, minmax(0, 1fr))" },
+              gridTemplateColumns: { xs: "1fr", md: "repeat(2, minmax(0, 1fr))" },
               gap: { xs: 2, md: 2.5 },
             }}
           >
             {volunteerTestimonials.map((t, i) => (
               <Box
-                key={i}
+                key={t.name}
                 sx={{
                   position: "relative",
                   p: { xs: 2.5, md: 3 },
@@ -318,9 +340,9 @@ const MeetTheTeam = () => {
                   bgcolor: "rgba(191, 4, 73, 0.05)",
                   border: "1px solid rgba(191, 4, 73, 0.1)",
                   boxShadow: "0 4px 24px rgba(191, 4, 73, 0.06)",
-                  minHeight: { md: 200 },
                   display: "flex",
                   flexDirection: "column",
+                  minHeight: 0,
                 }}
               >
                 <FormatQuoteIcon
@@ -342,24 +364,35 @@ const MeetTheTeam = () => {
                     pl: 2,
                     pt: 1,
                     flex: 1,
+                    whiteSpace: "pre-line",
                   }}
                 >
                   {t.quote}
                 </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: "Sora, sans-serif",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "#BF0449",
-                    mt: 2,
-                    pl: 2,
-                  }}
-                >
-                  — {t.attribution}
-                </Typography>
+                <Box sx={{ mt: 2, pl: 2 }}>
+                  <Typography
+                    sx={{
+                      fontFamily: "Sora, sans-serif",
+                      fontSize: "12px",
+                      fontWeight: 700,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "#BF0449",
+                    }}
+                  >
+                    — {t.name}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: "Sora, sans-serif",
+                      fontSize: "13px",
+                      color: "#666",
+                      mt: 0.5,
+                    }}
+                  >
+                    {t.role}
+                  </Typography>
+                </Box>
               </Box>
             ))}
           </Box>

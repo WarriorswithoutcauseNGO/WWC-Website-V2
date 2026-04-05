@@ -50,24 +50,6 @@ export default function AboutUsSplit() {
           borderRight: { md: "1px solid rgba(191,4,73,0.08)" },
         }}
       >
-        <Box
-          aria-hidden
-          sx={{
-            position: "absolute",
-            right: { md: "-10%", xs: "-20%" },
-            top: "8%",
-            fontFamily: "DM Serif Display, serif",
-            fontSize: { md: "180px", xs: "120px" },
-            fontWeight: 700,
-            color: "rgba(191, 4, 73, 0.04)",
-            lineHeight: 0.85,
-            userSelect: "none",
-            pointerEvents: "none",
-          }}
-        >
-          WWC
-        </Box>
-
         <Box sx={{ position: "relative", zIndex: 1 }}>
           <Typography
             component="h1"
@@ -127,7 +109,7 @@ export default function AboutUsSplit() {
                 justifyContent: "flex-start",
                 borderBottom: "1px solid rgba(26,26,26,0.35)",
                 borderRadius: 0,
-                mb: 2.5,
+                mb: 0,
                 "&:hover": {
                   bgcolor: "transparent",
                   borderBottomColor: "#BF0449",
@@ -137,6 +119,24 @@ export default function AboutUsSplit() {
             >
               Projects
             </Button>
+            <Box
+              aria-hidden
+              sx={{
+                mt: { xs: 5, md: 8 },
+                alignSelf: "flex-start",
+                fontFamily: "DM Serif Display, serif",
+                fontSize: { md: "180px", xs: "120px" },
+                fontWeight: 700,
+                color: "rgba(191, 4, 73, 0.04)",
+                lineHeight: 0.85,
+                userSelect: "none",
+                pointerEvents: "none",
+                maxWidth: "100%",
+                overflow: "hidden",
+              }}
+            >
+              WWC
+            </Box>
           </Box>
         </Box>
 

@@ -18,9 +18,9 @@ const sectionRule = (
       display: "block",
       textAlign: "center",
       color: "rgba(191, 4, 73, 0.35)",
-      fontSize: { xs: "18px", md: "22px" },
-      letterSpacing: "0.5em",
-      my: { xs: 5, md: 7 },
+      fontSize: { xs: "14px", md: "16px" },
+      letterSpacing: "0.35em",
+      my: { xs: 1.5, md: 2 },
     }}
   >
     ⸻
@@ -139,7 +139,7 @@ const BeHerHero = () => {
       <Box
         component="section"
         aria-labelledby="soch-coming-heading"
-        sx={{ py: { xs: 6, md: 10 }, px: 2 }}
+        sx={{ py: { xs: 3, md: 4 }, px: 2 }}
       >
         <Container maxWidth="md">
           <Typography
@@ -199,7 +199,7 @@ const BeHerHero = () => {
       {sectionRule}
 
       {/* —— Our Vision —— */}
-      <Box component="section" aria-labelledby="soch-vision-heading" sx={{ px: 2, pb: { xs: 2, md: 4 } }}>
+      <Box component="section" aria-labelledby="soch-vision-heading" sx={{ px: 2, pb: { xs: 2, md: 3 } }}>
         <Container maxWidth="md">
           <Typography
             id="soch-vision-heading"
@@ -247,7 +247,7 @@ const BeHerHero = () => {
         aria-labelledby="soch-cta-heading"
         sx={{
           px: 2,
-          pb: { xs: 6, md: 8 },
+          pb: { xs: 4, md: 6 },
         }}
       >
         <Container maxWidth="md">

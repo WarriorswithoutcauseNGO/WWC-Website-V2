@@ -12,6 +12,7 @@ import BeHerHero from './pages/BeHerHero/BeHerHero';
 import Blogs from './pages/Blogs/Blogs';
 import AddBlog from './pages/Blogs/AddBlog';
 import Newsletter from './pages/Newsletter/Newsletter';
+import AddNews from './pages/Newsletter/AddNews';
 import Projects from './pages/Projects/Projects';
 import CampaignDetail from './pages/Projects/CampaignDetail';
 
@@ -42,6 +43,8 @@ function App() {
           <Route path="/blogs/edit/:id" element={<AddBlog />} />
           <Route path="/blogs/add" element={<AddBlog />} />
           <Route path="/newsletter" element={<Newsletter />} />
+          <Route path="/newsletter/add" element={<AddNews />} />
+          <Route path="/newsletter/edit/:id" element={<AddNews />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<CampaignDetail />} />
           <Route path="/donate" element={<Donation />} />

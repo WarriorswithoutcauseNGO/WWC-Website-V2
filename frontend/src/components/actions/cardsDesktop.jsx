@@ -1,12 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import {
-  wa15,
-  wa16,
-  wa17,
-  wa18,
-  wa19,
-} from "../../assets/whatsappTimeline";
+import our_drives_2 from "../../assets/our_drives_2.png";
+import our_drives_3 from "../../assets/our_drives_3.png";
+import { wa15, wa18, wa19 } from "../../assets/whatsappTimeline";
 import "./cardsDesktop.css";
 
 const cards = [
@@ -20,14 +16,14 @@ const cards = [
   {
     title: "Skill<br/>Development",
     text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
-    img: wa16,
+    img: our_drives_2,
     alt: "Skill Development",
     gradient: "linear-gradient(135deg, #F28705 0%, #F2B705 100%)",
   },
   {
     title: "Quality<br/>Education",
     text: 'As Nelson Mandela said, "Education is the most powerful weapon to change the world." We are committed to making quality education a reality for every child by supporting schools, offering scholarships, and nurturing young minds.',
-    img: wa17,
+    img: our_drives_3,
     alt: "Quality Education",
     gradient: "linear-gradient(135deg, #BF3475 0%, #BF0449 100%)",
   },

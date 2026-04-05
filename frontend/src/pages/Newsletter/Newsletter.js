@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Newsletter.css";
 
 import navbar_logo from "../../assets/navbar_logo.svg";
@@ -6,6 +7,12 @@ import our_drives_1 from "../../assets/our_drives_1.png";
 import our_drives_2 from "../../assets/our_drives_2.png";
 import our_drives_3 from "../../assets/our_drives_3.png";
 import our_drives_4 from "../../assets/our_drives_4.png";
+
+import {
+  deleteCustomNews,
+  getCustomNewsItems,
+  isCustomNewsItem,
+} from "./newsletterStorage";
 
 const HeartIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -28,7 +35,7 @@ const BookmarkIcon = () => (
   </svg>
 );
 
-const newsletters = [
+const DEFAULT_NEWSLETTERS = [
   {
     id: 1,
     title: "Winds of Humanity in a World of Dust",
@@ -109,10 +116,28 @@ Overall, the WWC Buzz newsletter helps disseminate information on the organizati
   },
 ];
 
+function hasValidDownloadUrl(url) {
+  return typeof url === "string" && /^https?:\/\//i.test(url.trim());
+}
+
 export default function Newsletter() {
   const [selectedNl, setSelectedNl] = useState(null);
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [listVersion, setListVersion] = useState(0);
+
+  const allNewsletters = [
+    ...getCustomNewsItems().map((n) => ({ ...n, isCustom: true })),
+    ...DEFAULT_NEWSLETTERS.map((n) => ({ ...n, isCustom: false })),
+  ];
+
+  const handleDeleteNews = (nl) => {
+    if (!isCustomNewsItem(nl)) return;
+    if (!window.confirm("Delete this news item? This cannot be undone.")) return;
+    deleteCustomNews(nl.id);
+    setSelectedNl(null);
+    setListVersion((v) => v + 1);
+  };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -133,12 +158,20 @@ export default function Newsletter() {
         <p className="tagline">
           Because every small act of kindness deserves to be told
         </p>
+        <p className="newsletter-add-link-wrap">
+          <Link to="/newsletter/add" className="newsletter-add-link">
+            + Add news
+          </Link>
+        </p>
+        <p className="newsletter-manage-hint">
+          Items you add can be edited or deleted — open a card and use the buttons in the reader.
+        </p>
       </header>
 
       {/* Instagram-Style Card Slider */}
       <section className="newsletter-slider-wrap">
-        <div className="newsletter-slider">
-          {newsletters.map((nl) => (
+        <div className="newsletter-slider" key={listVersion}>
+          {allNewsletters.map((nl) => (
             <article
               key={nl.id}
               className="insta-card"
@@ -175,6 +208,11 @@ export default function Newsletter() {
                 <h3 className="insta-card-title">{nl.title}</h3>
                 <p className="insta-card-summary">{nl.summary}</p>
               </div>
+              {nl.isCustom && (
+                <span className="newsletter-card-yours-badge" aria-hidden>
+                  Yours
+                </span>
+              )}
             </article>
           ))}
         </div>
@@ -213,7 +251,7 @@ export default function Newsletter() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="newsletter-modal-close">
-              <button onClick={() => setSelectedNl(null)}>&times;</button>
+              <button type="button" onClick={() => setSelectedNl(null)}>&times;</button>
             </div>
             <img
               src={selectedNl.image}
@@ -223,15 +261,37 @@ export default function Newsletter() {
             <div className="newsletter-modal-body">
               <h2>{selectedNl.title}</h2>
               <div className="modal-date">{selectedNl.subtitle} &middot; {selectedNl.date}</div>
+
+              {isCustomNewsItem(selectedNl) && (
+                <div className="newsletter-modal-actions">
+                  <Link
+                    to={`/newsletter/edit/${selectedNl.id}`}
+                    className="newsletter-modal-action-btn newsletter-modal-action-edit"
+                    onClick={() => setSelectedNl(null)}
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    type="button"
+                    className="newsletter-modal-action-btn newsletter-modal-action-delete"
+                    onClick={() => handleDeleteNews(selectedNl)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+
               <div className="modal-content">{selectedNl.content}</div>
-              <a
-                href={selectedNl.downloadUrl}
-                className="modal-download"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download Newsletter
-              </a>
+              {hasValidDownloadUrl(selectedNl.downloadUrl) && (
+                <a
+                  href={selectedNl.downloadUrl}
+                  className="modal-download"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Newsletter
+                </a>
+              )}
             </div>
           </div>
         </div>

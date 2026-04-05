@@ -1,26 +1,18 @@
-import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  appendCustomBlog,
-  getCustomBlogById,
-  updateCustomBlog,
-} from "./blogsStorage";
+  appendCustomNewsItem,
+  getCustomNewsById,
+  updateCustomNews,
+} from "./newsletterStorage";
 import {
   isDataImageUrl,
   isUsableCoverImage,
   readImageFileAsDataUrl,
 } from "../../utils/imageFileUpload";
 
-import defaultBlogImg from "../../assets/our_drives_1.png";
-
-export const GRADIENT_PRESETS = [
-  { label: "Pink — rose", value: "linear-gradient(135deg, #BF0449, #BF3475)" },
-  { label: "Pink — amber", value: "linear-gradient(135deg, #BF0449, #F28705)" },
-  { label: "Rose — gold", value: "linear-gradient(135deg, #BF3475, #F2B705)" },
-  { label: "Pink — yellow", value: "linear-gradient(135deg, #BF0449, #F2B705)" },
-  { label: "Magenta — orange", value: "linear-gradient(135deg, #BF3475, #F28705)" },
-];
+import defaultNewsImg from "../../assets/our_drives_1.png";
 
 function isHttpUrl(s) {
   try {
@@ -31,46 +23,42 @@ function isHttpUrl(s) {
   }
 }
 
-export default function AddBlog() {
+export default function AddNews() {
   const navigate = useNavigate();
   const { id: editId } = useParams();
   const isEdit = Boolean(editId);
   const numericId = editId ? Number(editId) : null;
 
   const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [date, setDate] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("Community");
-  const [tagsRaw, setTagsRaw] = useState("");
-  const [readTime, setReadTime] = useState("5");
   const [imageUrl, setImageUrl] = useState("");
-  /** Cover image from file (data URL); takes priority over imageUrl when set. */
   const [imageDataUrl, setImageDataUrl] = useState("");
-  const [gradient, setGradient] = useState(GRADIENT_PRESETS[0].value);
+  const [downloadUrl, setDownloadUrl] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  /** Snapshot of stored post when editing (for preserving img if URL left blank). */
-  const [loadedBlog, setLoadedBlog] = useState(null);
+  const [loaded, setLoaded] = useState(null);
   const coverFileInputRef = useRef(null);
 
   useEffect(() => {
     if (!isEdit || numericId == null || Number.isNaN(numericId)) {
-      setLoadedBlog(null);
+      setLoaded(null);
       return;
     }
-    const b = getCustomBlogById(numericId);
-    if (!b) {
-      navigate("/blogs", { replace: true });
+    const n = getCustomNewsById(numericId);
+    if (!n) {
+      navigate("/newsletter", { replace: true });
       return;
     }
-    setLoadedBlog(b);
-    setTitle(b.title);
-    setSummary(b.summary);
-    setContent(b.content);
-    setCategory(b.category || "Community");
-    setTagsRaw(Array.isArray(b.tags) ? b.tags.join(", ") : "");
-    setReadTime(String(b.readTime ?? 5));
-    const img = b.img;
+    setLoaded(n);
+    setTitle(n.title || "");
+    setSubtitle(n.subtitle || "");
+    setDate(n.date || "");
+    setSummary(n.summary || "");
+    setContent(n.content || "");
+    const img = n.image;
     if (typeof img === "string") {
       if (isHttpUrl(img)) {
         setImageUrl(img);
@@ -86,58 +74,55 @@ export default function AddBlog() {
       setImageUrl("");
       setImageDataUrl("");
     }
-    const g = b.gradient || GRADIENT_PRESETS[0].value;
-    const presetMatch = GRADIENT_PRESETS.some((p) => p.value === g);
-    setGradient(presetMatch ? g : GRADIENT_PRESETS[0].value);
+    setDownloadUrl(typeof n.downloadUrl === "string" && n.downloadUrl !== "#" ? n.downloadUrl : "");
   }, [isEdit, numericId, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
     const t = title.trim();
+    const sub = subtitle.trim();
+    const d = date.trim();
     const s = summary.trim();
     const c = content.trim();
-    if (!t || !s || !c) {
-      setError("Please fill in title, summary, and full content.");
+    if (!t || !sub || !d || !s || !c) {
+      setError("Please fill in title, subtitle, date, summary, and full content.");
       return;
     }
-    const rt = Math.max(1, parseInt(readTime, 10) || 5);
-    const parsedTags = tagsRaw
-      .split(",")
-      .map((x) => x.trim())
-      .filter(Boolean);
-    const tags = parsedTags.length > 0 ? parsedTags : ["WWC"];
 
-    let img = imageDataUrl || imageUrl.trim();
-    if (img && !isUsableCoverImage(img)) img = "";
-    if (!img) {
-      if (isEdit && loadedBlog?.img) img = loadedBlog.img;
-      else img = defaultBlogImg;
+    let image = imageDataUrl || imageUrl.trim();
+    if (image && !isUsableCoverImage(image)) image = "";
+    if (!image) {
+      if (isEdit && loaded?.image) image = loaded.image;
+      else image = defaultNewsImg;
     }
+
+    let dl = downloadUrl.trim();
+    if (dl && !isHttpUrl(dl)) dl = "";
+    if (!dl) dl = "#";
 
     setSubmitting(true);
     const payload = {
       title: t,
+      subtitle: sub,
+      date: d,
       summary: s,
       content: c,
-      img,
-      category: category.trim() || "Community",
-      tags,
-      readTime: rt,
-      gradient,
+      image,
+      downloadUrl: dl,
       isCustom: true,
     };
 
     if (isEdit && numericId != null) {
-      updateCustomBlog(numericId, payload);
+      updateCustomNews(numericId, payload);
     } else {
-      appendCustomBlog({
-        id: 100000 + Date.now(),
+      appendCustomNewsItem({
+        id: 200000 + Date.now(),
         ...payload,
       });
     }
     setSubmitting(false);
-    navigate("/blogs");
+    navigate("/newsletter");
   };
 
   const handleCoverFileChange = async (e) => {
@@ -157,7 +142,6 @@ export default function AddBlog() {
   return (
     <Box
       component="main"
-      className="add-blog-page"
       sx={{
         minHeight: "100vh",
         background: "#FFF2FA",
@@ -169,7 +153,7 @@ export default function AddBlog() {
       <Box sx={{ maxWidth: 640, mx: "auto" }}>
         <Typography
           component={Link}
-          to="/blogs"
+          to="/newsletter"
           sx={{
             fontFamily: "Sora",
             fontSize: 14,
@@ -180,7 +164,7 @@ export default function AddBlog() {
             "&:hover": { textDecoration: "underline" },
           }}
         >
-          ← Back to blogs
+          ← Back to newsletter
         </Typography>
 
         <Typography
@@ -195,18 +179,30 @@ export default function AddBlog() {
         >
           {isEdit ? (
             <>
-              Edit <Box component="span" sx={{ color: "#BF0449", fontStyle: "italic", fontFamily: "DM Serif Display, serif" }}>blog</Box>
+              Edit{" "}
+              <Box
+                component="span"
+                sx={{ color: "#BF0449", fontStyle: "italic", fontFamily: "DM Serif Display, serif" }}
+              >
+                news
+              </Box>
             </>
           ) : (
             <>
-              Add a <Box component="span" sx={{ color: "#BF0449", fontStyle: "italic", fontFamily: "DM Serif Display, serif" }}>blog</Box>
+              Add{" "}
+              <Box
+                component="span"
+                sx={{ color: "#BF0449", fontStyle: "italic", fontFamily: "DM Serif Display, serif" }}
+              >
+                news
+              </Box>
             </>
           )}
         </Typography>
         <Typography sx={{ fontFamily: "Sora", fontSize: 15, color: "#666", mb: 3 }}>
           {isEdit
             ? "Changes apply in this browser only."
-            : "New posts are saved in this browser only. Share the link or copy content elsewhere if you need them on another device."}
+            : "New items are saved in this browser only (same as custom blogs)."}
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
@@ -216,6 +212,23 @@ export default function AddBlog() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
+            sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
+          />
+          <TextField
+            required
+            label="Subtitle (e.g. WWC Buzz — edition)"
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
+            fullWidth
+            sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
+          />
+          <TextField
+            required
+            label="Date line"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            fullWidth
+            placeholder="e.g. Jan – Jun 2026"
             sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
           />
           <TextField
@@ -236,31 +249,8 @@ export default function AddBlog() {
             fullWidth
             multiline
             minRows={12}
-            placeholder="Write the full article. Line breaks are preserved."
+            placeholder="Write the full story. Line breaks are preserved."
             sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
-          />
-          <TextField
-            label="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            fullWidth
-            sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
-          />
-          <TextField
-            label="Tags (comma-separated)"
-            value={tagsRaw}
-            onChange={(e) => setTagsRaw(e.target.value)}
-            fullWidth
-            placeholder="e.g. Volunteering, Delhi, Education"
-            sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
-          />
-          <TextField
-            label="Read time (minutes)"
-            type="number"
-            inputProps={{ min: 1 }}
-            value={readTime}
-            onChange={(e) => setReadTime(e.target.value)}
-            sx={{ maxWidth: 200, "& .MuiInputBase-root": { fontFamily: "Sora" } }}
           />
           <TextField
             label="Cover image URL (optional)"
@@ -272,7 +262,7 @@ export default function AddBlog() {
             helperText={
               imageDataUrl
                 ? "Remove the uploaded image below to use a URL instead."
-                : isEdit && loadedBlog?.img && !imageUrl
+                : isEdit && loaded?.image && !imageUrl
                   ? "Leave empty to keep your current image."
                   : "Leave empty to use a default WWC image."
             }
@@ -314,19 +304,14 @@ export default function AddBlog() {
             )}
           </Box>
           <TextField
-            select
-            label="Card gradient"
-            value={gradient}
-            onChange={(e) => setGradient(e.target.value)}
+            label="Download link (optional)"
+            value={downloadUrl}
+            onChange={(e) => setDownloadUrl(e.target.value)}
             fullWidth
+            placeholder="https://… PDF or file"
+            helperText="Shown as “Download Newsletter” in the reader. Leave empty to hide or use placeholder."
             sx={{ "& .MuiInputBase-root": { fontFamily: "Sora" } }}
-          >
-            {GRADIENT_PRESETS.map((g) => (
-              <MenuItem key={g.value} value={g.value}>
-                {g.label}
-              </MenuItem>
-            ))}
-          </TextField>
+          />
 
           {error && (
             <Typography sx={{ color: "#c62828", fontFamily: "Sora", fontSize: 14 }}>
@@ -348,9 +333,9 @@ export default function AddBlog() {
                 "&:hover": { background: "linear-gradient(135deg, #a0033d, #a02d63)" },
               }}
             >
-              {isEdit ? "Save changes" : "Publish to this browser"}
+              {isEdit ? "Save changes" : "Save to this browser"}
             </Button>
-            <Button component={Link} to="/blogs" sx={{ fontFamily: "Sora", textTransform: "none" }}>
+            <Button component={Link} to="/newsletter" sx={{ fontFamily: "Sora", textTransform: "none" }}>
               Cancel
             </Button>
           </Box>

@@ -28,6 +28,48 @@
   margin-top: 12px;
   font-style: italic;
 }
+.newsletter-add-link-wrap {
+  margin-top: 16px !important;
+}
+.newsletter-add-link {
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #BF0449;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(191, 4, 73, 0.35);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.newsletter-add-link:hover {
+  color: #9c033d;
+  border-bottom-color: rgba(191, 4, 73, 0.6);
+}
+.newsletter-manage-hint {
+  font-family: "Sora", sans-serif;
+  font-size: 13px;
+  color: #888;
+  max-width: 420px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+.newsletter-card-yours-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  font-family: "Sora", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #bf0449;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
 
 /* ── Slider ── */
 .newsletter-slider-wrap {
@@ -46,6 +88,7 @@
 
 /* ── Instagram Card ── */
 .insta-card {
+  position: relative;
   background: #fff;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
@@ -272,6 +315,37 @@
   font-size: 13px;
   color: #999;
   margin-bottom: 20px;
+}
+.newsletter-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.newsletter-modal-action-btn {
+  font-family: "Sora", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.newsletter-modal-action-edit {
+  background: rgba(191, 4, 73, 0.1);
+  color: #BF0449;
+}
+.newsletter-modal-action-edit:hover {
+  background: rgba(191, 4, 73, 0.18);
+}
+.newsletter-modal-action-delete {
+  background: rgba(0, 0, 0, 0.06);
+  color: #c62828;
+}
+.newsletter-modal-action-delete:hover {
+  background: rgba(198, 40, 40, 0.12);
 }
 .newsletter-modal-body .modal-content {
   font-family: "Sora", sans-serif;

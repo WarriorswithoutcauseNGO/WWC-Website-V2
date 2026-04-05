@@ -27,6 +27,49 @@
   color: #777;
   margin-top: 12px;
 }
+.blogs-add-link-wrap {
+  margin-top: 16px !important;
+}
+.blogs-add-link {
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #BF0449;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(191, 4, 73, 0.35);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.blogs-add-link:hover {
+  color: #9c033d;
+  border-bottom-color: rgba(191, 4, 73, 0.6);
+}
+.blogs-manage-hint {
+  font-family: "Sora", sans-serif;
+  font-size: 13px;
+  color: #888;
+  max-width: 420px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+
+.blog-card-yours-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  font-family: "Sora", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #bf0449;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
 
 /* ── Category Tabs ── */
 .blogs-categories {
@@ -258,6 +301,50 @@
   line-height: 1.8;
   color: #444;
   white-space: pre-line;
+}
+
+.blog-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+.blog-modal-actions-top {
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-top: 0;
+  border-top: none;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+.blog-modal-action-btn {
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.blog-modal-action-edit {
+  background: linear-gradient(135deg, #BF0449, #BF3475);
+  color: #fff;
+}
+.blog-modal-action-edit:hover {
+  filter: brightness(0.95);
+  color: #fff;
+}
+.blog-modal-action-delete {
+  background: #fff;
+  color: #c62828;
+  border: 2px solid rgba(198, 40, 40, 0.35);
+}
+.blog-modal-action-delete:hover {
+  background: rgba(198, 40, 40, 0.06);
 }
 .blog-modal-related {
   margin-top: 36px;

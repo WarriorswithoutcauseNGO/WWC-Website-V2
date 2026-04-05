@@ -74,7 +74,7 @@ function VideoBackground() {
           <div className="overlay-text_div">
             <span className="nw n1">We </span>
             <span className="nw n2">Don&#x2019;t </span>
-            <span className="nw n3">Need </span>
+            <span className="nw n3 nw-need">Need </span>
             <span className="nw n4">a </span>
             <span className="nw n5">Cause </span>
             <span className="nw n4">to </span>
@@ -138,7 +138,7 @@ function VideoBackground() {
         <div className="overlay-text_div">
           <span className="nw n1">We </span>
           <span className="nw n2">Don&#x2019;t </span>
-          <span className="nw n3">Need </span>
+          <span className="nw n3 nw-need">Need </span>
           <span className="nw n4">a </span>
           <span className="nw n5">Cause </span>
           <span className="nw n4">to </span>

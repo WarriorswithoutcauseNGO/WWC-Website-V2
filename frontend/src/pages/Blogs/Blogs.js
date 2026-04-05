@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Blogs.css";
+import { deleteCustomBlog, getCustomBlogs, isCustomBlogPost } from "./blogsStorage";
 
 import our_drives_1 from "../../assets/our_drives_1.png";
 import our_drives_2 from "../../assets/our_drives_2.png";
@@ -13,7 +15,7 @@ import bf_img_5 from "../../assets/bf_img_5.png";
 import hyderabad from "../../assets/hyderabad.png";
 import carasol1 from "../../assets/carasol1.jpg";
 
-const blogs = [
+const DEFAULT_BLOGS = [
   {
     id: 1,
     title: "How Small Actions Create Big Impact: The Philosophy Behind WarriorsWithoutCause",
@@ -625,19 +627,44 @@ Through careful planning, empowerment and keeping purpose at the core, WarriorsW
   },
 ];
 
-const categories = ["All", ...new Set(blogs.map((b) => b.category))];
-
 const Blogs = () => {
   const [activeCat, setActiveCat] = useState("All");
   const [openBlog, setOpenBlog] = useState(null);
+  const [listVersion, setListVersion] = useState(0);
 
-  const filtered = activeCat === "All"
-    ? blogs
-    : blogs.filter((b) => b.category === activeCat);
+  const allBlogs = useMemo(
+    () => [
+      ...getCustomBlogs().map((b) => ({ ...b, isCustom: true })),
+      ...DEFAULT_BLOGS.map((b) => ({ ...b, isCustom: false })),
+    ],
+    [listVersion]
+  );
+
+  const handleDeleteBlog = (blog) => {
+    if (!isCustomBlogPost(blog)) return;
+    if (!window.confirm("Delete this blog? This cannot be undone.")) return;
+    deleteCustomBlog(blog.id);
+    setOpenBlog(null);
+    setListVersion((v) => v + 1);
+  };
+
+  const categories = useMemo(
+    () => ["All", ...new Set(allBlogs.map((b) => b.category))],
+    [allBlogs]
+  );
+
+  const filtered =
+    activeCat === "All"
+      ? allBlogs
+      : allBlogs.filter((b) => b.category === activeCat);
 
   const getRelated = (blog) =>
-    blogs
-      .filter((b) => b.id !== blog.id && (b.category === blog.category || b.tags.some((t) => blog.tags.includes(t))))
+    allBlogs
+      .filter(
+        (b) =>
+          b.id !== blog.id &&
+          (b.category === blog.category || b.tags.some((t) => blog.tags.includes(t)))
+      )
       .slice(0, 3);
 
   return (
@@ -647,6 +674,14 @@ const Blogs = () => {
           Our <span>Blogs</span>
         </h1>
         <p>Stories, insights, and reflections from the ground — by warriors, for everyone.</p>
+        <p className="blogs-add-link-wrap">
+          <Link to="/blogs/add" className="blogs-add-link">
+            + Add a blog
+          </Link>
+        </p>
+        <p className="blogs-manage-hint">
+          Posts you add can be edited or deleted — open the article and use the buttons at the top of the reader.
+        </p>
       </div>
 
       <div className="blogs-categories">
@@ -671,6 +706,11 @@ const Blogs = () => {
           >
             <img className="blog-card-img" src={blog.img} alt={blog.title} />
             <div className="blog-card-overlay" />
+            {blog.isCustom && (
+              <span className="blog-card-yours-badge" aria-hidden>
+                Yours
+              </span>
+            )}
             <div className="blog-card-content">
               <div className="blog-card-tags">
                 {blog.tags.map((t) => (
@@ -708,6 +748,26 @@ const Blogs = () => {
                 <span>•</span>
                 <span>{openBlog.tags.join(", ")}</span>
               </div>
+
+              {isCustomBlogPost(openBlog) && (
+                <div className="blog-modal-actions blog-modal-actions-top">
+                  <Link
+                    to={`/blogs/edit/${openBlog.id}`}
+                    className="blog-modal-action-btn blog-modal-action-edit"
+                    onClick={() => setOpenBlog(null)}
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    type="button"
+                    className="blog-modal-action-btn blog-modal-action-delete"
+                    onClick={() => handleDeleteBlog(openBlog)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+
               <div className="blog-modal-body-text">{openBlog.content}</div>
 
               {getRelated(openBlog).length > 0 && (

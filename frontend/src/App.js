@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage/HomePage';
 import HowToHelp from './pages/HowToHelp/HowToHelp';
 import BeHerHero from './pages/BeHerHero/BeHerHero';
 import Blogs from './pages/Blogs/Blogs';
+import AddBlog from './pages/Blogs/AddBlog';
 import Newsletter from './pages/Newsletter/Newsletter';
 import Projects from './pages/Projects/Projects';
 import CampaignDetail from './pages/Projects/CampaignDetail';
@@ -38,6 +39,8 @@ function App() {
           <Route path="/howtohelp" element={<HowToHelp />} />
           <Route path="/beherhero" element={<BeHerHero />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/edit/:id" element={<AddBlog />} />
+          <Route path="/blogs/add" element={<AddBlog />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<CampaignDetail />} />

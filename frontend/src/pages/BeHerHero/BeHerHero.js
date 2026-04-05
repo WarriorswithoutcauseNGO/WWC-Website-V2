@@ -400,7 +400,7 @@ const BeHerHero = () => {
                 textDecoration: "none",
               }}
             >
-              ← Back to Warriors Without Cause
+              ← Back to WarriorsWithoutCause
             </RouterLink>
           </Typography>
         </Container>

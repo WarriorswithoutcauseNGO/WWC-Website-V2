@@ -106,7 +106,7 @@ export default function AboutUsSplit() {
               maxWidth: 420,
             }}
           >
-            Warriors Without Cause is a youth-led NGO built on empathy — from education
+            WarriorsWithoutCause is a youth-led NGO built on empathy — from education
             and health to livelihoods and disaster relief. Our story is written in the
             streets and classrooms where volunteers show up, listen, and stay.
           </Typography>
@@ -167,7 +167,7 @@ export default function AboutUsSplit() {
             </Link>
           </Typography>
           <Typography sx={{ fontFamily: "Sora", fontSize: "11px", color: "#aaa" }}>
-            © {new Date().getFullYear()} Warriors Without Cause
+            © {new Date().getFullYear()} WarriorsWithoutCause
           </Typography>
         </Box>
       </Box>

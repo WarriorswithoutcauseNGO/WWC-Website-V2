@@ -228,7 +228,7 @@ export default function Impact() {
         >
           <img
             src={isMobile ? india_map_phn : india_map}
-            alt="Warriors Without Cause impact map across India"
+            alt="WarriorsWithoutCause impact map across India"
             style={{ width: "100%", maxHeight: 460, objectFit: "contain" }}
           />
           <Typography

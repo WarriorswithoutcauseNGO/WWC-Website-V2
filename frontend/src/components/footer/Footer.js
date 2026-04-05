@@ -8,7 +8,7 @@ import {
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import XIcon from "@mui/icons-material/X";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import { Link, useNavigate } from "react-router-dom";
 import FooterFlower from "../../assets/footerFlower.svg";
@@ -66,7 +66,7 @@ const Footer = () => {
               mb: 1.5,
             }}
           >
-            Warriors Without Cause
+            WarriorsWithoutCause
           </Typography>
           <Typography
             sx={{
@@ -135,7 +135,7 @@ const Footer = () => {
               { icon: <InstagramIcon fontSize="small" />, url: "https://www.instagram.com/warriorswithoutcausengo", label: "Instagram" },
               { icon: <YouTubeIcon fontSize="small" />, url: "https://youtube.com/@warriorswithoutcausengo", label: "YouTube" },
               { icon: <LinkedInIcon fontSize="small" />, url: "https://www.linkedin.com/company/warriorswithoutcausengo/", label: "LinkedIn" },
-              { icon: <TwitterIcon fontSize="small" />, url: "https://x.com/wwcngo", label: "X" },
+              { icon: <XIcon fontSize="small" />, url: "https://x.com/wwcngo", label: "X" },
               { icon: <FacebookIcon fontSize="small" />, url: "https://m.facebook.com/100088849480693/", label: "Facebook" },
             ].map((s) => (
               <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
@@ -172,8 +172,6 @@ const Footer = () => {
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             <li><Link to="/projects" style={linkStyle}>Projects</Link></li>
             <li><Link to="/beherhero" style={linkStyle}>Be Her Hero</Link></li>
-            <li><Link to="/howtohelp" style={linkStyle}>Gallery</Link></li>
-            <li><Link to="/howtohelp" style={linkStyle}>Events</Link></li>
             <li><Link to="/blogs" style={linkStyle}>Blogs</Link></li>
             <li><Link to="/newsletter" style={linkStyle}>Newsletter</Link></li>
           </ul>
@@ -186,7 +184,6 @@ const Footer = () => {
             <li><Link to="/howtohelp" style={linkStyle}>Volunteer</Link></li>
             <li><Link to="/donate" style={linkStyle}>Donate</Link></li>
             <li><Link to="/howtohelp" style={linkStyle}>Careers</Link></li>
-            <li><Link to="/howtohelp" style={linkStyle}>Collaborate</Link></li>
           </ul>
         </Box>
 
@@ -195,7 +192,6 @@ const Footer = () => {
           <Typography sx={headingStyle}>Support</Typography>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             <li><Link to="/aboutus" style={linkStyle}>FAQs</Link></li>
-            <li><Link to="/aboutus" style={linkStyle}>Contact Us</Link></li>
             <li><Link to="/aboutus" style={linkStyle}>Privacy Policy</Link></li>
             <li><Link to="/aboutus" style={linkStyle}>Terms of Use</Link></li>
           </ul>
@@ -236,7 +232,7 @@ const Footer = () => {
             color: "rgba(255,255,255,0.5)",
           }}
         >
-          &copy; {new Date().getFullYear()} Warriors Without Cause &mdash; All
+          &copy; {new Date().getFullYear()} WarriorsWithoutCause &mdash; All
           rights reserved
         </Typography>
         <Typography

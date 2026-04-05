@@ -135,7 +135,7 @@ export default function BecomeWarrior() {
             maxWidth: { md: "88%", xs: "100%" },
           }}
         >
-          Joining Warriors Without Cause offers personal and professional growth,
+          Joining WarriorsWithoutCause offers personal and professional growth,
           allowing you to expand your horizons, contribute to societal change,
           and build valuable networks. You'll gain experience by impacting lives
           and develop a deeper sense of gratitude and purpose while connecting
@@ -177,7 +177,7 @@ export default function BecomeWarrior() {
       <Box
         component="img"
         src={joinWWC}
-        alt="Join Warriors Without Cause"
+        alt="Join WarriorsWithoutCause"
         loading="lazy"
         sx={{
           display: { xs: "none", md: "block" },

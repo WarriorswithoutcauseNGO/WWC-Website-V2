@@ -67,7 +67,7 @@ function Navbar() {
         >
           <img
             src={navbar_logo}
-            alt="Warriors Without Cause logo"
+            alt="WarriorsWithoutCause logo"
             onClick={handleGoHome}
             style={{
               display: "flex",

@@ -112,7 +112,7 @@ export default function AboutWwcContent() {
   return (
     <Box
       component="section"
-      aria-label="About Warriors Without Cause"
+      aria-label="About WarriorsWithoutCause"
       sx={{
         px: { xs: 2.5, md: 6 },
         py: { xs: 5, md: 8 },
@@ -148,7 +148,7 @@ export default function AboutWwcContent() {
       />
 
       <BodyBlock>
-        Warriors Without Cause (WWC) is a pan-Indian youth-led non-governmental organisation
+        WarriorsWithoutCause (WWC) is a pan-Indian youth-led non-governmental organisation
         founded on a transformative philosophy: &ldquo;We do not need a cause to make a
         change.&rdquo; This motto treats compassion and action as part of ordinary life — not as
         exceptional behaviour reserved for a few.
@@ -186,7 +186,7 @@ export default function AboutWwcContent() {
           mb: 2,
         }}
       >
-        Problems Warriors Without Cause solves
+        Problems WarriorsWithoutCause solves
       </Typography>
       <Typography sx={{ fontFamily: "Sora", fontSize: "15px", color: "#666", mb: 3 }}>
         Our work responds to systemic gaps that keep families in cycles of hardship.
@@ -294,7 +294,7 @@ export default function AboutWwcContent() {
       ))}
 
       <BodyBlock sx={{ mt: 4, fontStyle: "italic", color: "#555", borderTop: "1px solid rgba(191,4,73,0.15)", pt: 3 }}>
-        Warriors Without Cause has shown up for communities through many motivations — proof
+        WarriorsWithoutCause has shown up for communities through many motivations — proof
         that sustained, comprehensive engagement can open real pathways to dignity, opportunity,
         and justice.
       </BodyBlock>

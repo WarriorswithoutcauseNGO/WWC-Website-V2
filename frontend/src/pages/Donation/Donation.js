@@ -203,7 +203,7 @@ export default function Donation() {
             lineHeight: 1.7,
           }}
         >
-          Your donation helps Warriors Without Cause provide education, healthcare,
+          Your donation helps WarriorsWithoutCause provide education, healthcare,
           and opportunities to underserved communities. Every contribution makes a
           real difference.
         </Typography>

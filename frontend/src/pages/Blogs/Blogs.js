@@ -488,7 +488,7 @@ Social challenges such as inequality, lack of awareness, and limited access to r
 
 WarriorsWithoutCause's consistent approach enables the organisation to move beyond symptom management and focus on long-term change. For example, WarriorsWithoutCause started the Beat the Heat campaign to address the extreme summer conditions faced by vulnerable communities across India. During peak heatwaves, people who work outdoors — such as daily wage workers, street vendors, delivery personnel, and the homeless — are at high risk of heat exhaustion, dehydration, and heatstroke.
 
-To provide immediate and practical relief, Warriors Without Cause distributed 1,200 umbrellas across multiple locations in India. These umbrellas served as portable shade, helping individuals protect themselves from harsh sunlight while continuing their daily work.
+To provide immediate and practical relief, WarriorsWithoutCause distributed 1,200 umbrellas across multiple locations in India. These umbrellas served as portable shade, helping individuals protect themselves from harsh sunlight while continuing their daily work.
 
 Empowerment Requires Time
 

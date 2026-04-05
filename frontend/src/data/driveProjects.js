@@ -69,7 +69,7 @@ export const campaignProjects = [
     writeUp:
       "Weekend classes and learning hubs for 500+ children across 10+ slums — blending academics with financial literacy, self-defence, and human rights workshops.",
     fullParagraphs: [
-      "Warriors Without Cause’s Project Vidyaksha focuses on the education sector with the goal of increasing access to learning for underprivileged children, especially from slums. The initiative reaches over 500 children from more than 10 slum areas.",
+      "WarriorsWithoutCause’s Project Vidyaksha focuses on the education sector with the goal of increasing access to learning for underprivileged children, especially from slums. The initiative reaches over 500 children from more than 10 slum areas.",
       "Alongside regular subjects, workshops cover financial literacy, self-defence, and human rights — helping children build confidence. Mentorship supports a positive learning atmosphere and fewer gaps in education, preparing children to seize better opportunities in the future.",
     ],
     impactMetrics: [

@@ -53,7 +53,7 @@ const missionImages = [
   carasol3,
 ];
 
-const visionText = `Our society will be one where empathy rather than duty drives us to act, where compassion comes naturally to us all, and where every voice will be valued. Knowledge, connection, and the guts to care will be the beginning steps toward meaningful change — that is what Warriors Without Cause stands for.
+const visionText = `Our society will be one where empathy rather than duty drives us to act, where compassion comes naturally to us all, and where every voice will be valued. Knowledge, connection, and the guts to care will be the beginning steps toward meaningful change — that is what WarriorsWithoutCause stands for.
 
 We are a team of young, passionate, and committed people whose primary objective is to transform the way social impact is practiced in our day-to-day life. We are imagining a world where all people are interconnected, diversity is important, and the well-being of people comes first.
 
@@ -61,7 +61,7 @@ Our aim goes beyond quick fixes or tokenistic involvement. We hope to build a so
 
 Our ultimate goal is to leave a profoundly human imprint — growing emotional strength, confidence, and mindsets. We envision a future with no room for apathy, where social responsibility is lived daily and impact is measured not by accolades but by the value of caring.`;
 
-const missionText = `We aim at promoting awareness, accountability, and collaboration — enabling people, especially the youth, to actively engage in constructive change. By creating platforms that go beyond participation, Warriors Without Cause bridges the gap between intentions and action.
+const missionText = `We aim at promoting awareness, accountability, and collaboration — enabling people, especially the youth, to actively engage in constructive change. By creating platforms that go beyond participation, WarriorsWithoutCause bridges the gap between intentions and action.
 
 Our core belief is that anyone — regardless of identity, privilege, or resources — can contribute. Through our projects, we assist others to take the first step while raising awareness on social, emotional, and community-related issues, always remembering that value lies not in a few individuals but in everybody.
 

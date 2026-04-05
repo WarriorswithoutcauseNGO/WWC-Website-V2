@@ -45,7 +45,7 @@ export default function Donation() {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: Number(amount) * 100,
         currency: "INR",
-        name: "Warriors Without Cause",
+        name: "WarriorsWithoutCause",
         description: "Donation",
         image: "/navbar_logo.svg",
         order_id: orderData.orderId,

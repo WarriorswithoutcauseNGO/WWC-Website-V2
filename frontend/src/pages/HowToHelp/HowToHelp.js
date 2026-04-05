@@ -229,7 +229,7 @@ const HowToHelp = () => {
               mb: 4,
             }}
           >
-            At Warriors Without Cause, volunteers don&apos;t just participate — they lead, create, and transform
+            At WarriorsWithoutCause, volunteers don&apos;t just participate — they lead, create, and transform
             lives, including their own.
           </Typography>
           <Typography

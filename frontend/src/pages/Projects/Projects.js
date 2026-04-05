@@ -1,9 +1,13 @@
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
-import ChevronRight from "@mui/icons-material/ChevronRight";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 import { Box, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { campaignProjects } from "../../data/driveProjects";
+
+/** Vertical wheel: longer duration + soft ease-out so rotation settles smoothly. */
+const WHEEL_DURATION = "1.12s";
+const WHEEL_EASE = "cubic-bezier(0.33, 1, 0.68, 1)";
 
 /** Rhombus “stage” marker (Audemars-style room nav). */
 function StageIcon({ active }) {
@@ -34,22 +38,37 @@ export default function Projects() {
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const n = campaignProjects.length;
   const [activeIndex, setActiveIndex] = useState(0);
+  /** 1 = next (down), -1 = previous (up); 0 = initial — drives vertical slide animation. */
+  const [slideDir, setSlideDir] = useState(0);
   const active = campaignProjects[activeIndex];
 
   const go = useCallback(
     (delta) => {
+      if (delta === 0 || n <= 1) return;
+      setSlideDir(delta > 0 ? 1 : -1);
       setActiveIndex((i) => (i + delta + n) % n);
     },
     [n]
   );
 
+  const goToIndex = useCallback(
+    (i) => {
+      if (i === activeIndex) return;
+      let diff = (i - activeIndex + n) % n;
+      if (diff > n / 2) diff -= n;
+      setSlideDir(diff > 0 ? 1 : -1);
+      setActiveIndex(i);
+    },
+    [activeIndex, n]
+  );
+
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         e.preventDefault();
         go(-1);
       }
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
         e.preventDefault();
         go(1);
       }
@@ -73,32 +92,104 @@ export default function Projects() {
         overflow: "hidden",
         bgcolor: "#0a0909",
         userSelect: "none",
+        "@keyframes projectsBgWheelNext": {
+          "0%": {
+            animationTimingFunction: WHEEL_EASE,
+            opacity: 0.15,
+            transform: "perspective(1400px) rotateX(62deg) scale(1.06) translateY(7%)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "perspective(1400px) rotateX(0deg) scale(1) translateY(0)",
+          },
+        },
+        "@keyframes projectsBgWheelPrev": {
+          "0%": {
+            animationTimingFunction: WHEEL_EASE,
+            opacity: 0.15,
+            transform: "perspective(1400px) rotateX(-62deg) scale(1.06) translateY(-7%)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "perspective(1400px) rotateX(0deg) scale(1) translateY(0)",
+          },
+        },
+        "@keyframes projectsWheelNext": {
+          "0%": {
+            animationTimingFunction: WHEEL_EASE,
+            opacity: 0,
+            transform:
+              "perspective(1200px) rotateX(68deg) translate3d(0, 9%, -90px) scale(0.94)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "perspective(1200px) rotateX(0deg) translate3d(0, 0, 0) scale(1)",
+          },
+        },
+        "@keyframes projectsWheelPrev": {
+          "0%": {
+            animationTimingFunction: WHEEL_EASE,
+            opacity: 0,
+            transform:
+              "perspective(1200px) rotateX(-68deg) translate3d(0, -9%, -90px) scale(0.94)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "perspective(1200px) rotateX(0deg) translate3d(0, 0, 0) scale(1)",
+          },
+        },
         "&:hover .projects-bg-active": {
-          transform: "scale(1.06)",
+          transform: "perspective(1400px) rotateX(0deg) scale(1.06)",
         },
       }}
     >
-      {campaignProjects.map((item, i) => (
-        <Box
-          key={item.id}
-          component="img"
-          src={item.image}
-          alt=""
-          className={i === activeIndex ? "projects-bg-active" : undefined}
-          sx={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center center",
-            opacity: i === activeIndex ? 1 : 0,
-            pointerEvents: "none",
-            transform: i === activeIndex ? "scale(1)" : "scale(1.04)",
-            transition: "opacity 0.85s ease, transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          }}
-        />
-      ))}
+      {/* 3D perspective layer so cover images rotate on X (vertical wheel) */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          perspective: { xs: "1000px", md: "1400px" },
+          perspectiveOrigin: "50% 42%",
+          overflow: "hidden",
+        }}
+      >
+        {campaignProjects.map((item, i) => (
+          <Box
+            key={item.id}
+            component="img"
+            src={item.image}
+            alt=""
+            className={i === activeIndex ? "projects-bg-active" : undefined}
+            sx={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center center",
+              opacity: i === activeIndex ? 1 : 0,
+              pointerEvents: "none",
+              transformStyle: "preserve-3d",
+              backfaceVisibility: "hidden",
+              transformOrigin: "50% 45%",
+              transform:
+                i === activeIndex
+                  ? "perspective(1400px) rotateX(0deg) scale(1)"
+                  : "perspective(1400px) rotateX(0deg) scale(1.04)",
+              transition: `opacity ${WHEEL_DURATION} ${WHEEL_EASE}`,
+              willChange: i === activeIndex ? "transform, opacity" : "auto",
+              ...(i === activeIndex && slideDir !== 0
+                ? {
+                    animation:
+                      slideDir === 1
+                        ? `projectsBgWheelNext ${WHEEL_DURATION} ${WHEEL_EASE} forwards`
+                        : `projectsBgWheelPrev ${WHEEL_DURATION} ${WHEEL_EASE} forwards`,
+                  }
+                : {}),
+            }}
+          />
+        ))}
+      </Box>
 
       <Box
         sx={{
@@ -186,7 +277,7 @@ export default function Projects() {
               }}
             >
               <IconButton
-                onClick={() => setActiveIndex(i)}
+                onClick={() => goToIndex(i)}
                 aria-label={`Show ${item.headline}`}
                 aria-current={i === activeIndex ? "true" : undefined}
                 sx={{
@@ -261,7 +352,7 @@ export default function Projects() {
               type="button"
               aria-label={`Show ${item.headline}`}
               aria-current={i === activeIndex ? "true" : undefined}
-              onClick={() => setActiveIndex(i)}
+              onClick={() => goToIndex(i)}
               sx={{
                 width: i === activeIndex ? 22 : 8,
                 height: 8,
@@ -276,7 +367,7 @@ export default function Projects() {
         </Box>
       )}
 
-      {/* Bottom — prev / title / next */}
+      {/* Bottom — prev / title / next (perspective for vertical wheel on copy) */}
       <Box
         sx={{
           position: "absolute",
@@ -289,6 +380,8 @@ export default function Projects() {
           alignItems: "center",
           justifyContent: "space-between",
           gap: { md: 6 },
+          perspective: { xs: "1000px", md: "1200px" },
+          perspectiveOrigin: "50% 55%",
         }}
       >
         <IconButton
@@ -301,18 +394,33 @@ export default function Projects() {
             color: "#fff",
             border: "1px solid rgba(255,255,255,0.2)",
             bgcolor: "rgba(0,0,0,0.25)",
+            transition: "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s",
             "&:hover": { bgcolor: "rgba(255,255,255,0.08)" },
+            "&:active": { transform: "translateY(-3px)" },
           }}
         >
-          <ChevronLeft sx={{ fontSize: 28 }} />
+          <KeyboardArrowUp sx={{ fontSize: 28 }} />
         </IconButton>
 
         <Box
+          key={activeIndex}
           sx={{
             flex: 1,
             textAlign: "center",
             minWidth: 0,
             px: 1,
+            overflow: "visible",
+            transformStyle: "preserve-3d",
+            backfaceVisibility: "hidden",
+            ...(slideDir !== 0
+              ? {
+                  animation:
+                    slideDir === 1
+                      ? `projectsWheelNext ${WHEEL_DURATION} ${WHEEL_EASE} forwards`
+                      : `projectsWheelPrev ${WHEEL_DURATION} ${WHEEL_EASE} forwards`,
+                  willChange: "transform, opacity",
+                }
+              : {}),
           }}
         >
           <Typography
@@ -392,10 +500,12 @@ export default function Projects() {
             color: "#fff",
             border: "1px solid rgba(255,255,255,0.2)",
             bgcolor: "rgba(0,0,0,0.25)",
+            transition: "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s",
             "&:hover": { bgcolor: "rgba(255,255,255,0.08)" },
+            "&:active": { transform: "translateY(3px)" },
           }}
         >
-          <ChevronRight sx={{ fontSize: 28 }} />
+          <KeyboardArrowDown sx={{ fontSize: 28 }} />
         </IconButton>
       </Box>
 

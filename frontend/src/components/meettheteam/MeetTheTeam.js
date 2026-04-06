@@ -57,7 +57,7 @@ const bodMembers = [
     image: SiyaSethi,
     role: "Board of Directors (BOD)",
     bio:
-      "On the Board of Directors, I help safeguard governance, accountability, and the long-term health of WWC alongside fellow trustees and leadership. I’m here to ask the hard questions kindly — so our impact stays honest, sustainable, and true to the communities we serve. The best part is knowing the organisation I back is built on trust, not shortcuts.",
+      "A corporate professional driven by a strong sense of purpose to give back to the society.She believes that meaningful transformation comes through empathy, collective effort, and the power of youth-led leadership to drive long-term social impact.I firmly believe that the work you do should mean something  not just to you, but to the people around you.For over four years, it has been more than just an organisation to me it has been a space that has shaped me, challenged me, and taught me the true meaning of showing up for others.",
   },
 ];
 

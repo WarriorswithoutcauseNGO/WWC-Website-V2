@@ -217,7 +217,7 @@ const HomePageAboutUs = () => {
             marginTop: "16px",
           }}
         >
-          WarriorsWithoutCause started with a simple truth — you don't need a reason to help someone.
+          WarriorsWithoutCause started with a simple truth you don't need a reason to help someone.
           What began as a handful of young people stepping up has grown into a <strong>350+ strong movement</strong> reaching
           underserved communities across India with health camps, education drives, and real, lasting change.
         </p>

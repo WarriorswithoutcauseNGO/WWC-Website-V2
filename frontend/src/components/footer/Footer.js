@@ -187,17 +187,7 @@ const Footer = () => {
           </ul>
         </Box>
 
-        {/* Column 5: Support */}
-        <Box sx={{ minWidth: 0, width: { xs: "calc(50% - 16px)", md: "auto" } }}>
-          <Typography sx={headingStyle}>Support</Typography>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            <li><Link to="/aboutus" style={linkStyle}>FAQs</Link></li>
-            <li><Link to="/aboutus" style={linkStyle}>Privacy Policy</Link></li>
-            <li><Link to="/aboutus" style={linkStyle}>Terms of Use</Link></li>
-          </ul>
-        </Box>
-
-        {/* Column 6: Contact (no map) */}
+        {/* Column 5: Contact (no map) */}
         <Box component="address" sx={{ fontStyle: "normal", minWidth: 0, width: { xs: "100%", md: "auto" } }}>
           <Typography sx={headingStyle}>Contact</Typography>
           <Typography sx={{ ...linkStyle, display: "block" }}>
@@ -207,7 +197,7 @@ const Footer = () => {
             <a href="mailto:info.warriorswithoutcause.com" style={linkStyle}>info.warriorswithoutcause.com</a>
           </Typography>
           <Typography sx={{ ...linkStyle, display: "block" }}>
-            <a href="mailto:Contact@warriorswithoutcause.org" style={linkStyle}>Contact@warriorswithoutcause.org</a>
+            <a href="mailto:warriorswithoutcause@gmail.com" style={linkStyle}>warriorswithoutcause@gmail.com</a>
           </Typography>
         </Box>
       </Box>

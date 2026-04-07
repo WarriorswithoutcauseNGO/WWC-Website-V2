@@ -30,7 +30,7 @@ const data = [
   {
     id: 2,
     title: "Skill Development",
-    text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
+    text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship equip individuals with tools to succeed and contribute meaningfully.",
     img: wa21,
     link: "/howtohelp",
   },

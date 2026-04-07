@@ -11,8 +11,13 @@ import { Box, Button, Container, IconButton, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import bgVideo from "../../assets/bg-video.mp4";
 import our_drives_1 from "../../assets/our_drives_1.png";
+import our_drives_2 from "../../assets/our_drives_2.png";
+import our_drives_3 from "../../assets/our_drives_3.png";
 import our_drives_4 from "../../assets/our_drives_4.png";
-import sochVideo from "../../assets/sochVideo.mp4";
+import warriorDayReel1 from "../../assets/Video1.mp4";
+import warriorDayReel2 from "../../assets/Video2.mp4";
+import warriorDayReel3 from "../../assets/Video3.mp4";
+import warriorDayReel4 from "../../assets/Video4.mp4";
 
 const VOLUNTEER_FORM =
   "https://docs.google.com/forms/d/e/1FAIpQLSdECsvUceeFUrPORFeOho8wdzTEdFNMBHCr1qsLYThzy8htGQ/viewform?usp=pp_url";
@@ -63,11 +68,44 @@ const testimonials = [
   },
 ];
 
+const REEL_1_INSTAGRAM_URL =
+  "https://www.instagram.com/reel/DLFRsf8PKAc/?igsh=OWU3b2kzd3JvcWJx";
+const REEL_2_INSTAGRAM_URL =
+  "https://www.instagram.com/reel/DWeS0iYDwG5/?igsh=aTU4OGZsOTJ5bWFv";
+const REEL_3_INSTAGRAM_URL =
+  "https://www.instagram.com/reel/C-nOC1fSQTi/?igsh=aXljdXU0NGsxcm4w";
+const REEL_4_INSTAGRAM_URL =
+  "https://www.instagram.com/reel/C7RVTMHy66Y/?igsh=MWNrOTdoZTFqbndreg==";
+
 const reelItems = [
-  { id: "r1", video: bgVideo, poster: our_drives_1, label: "On the ground" },
-  { id: "r2", video: sochVideo, poster: our_drives_4, label: "Hands-on" },
-  { id: "r3", image: our_drives_1, label: "Community" },
-  { id: "r4", image: our_drives_4, label: "Together" },
+  {
+    id: "r1",
+    video: warriorDayReel1,
+    poster: our_drives_1,
+    label: "On the ground",
+    href: REEL_1_INSTAGRAM_URL,
+  },
+  {
+    id: "r2",
+    video: warriorDayReel2,
+    poster: our_drives_2,
+    label: "Hands-on",
+    href: REEL_2_INSTAGRAM_URL,
+  },
+  {
+    id: "r3",
+    video: warriorDayReel3,
+    poster: our_drives_3,
+    label: "Community",
+    href: REEL_3_INSTAGRAM_URL,
+  },
+  {
+    id: "r4",
+    video: warriorDayReel4,
+    poster: our_drives_4,
+    label: "Together",
+    href: REEL_4_INSTAGRAM_URL,
+  },
 ];
 
 const sectionRule = (
@@ -393,15 +431,32 @@ const HowToHelp = () => {
                     sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 )}
+                {item.href ? (
+                  <Box
+                    component="a"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${item.label} — Instagram reel (opens in new tab)`}
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      zIndex: 1,
+                      cursor: "pointer",
+                    }}
+                  />
+                ) : null}
                 <Box
                   sx={{
                     position: "absolute",
                     bottom: 0,
                     left: 0,
                     right: 0,
+                    zIndex: 2,
                     py: 1.25,
                     px: 1.5,
                     background: "linear-gradient(transparent, rgba(0,0,0,0.75))",
+                    pointerEvents: item.href ? "none" : "auto",
                   }}
                 >
                   <Typography sx={{ fontFamily: "Sora", fontSize: "12px", fontWeight: 600, color: "#fff" }}>

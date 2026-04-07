@@ -15,7 +15,7 @@ const cards = [
   },
   {
     title: "Skill<br/>Development",
-    text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship — equip individuals with tools to succeed and contribute meaningfully.",
+    text: "In today's world, knowledge is power. Our skill development initiatives — vocational training, digital literacy, and entrepreneurship equip individuals with tools to succeed and contribute meaningfully.",
     img: our_drives_2,
     alt: "Skill Development",
     gradient: "linear-gradient(135deg, #F28705 0%, #F2B705 100%)",

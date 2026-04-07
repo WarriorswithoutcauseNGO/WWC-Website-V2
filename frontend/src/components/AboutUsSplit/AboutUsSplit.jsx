@@ -88,9 +88,20 @@ export default function AboutUsSplit() {
               maxWidth: 420,
             }}
           >
-            WarriorsWithoutCause is a youth-led NGO built on empathy — from education
-            and health to livelihoods and disaster relief. Our story is written in the
-            streets and classrooms where volunteers show up, listen, and stay.
+            Warriorswithoutcause is a youth-led
+            PAN
+            India NGO, registered under the Indian
+            Trusts Act, 1882.
+            Our core philosophy
+            centers around empowering individuals to become self-sufficient and to be able to provide for themselves. We achieve this by working on the ground in underserved slum communities through a multifaceted
+            approach that includes:<br/>
+            • Organizing medical healthcare
+            camps
+            and expert workshops<br/>
+            • Conducting educational workshops and weekly pathshalas<br/>
+            • Establishing WASH facilities<br/>
+            • Offering employment opportunities<br/>
+            • Improving overall quality of life<br/>
           </Typography>
 
           <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 0 }}>

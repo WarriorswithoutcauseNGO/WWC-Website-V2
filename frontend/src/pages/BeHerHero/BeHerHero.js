@@ -8,7 +8,7 @@ import sochVideo from "../../assets/sochVideo.mp4";
 /** Soch / WWC social — update handle if Soch gets a dedicated profile. */
 const SOCH_INSTAGRAM = "https://www.instagram.com/warriorswithoutcausengo";
 const COLLABORATE_MAIL =
-  "mailto:Contact@warriorswithoutcause.org?subject=Collaborate%20with%20Soch%20%2F%20Be%20Her%20Hero";
+  "mailto:warriorswithoutcause@gmail.com?subject=Collaborate%20with%20Soch%20%2F%20Be%20Her%20Hero";
 
 const sectionRule = (
   <Box
@@ -378,8 +378,8 @@ const BeHerHero = () => {
                 lineHeight: 1.7,
               }}
             >
-              <a href="mailto:Contact@warriorswithoutcause.org" style={{ color: "#BF0449", textDecoration: "none" }}>
-                Contact@warriorswithoutcause.org
+              <a href="mailto:warriorswithoutcause@gmail.com" style={{ color: "#BF0449", textDecoration: "none" }}>
+                warriorswithoutcause@gmail.com
               </a>
               <br />
               <a href="tel:+919711883411" style={{ color: "#444", textDecoration: "none" }}>

@@ -18,23 +18,51 @@ import hyderabad from "../../assets/hyderabad.png";
 const drivePhotos = [our_drives_1, our_drives_2, our_drives_3, our_drives_4, hyderabad];
 
 const stats = [
-  { target: 700, suffix: "K +", label: "Individuals empowered", gradient: "linear-gradient(135deg, #BF0449 0%, #BF3475 100%)" },
-  { target: 3000, suffix: "+", label: "Volunteers engaged", gradient: "linear-gradient(135deg, #F28705 0%, #F2B705 100%)" },
-  { target: 200, suffix: "K +", label: "In salaries provided to slum women", gradient: "linear-gradient(135deg, #BF3475 0%, #BF0449 100%)" },
-  { target: 300, suffix: "+", label: "Collaborations done", gradient: "linear-gradient(135deg, #F2B705 0%, #F28705 100%)" },
-  { target: 1000000, suffix: "+", label: "Total funds raised", gradient: "linear-gradient(135deg, #BF0449 0%, #F28705 100%)" },
+  {
+    target: 700000,
+    suffix: " +",
+    label: "Individuals empowered",
+    gradient: "linear-gradient(135deg, #BF0449 0%, #BF3475 100%)",
+    formatIndianDigits: true,
+    countDuration: 2.2,
+  },
+  {
+    target: 3000,
+    suffix: " +",
+    label: "Volunteers engaged",
+    gradient: "linear-gradient(135deg, #F28705 0%, #F2B705 100%)",
+    formatIndianDigits: true,
+    countDuration: 2.2,
+  },
+  {
+    target: 300,
+    suffix: " +",
+    label: "Collaborations done",
+    gradient: "linear-gradient(135deg, #F2B705 0%, #F28705 100%)",
+    formatIndianDigits: true,
+    countDuration: 2.2,
+  },
+  {
+    target: 2000000,
+    suffix: " +",
+    label: "Total funds raised",
+    gradient: "linear-gradient(135deg, #BF0449 0%, #F28705 100%)",
+    formatIndianDigits: true,
+    slowFundDrift: true,
+    countDuration: 5.5,
+  },
 ];
 
 const drives = [
   {
     head: "Beat the Heat Campaign",
-    text: 'In severe heat waves across Delhi, WWC organised the Beat the Heat campaign to help vulnerable populations. More than <b>1,200 umbrellas, caps and slippers</b> were distributed to street sellers and daily-wage earners. The initiative hosted <b>20+ sharbat-distribution events</b> and installed water bowls for birds and stray animals — delivering relief, hydration and compassion in extreme summer.',
+    text: 'In severe heat waves across Delhi, WWC organised the Beat the Heat campaign to help vulnerable populations. More than <b>1,200 umbrellas, caps and slippers</b> were distributed to street sellers and daily-wage earners. The initiative hosted <b>20+ sharbat-distribution events</b> and installed water bowls for birds and stray animals delivering relief, hydration and compassion in extreme summer.',
     img: our_drives_1,
     link: "/aboutus",
   },
   {
     head: "Project Vidyaksha",
-    text: 'We teach over <b>500 students in 10+ slums</b> essential subjects and skills, and conduct workshops on financial literacy, self-defense, and human rights. Our aim is to make quality education a reality for every child — supporting schools, offering scholarships, and nurturing young minds to become future changemakers.',
+    text: 'We teach over <b>500 students in 10+ slums</b> essential subjects and skills, and conduct workshops on financial literacy, self-defense, and human rights. Our aim is to make quality education a reality for every child supporting schools, offering scholarships, and nurturing young minds to become future changemakers.',
     img: our_drives_2,
     link: "/aboutus",
   },
@@ -46,39 +74,89 @@ const drives = [
   },
   {
     head: "Project Rozgar",
-    text: 'Our initiative teaches artisanal skills — knitting, embroidery, crochet — to empower adults and youth, especially <b>women in slums</b>, with the skills for financial independence and sustainable income. Through SOCH, our social enterprise, these creations reach wider audiences, turning talent into livelihood.',
+    text: 'Our initiative teaches artisanal skills knitting, embroidery, crochet to empower adults and youth, especially <b>women in slums</b>, with the skills for financial independence and sustainable income. Through SOCH, our social enterprise, these creations reach wider audiences, turning talent into livelihood.',
     img: our_drives_4,
     link: "/beherhero",
   },
 ];
 
-const AnimatedNumber = ({ target, startAnimation }) => {
+const inrFormatter = new Intl.NumberFormat("en-IN");
+
+/** Slow, visible tick-up after the initial count (per stat scale). */
+function gentleDriftParams(t) {
+  if (t >= 1_000_000) {
+    return { minBump: 8000, maxBump: 24000, intervalMs: 7000, stepDuration: 4.2 };
+  }
+  if (t >= 100_000) {
+    /* Individuals empowered — small steps, long gaps so it creeps up slowly */
+    return { minBump: 40, maxBump: 180, intervalMs: 14000, stepDuration: 6.5 };
+  }
+  if (t >= 1000) {
+    return { minBump: 1, maxBump: 5, intervalMs: 6000, stepDuration: 3 };
+  }
+  return { minBump: 1, maxBump: 2, intervalMs: 7200, stepDuration: 2.8 };
+}
+
+const AnimatedNumber = ({
+  target,
+  startAnimation,
+  noDrift,
+  formatIndianDigits,
+  countDuration = 1.4,
+  slowFundDrift,
+}) => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
+  const display = useTransform(rounded, (n) =>
+    formatIndianDigits ? inrFormatter.format(n) : n
+  );
   const driftRef = useRef(null);
+  const driftDelayRef = useRef(null);
 
   useEffect(() => {
     if (!startAnimation) return;
 
-    const initial = animate(count, target, { duration: 1.4, ease: "easeOut" });
+    const initial = animate(count, target, {
+      duration: countDuration,
+      ease: slowFundDrift ? "easeInOut" : "easeOut",
+    });
 
-    const driftDelay = setTimeout(() => {
+    if (noDrift && !slowFundDrift) {
+      return () => {
+        initial.stop();
+      };
+    }
+
+    const { minBump, maxBump, intervalMs, stepDuration } = slowFundDrift
+      ? {
+          /* Total funds — modest rupee steps, wait longer between ticks */
+          minBump: 1500,
+          maxBump: 5500,
+          intervalMs: 17000,
+          stepDuration: 8,
+        }
+      : gentleDriftParams(target);
+
+    const delayMs = countDuration * 1000 + (slowFundDrift ? 400 : 320);
+
+    driftDelayRef.current = setTimeout(() => {
       const tick = () => {
         const cur = count.get();
-        const bump = Math.max(1, Math.floor(target * 0.0003));
-        animate(count, cur + bump, { duration: 2, ease: "linear" });
+        const span = Math.max(0, maxBump - minBump);
+        const bump = minBump + (span > 0 ? Math.floor(Math.random() * (span + 1)) : 0);
+        animate(count, cur + bump, { duration: stepDuration, ease: "linear" });
       };
-      driftRef.current = setInterval(tick, 3000);
-    }, 1600);
+      driftRef.current = setInterval(tick, intervalMs);
+    }, delayMs);
 
     return () => {
       initial.stop();
-      clearTimeout(driftDelay);
+      if (driftDelayRef.current) clearTimeout(driftDelayRef.current);
       if (driftRef.current) clearInterval(driftRef.current);
     };
-  }, [startAnimation, target, count]);
+  }, [startAnimation, target, count, noDrift, slowFundDrift, countDuration]);
 
-  return <motion.span>{rounded}</motion.span>;
+  return <motion.span>{display}</motion.span>;
 };
 
 function StatCard({ stat, startAnimation, hovered, featured, onEnter, onLeave }) {
@@ -110,7 +188,14 @@ function StatCard({ stat, startAnimation, hovered, featured, onEnter, onLeave })
           lineHeight: 1.2,
         }}
       >
-        <AnimatedNumber target={stat.target} startAnimation={startAnimation} />
+        <AnimatedNumber
+          target={stat.target}
+          startAnimation={startAnimation}
+          noDrift={stat.noDrift}
+          formatIndianDigits={stat.formatIndianDigits}
+          countDuration={stat.countDuration}
+          slowFundDrift={stat.slowFundDrift}
+        />
         {stat.suffix}
       </Typography>
       <Typography
@@ -242,7 +327,7 @@ export default function Impact() {
           >
             With an army of over{" "}
             <strong style={{ color: "#BF0449" }}>
-              <AnimatedNumber target={350} startAnimation={startAnimation} /> warriors operating in multiple hubs,
+              <AnimatedNumber target={350} startAnimation={startAnimation} noDrift /> warriors operating in multiple hubs,
             </strong>{" "}
             we are breaking down barriers and leaving a legacy of compassion and impact.
           </Typography>
@@ -310,16 +395,6 @@ export default function Impact() {
               ))}
             </Box>
           </Box>
-
-          {/* Row 3: full-width stat */}
-          <StatCard
-            stat={stats[4]}
-            startAnimation={startAnimation}
-            hovered={hoveredStat === 4}
-            featured={hoveredStat === null && featuredStat === 4}
-            onEnter={() => setHoveredStat(4)}
-            onLeave={() => setHoveredStat(null)}
-          />
         </Box>
       </Box>
 

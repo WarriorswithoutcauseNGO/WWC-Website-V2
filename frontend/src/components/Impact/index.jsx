@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import india_map from "../../assets/india_map.svg";
 import india_map_phn from "../../assets/india_map_phn.svg";
 import our_drives_1 from "../../assets/our_drives_1.png";
-import our_drives_2 from "../../assets/our_drives_2.png";
+import our_drives_2 from "../../assets/Vidhyaksha.jpeg";
 import our_drives_3 from "../../assets/our_drives_3.png";
 import our_drives_4 from "../../assets/our_drives_4.png";
 import hyderabad from "../../assets/hyderabad.png";

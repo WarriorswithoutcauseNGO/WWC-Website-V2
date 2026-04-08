@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Blogs.css";
 import { deleteCustomBlog, getCustomBlogs, isCustomBlogPost } from "./blogsStorage";
@@ -632,28 +632,20 @@ Through careful planning, empowerment and keeping purpose at the core, WarriorsW
 const Blogs = () => {
   const [activeCat, setActiveCat] = useState("All");
   const [openBlog, setOpenBlog] = useState(null);
-  const [listVersion, setListVersion] = useState(0);
 
-  const allBlogs = useMemo(
-    () => [
-      ...getCustomBlogs().map((b) => ({ ...b, isCustom: true })),
-      ...DEFAULT_BLOGS.map((b) => ({ ...b, isCustom: false })),
-    ],
-    [listVersion]
-  );
+  const allBlogs = [
+    ...getCustomBlogs().map((b) => ({ ...b, isCustom: true })),
+    ...DEFAULT_BLOGS.map((b) => ({ ...b, isCustom: false })),
+  ];
 
   const handleDeleteBlog = (blog) => {
     if (!isCustomBlogPost(blog)) return;
     if (!window.confirm("Delete this blog? This cannot be undone.")) return;
     deleteCustomBlog(blog.id);
     setOpenBlog(null);
-    setListVersion((v) => v + 1);
   };
 
-  const categories = useMemo(
-    () => ["All", ...new Set(allBlogs.map((b) => b.category))],
-    [allBlogs]
-  );
+  const categories = ["All", ...new Set(allBlogs.map((b) => b.category))];
 
   const filtered =
     activeCat === "All"

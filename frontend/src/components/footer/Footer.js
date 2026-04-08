@@ -134,7 +134,7 @@ const Footer = () => {
             {[
               { icon: <InstagramIcon fontSize="small" />, url: "https://www.instagram.com/warriorswithoutcausengo", label: "Instagram" },
               { icon: <YouTubeIcon fontSize="small" />, url: "https://youtube.com/@warriorswithoutcausengo", label: "YouTube" },
-              { icon: <LinkedInIcon fontSize="small" />, url: "https://www.linkedin.com/company/warriorswithoutcausengo/", label: "LinkedIn" },
+              { icon: <LinkedInIcon fontSize="small" />, url: "https://www.linkedin.com/company/warriorswithoutcauseofficial/", label: "LinkedIn" },
               { icon: <XIcon fontSize="small" />, url: "https://x.com/wwcngo", label: "X" },
               { icon: <FacebookIcon fontSize="small" />, url: "https://m.facebook.com/100088849480693/", label: "Facebook" },
             ].map((s) => (
@@ -194,10 +194,10 @@ const Footer = () => {
             <a href="tel:+919711883411" style={linkStyle}>+91 9711883411</a>
           </Typography>
           <Typography sx={{ ...linkStyle, display: "block" }}>
-            <a href="mailto:info.warriorswithoutcause.com" style={linkStyle}>info.warriorswithoutcause.com</a>
+            <a href="mailto:info@warriorswithoutcause.org" style={linkStyle}>info@warriorswithoutcause.org</a>
           </Typography>
           <Typography sx={{ ...linkStyle, display: "block" }}>
-            <a href="mailto:warriorswithoutcause@gmail.com" style={linkStyle}>warriorswithoutcause@gmail.com</a>
+            <a href="mailto:partnerships@warriorswithoutcause.org" style={linkStyle}>partnerships@warriorswithoutcause.org</a>
           </Typography>
         </Box>
       </Box>
